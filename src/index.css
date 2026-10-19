@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Color tokens - Centralized for easy editing */
+    --color-bg-dark: #0D0F12;
+    --color-surface-dark: #14171C;
+    --color-surface-elevated: #1A1E24;
+    --color-surface-border: rgba(255, 255, 255, 0.08);
+    --color-surface-border-hover: rgba(255, 255, 255, 0.18);
+
+    /* Terracotta / Burnt Orange Accent */
+    --color-accent: #E15B38;
+    --color-accent-hover: #C84B29;
+    --color-accent-light: #FF7D5A;
+    --color-accent-subtle: rgba(225, 91, 56, 0.12);
+    --color-accent-glow: rgba(225, 91, 56, 0.25);
+    --color-accent-border: rgba(225, 91, 56, 0.35);
+
+    /* Neutral Typography */
+    --color-text-primary: #EDEDED;
+    --color-text-secondary: #A0A5AD;
+    --color-text-muted: #6B717B;
+
+    /* Light reading canvas tokens (Case Studies) */
+    --color-bg-light: #F8F9FA;
+    --color-text-light-primary: #121417;
+    --color-text-light-secondary: #4A5059;
+  }
+
+  html {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    background-color: var(--color-bg-dark);
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0D0F12;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #23272F;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+}
+
+/* Custom utility classes for terracotta accent */
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.bg-accent-hover:hover {
+  background-color: var(--color-accent-hover);
+}
+.bg-accent-subtle {
+  background-color: var(--color-accent-subtle);
+}
+.text-accent {
+  color: var(--color-accent);
+}
+.text-accent-light {
+  color: var(--color-accent-light);
+}
+.border-accent {
+  border-color: var(--color-accent);
+}
+.border-accent-subtle {
+  border-color: var(--color-accent-border);
+}
+.focus-ring-accent:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-out forwards;
+}
+
+/* Text Selection: High contrast everywhere */
+::selection {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+}
+::-moz-selection {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+}
+
+/* Light canvas (Case Study reading surfaces) — dark charcoal highlight with crisp white text */
+.case-study-canvas,
+.case-study-canvas * {
+  /* ensures clean text rendering */
+}
+.case-study-canvas ::selection,
+.case-study-canvas *::selection {
+  background-color: #18181B !important;
+  color: #FFFFFF !important;
+}
+.case-study-canvas ::-moz-selection,
+.case-study-canvas *::-moz-selection {
+  background-color: #18181B !important;
+  color: #FFFFFF !important;
+}
+
+/* Scroll Pulse Animation for Hero indicator (identical to valenafit) */
+@keyframes scrollPulse {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+.scroll-pulse-line {
+  animation: 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite scrollPulse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
