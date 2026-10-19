@@ -1,8 +1,8 @@
 import type { LocalizedCaseStudy } from '../../types/portfolio';
 
-// Coloque as imagens em src/assets/images/corrida-perfeita/.
-// Os caminhos seguem o padrão utilizado no projeto de referência.
-const img = '/src/assets/images/corrida-perfeita/';
+// As imagens estao na pasta /public/images/corrida-perfeita/ para serem servidas
+// tanto no ambiente de desenvolvimento Vite quanto no build de producao do Vercel/GitHub Pages.
+const img = '/images/corrida-perfeita/';
 
 export const corridaPerfeitaProject: LocalizedCaseStudy = {
   pt: {
