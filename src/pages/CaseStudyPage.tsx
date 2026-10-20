@@ -335,6 +335,59 @@ export const CaseStudyPage: React.FC = () => {
                     />
                   ) : (
                     <>
+                      {section.learningHighlights && (
+                        <div className="space-y-10 pt-2">
+                          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900 text-white border border-zinc-800 shadow-md relative overflow-hidden">
+                            <div
+                              className="absolute -right-16 -top-16 w-56 h-56 rounded-full blur-3xl opacity-20 pointer-events-none"
+                              style={{ backgroundColor: 'var(--color-accent, #E05A47)' }}
+                            />
+                            <div className="relative z-10 space-y-2">
+                              <span
+                                className="inline-block font-mono text-[11px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700/60"
+                                style={{ color: 'var(--color-accent, #E05A47)' }}
+                              >
+                                {t('Visão Central', 'Core Vision')}
+                              </span>
+                              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight leading-snug">
+                                "{section.learningHighlights.headline}"
+                              </h3>
+                            </div>
+                          </div>
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-2 pb-2 border-b border-zinc-200">
+                              <span className="text-xl" aria-hidden="true">✦</span>
+                              <h3 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
+                                {section.learningHighlights.title}
+                              </h3>
+                            </div>
+                            <div className="space-y-4">
+                              {section.learningHighlights.learnings.map((item) => (
+                                <div
+                                  key={item.number}
+                                  className="group p-5 sm:p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition-all space-y-3"
+                                >
+                                  <div className="flex items-baseline gap-3">
+                                    <span
+                                      className="font-mono text-xl sm:text-2xl font-bold shrink-0 tracking-tight"
+                                      style={{ color: 'var(--color-accent, #E05A47)' }}
+                                    >
+                                      {item.number}.
+                                    </span>
+                                    <h4 className="text-sm sm:text-base font-bold text-zinc-900 tracking-tight leading-snug">
+                                      {item.title}
+                                    </h4>
+                                  </div>
+                                  <div className="space-y-2.5 text-xs sm:text-sm text-zinc-700 leading-relaxed pl-0 sm:pl-9">
+                                    {item.paragraphs.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {section.lead && (
                         <p className="text-sm sm:text-base font-medium text-zinc-800 leading-relaxed">
                           {section.lead}
