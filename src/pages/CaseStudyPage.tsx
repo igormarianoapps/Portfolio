@@ -11,13 +11,43 @@ import { ImageLightboxModal } from '../components/ImageLightboxModal';
 import { siteConfig } from '../data/site';
 import {
   ArrowLeft,
+  ArrowRight,
+  ArrowUp,
   ArrowUpRight,
   AlertCircle,
   List,
   Maximize2,
+  Users,
+  BarChart2,
+  Search,
 } from 'lucide-react';
 
+function renderCardIcon(icon?: string, fallbackIndex = 0) {
+  switch (icon) {
+    case 'users':
+    case 'messages':
+      return <Users className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'chart':
+    case 'survey':
+      return <BarChart2 className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'search':
+    case 'benchmark':
+      return <Search className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    default:
+      if (fallbackIndex === 0) return <Users className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+      if (fallbackIndex === 1) return <BarChart2 className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+      return <Search className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+  }
+}
+
 function renderFormattedParagraph(text: string) {
+  if (text.startsWith('### ')) {
+    return (
+      <span className="block text-base sm:text-lg font-bold text-zinc-900 tracking-tight pt-3 pb-1">
+        {text.slice(4)}
+      </span>
+    );
+  }
   if (!text.includes('**')) {
     return text;
   }
@@ -241,154 +271,266 @@ export const CaseStudyPage: React.FC = () => {
         )}
 
         {/* Layout with Sticky Table of Contents and Main Editorial Column */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Table of Contents (Sticky on Desktop) */}
-          <aside className="lg:col-span-4 sticky top-24 hidden lg:block p-5 rounded-xl bg-white border border-zinc-200/80 shadow-xs">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-900 mb-3 pb-2 border-b border-zinc-100">
-              <List className="w-3.5 h-3.5 text-zinc-500" />
-              <span>{t('Neste estudo de caso', 'In this case study')}</span>
-            </div>
-            <nav className="space-y-1.5 text-xs font-medium">
+        {((project.sections && project.sections.length > 0) || (project.tableOfContents && project.tableOfContents.length > 0)) && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            {/* Table of Contents (Sticky on Desktop) */}
+            <aside className="lg:col-span-4 sticky top-24 hidden lg:block p-5 rounded-xl bg-white border border-zinc-200/80 shadow-xs">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-zinc-900 mb-3 pb-2 border-b border-zinc-100">
+                <List className="w-3.5 h-3.5 text-zinc-500" />
+                <span>{t('Neste estudo de caso', 'In this case study')}</span>
+              </div>
+              <nav className="space-y-1.5 text-xs font-medium">
+                {(project.tableOfContents || project.sections.map((s) => ({ id: s.id, title: s.title }))).map((item) => {
+                  const hasContent = project.sections.some((s) => s.id === item.id);
+                  const isActive = activeSection === item.id;
+
+                  if (hasContent) {
+                    return (
+                      <a
+                        key={item.id}
+                        href={`#${item.id}`}
+                        className={`block py-1 transition-colors leading-snug pl-2 border-l-2 ${
+                          isActive
+                            ? 'font-bold text-zinc-950'
+                            : 'text-zinc-500 hover:text-zinc-900 border-transparent'
+                        }`}
+                        style={{
+                          borderColor: isActive ? 'var(--color-accent)' : 'transparent',
+                        }}
+                      >
+                        {item.title}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <span
+                      key={item.id}
+                      className="block py-1 leading-snug pl-2 border-l-2 border-transparent text-zinc-400 select-none cursor-default"
+                    >
+                      {item.title}
+                    </span>
+                  );
+                })}
+              </nav>
+            </aside>
+
+            {/* Deep Editorial Body */}
+            <div className="lg:col-span-8 space-y-12">
               {project.sections.map((section) => (
-                <a
+                <section
                   key={section.id}
-                  href={`#${section.id}`}
-                  className={`block py-1 transition-colors leading-snug pl-2 border-l-2 ${
-                    activeSection === section.id
-                      ? 'font-bold text-zinc-950'
-                      : 'text-zinc-500 hover:text-zinc-900 border-transparent'
-                  }`}
-                  style={{
-                    borderColor: activeSection === section.id ? 'var(--color-accent)' : 'transparent',
-                  }}
+                  id={section.id}
+                  className="scroll-mt-24 space-y-4"
                 >
-                  {section.title}
-                </a>
-              ))}
-            </nav>
-          </aside>
+                  <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">
+                    {section.title}
+                  </h2>
 
-          {/* Deep Editorial Body */}
-          <div className="lg:col-span-8 space-y-12">
-            {project.sections.map((section) => (
-              <section
-                key={section.id}
-                id={section.id}
-                className="scroll-mt-24 space-y-4"
-              >
-                <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">
-                  {section.title}
-                </h2>
-
-                {section.executiveSummary ? (
-                  <CaseStudyExecutiveSummary
-                    data={section.executiveSummary}
-                    sectionTitle={section.title}
-                    allSections={project.sections.map((s) => ({ id: s.id, title: s.title }))}
-                  />
-                ) : (
-                  <>
-                    {section.lead && (
-                      <p className="text-sm sm:text-base font-medium text-zinc-800 leading-relaxed">
-                        {section.lead}
-                      </p>
-                    )}
-
-                    <div className="space-y-3.5 text-sm sm:text-base text-zinc-700 leading-relaxed">
-                      {section.paragraphs.map((p, pIdx) => {
-                        const matchingInlineImages = [
-                          ...(section.inlineImage && section.inlineImage.afterParagraph === pIdx ? [section.inlineImage.image] : []),
-                          ...(section.inlineImages?.filter((item) => item.afterParagraph === pIdx).map((item) => item.image) || []),
-                        ];
-
-                        return (
-                          <React.Fragment key={pIdx}>
-                            <p>{renderFormattedParagraph(p)}</p>
-                            {matchingInlineImages.map((imgSpec, imgIdx) => (
-                              <div key={imgIdx} className="my-6">
-                                <CaseStudyVisual imageSpec={imgSpec} />
-                              </div>
-                            ))}
-                          </React.Fragment>
-                        );
-                      })}
-                    </div>
-
-                    {/* Bullet Points */}
-                    {section.bulletPoints && section.bulletPoints.length > 0 && (
-                      <ul className="space-y-2 my-3 pt-1">
-                        {section.bulletPoints.map((bullet, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-800 leading-relaxed">
-                            <span
-                              className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
-                              style={{ backgroundColor: 'var(--color-accent)' }}
-                              aria-hidden="true"
-                            />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    {/* Pull Quote */}
-                    {section.quote && (
-                      <blockquote className="my-6 p-5 rounded-xl bg-zinc-100 border border-zinc-200">
-                        <p className="text-sm sm:text-base font-medium text-zinc-900 italic leading-relaxed mb-2">
-                          "{section.quote.text}"
+                  {section.executiveSummary ? (
+                    <CaseStudyExecutiveSummary
+                      data={section.executiveSummary}
+                      sectionTitle={section.title}
+                      allSections={project.sections.map((s) => ({ id: s.id, title: s.title }))}
+                    />
+                  ) : (
+                    <>
+                      {section.lead && (
+                        <p className="text-sm sm:text-base font-medium text-zinc-800 leading-relaxed">
+                          {section.lead}
                         </p>
-                        <footer className="text-xs text-zinc-600">
-                          <span className="font-semibold text-zinc-900">{section.quote.author}</span>
-                          {' — '}
-                          <span>{section.quote.role}</span>
-                        </footer>
-                      </blockquote>
-                    )}
+                      )}
 
-                    {/* Decision Log Cards */}
-                    {section.decisionLog && section.decisionLog.length > 0 && (
-                      <div className="space-y-3 my-5">
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
-                          {t('Registro de Decisões e Justificativas', 'Key Design Decisions & Trade-Offs')}
-                        </h3>
-                        <div className="space-y-2.5">
-                          {section.decisionLog.map((log, lIdx) => (
+                      <div className="space-y-3.5 text-sm sm:text-base text-zinc-700 leading-relaxed">
+                        {section.paragraphs.map((p, pIdx) => {
+                          const matchingInlineImages = [
+                            ...(section.inlineImage && section.inlineImage.afterParagraph === pIdx ? [section.inlineImage.image] : []),
+                            ...(section.inlineImages?.filter((item) => item.afterParagraph === pIdx).map((item) => item.image) || []),
+                          ];
+
+                          const isHeading = p.startsWith('### ');
+
+                          return (
+                            <React.Fragment key={pIdx}>
+                              {isHeading ? (
+                                <h3 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight pt-5 pb-1">
+                                  {p.slice(4)}
+                                </h3>
+                              ) : (
+                                <p>{renderFormattedParagraph(p)}</p>
+                              )}
+                              {matchingInlineImages.map((imgSpec, imgIdx) => (
+                                <div key={imgIdx} className="my-6">
+                                  <CaseStudyVisual imageSpec={imgSpec} />
+                                </div>
+                              ))}
+                            </React.Fragment>
+                          );
+                        })}
+                      </div>
+
+                      {/* Feature Cards (e.g. Three Investigation Fronts) */}
+                      {section.featureCards && section.featureCards.length > 0 && (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                          {section.featureCards.map((card, cIdx) => (
                             <div
-                              key={lIdx}
-                              className="p-4 rounded-xl bg-white border border-zinc-200 shadow-2xs space-y-1.5"
+                              key={cIdx}
+                              className="p-5 rounded-xl bg-white border border-zinc-200/90 shadow-2xs hover:border-zinc-300 transition-all flex flex-col justify-between"
                             >
-                              <div className="text-xs">
-                                <span className="font-semibold text-zinc-900">{t('Desafio', 'Challenge')}:</span>{' '}
-                                <span className="text-zinc-600">{log.challenge}</span>
-                              </div>
-                              <div className="text-xs">
-                                <span className="font-semibold text-zinc-900">{t('Decisão', 'Decision')}:</span>{' '}
-                                <span className="text-zinc-800 font-medium">{log.decision}</span>
-                              </div>
-                              <div className="text-xs text-zinc-600 pt-1 border-t border-zinc-100">
-                                <span className="font-semibold text-zinc-900">{t('Justificativa', 'Rationale')}:</span>{' '}
-                                <span>{log.rationale}</span>
+                              <div>
+                                <div className="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200/70 flex items-center justify-center mb-3.5">
+                                  {renderCardIcon(card.icon, cIdx)}
+                                </div>
+                                <h4 className="text-sm font-bold text-zinc-900 tracking-tight mb-2">
+                                  {card.title}
+                                </h4>
+                                <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                                  {card.description}
+                                </p>
                               </div>
                             </div>
                           ))}
                         </div>
+                      )}
+
+                      {/* Closing Paragraph after cards */}
+                      {section.closingParagraph && (
+                        <p className="text-sm sm:text-base text-zinc-700 leading-relaxed mt-4">
+                          {renderFormattedParagraph(section.closingParagraph)}
+                        </p>
+                      )}
+
+                      {/* Bullet Points */}
+                      {section.bulletPoints && section.bulletPoints.length > 0 && (
+                        <ul className="space-y-2 my-3 pt-1">
+                          {section.bulletPoints.map((bullet, bIdx) => (
+                            <li key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-800 leading-relaxed">
+                              <span
+                                className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
+                                style={{ backgroundColor: 'var(--color-accent)' }}
+                                aria-hidden="true"
+                              />
+                              <span>{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {/* Pull Quote */}
+                      {section.quote && (
+                        <blockquote className="my-6 p-5 rounded-xl bg-zinc-100 border border-zinc-200">
+                          <p className="text-sm sm:text-base font-medium text-zinc-900 italic leading-relaxed mb-2">
+                            "{section.quote.text}"
+                          </p>
+                          <footer className="text-xs text-zinc-600">
+                            <span className="font-semibold text-zinc-900">{section.quote.author}</span>
+                            {' — '}
+                            <span>{section.quote.role}</span>
+                          </footer>
+                        </blockquote>
+                      )}
+
+                      {/* Decision Log Cards */}
+                      {section.decisionLog && section.decisionLog.length > 0 && (
+                        <div className="space-y-3 my-5">
+                          <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-900">
+                            {t('Registro de Decisões e Justificativas', 'Key Design Decisions & Trade-Offs')}
+                          </h3>
+                          <div className="space-y-2.5">
+                            {section.decisionLog.map((log, lIdx) => (
+                              <div
+                                key={lIdx}
+                                className="p-4 rounded-xl bg-white border border-zinc-200 shadow-2xs space-y-1.5"
+                              >
+                                <div className="text-xs">
+                                  <span className="font-semibold text-zinc-900">{t('Desafio', 'Challenge')}:</span>{' '}
+                                  <span className="text-zinc-600">{log.challenge}</span>
+                                </div>
+                                <div className="text-xs">
+                                  <span className="font-semibold text-zinc-900">{t('Decisão', 'Decision')}:</span>{' '}
+                                  <span className="text-zinc-800 font-medium">{log.decision}</span>
+                                </div>
+                                <div className="text-xs text-zinc-600 pt-1 border-t border-zinc-100">
+                                  <span className="font-semibold text-zinc-900">{t('Justificativa', 'Rationale')}:</span>{' '}
+                                  <span>{log.rationale}</span>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Process Flow Diagram */}
+                      {section.processFlow && (
+                        <CaseStudyProcessFlow flow={section.processFlow} />
+                      )}
+
+                      {/* Visual Artifact Presentation */}
+                      {section.image && (
+                        <CaseStudyVisual imageSpec={section.image} />
+                      )}
+                    </>
+                  )}
+                </section>
+              ))}
+
+              {/* Bloco "Resumo Executivo Concluído" (sempre abaixo de todo o conteúdo editorial) */}
+              {!project.sections.some((s) => s.executiveSummary) && (
+                <div className="mt-12 p-6 sm:p-7 rounded-2xl bg-zinc-100/80 border border-zinc-200/80 space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-zinc-500">
+                        {t('Resumo Executivo Concluído', 'Executive Summary Concluded')}
+                      </span>
+                      <h4 className="text-sm sm:text-base font-bold text-zinc-900 tracking-tight">
+                        {t(
+                          'Deseja se aprofundar nas etapas do processo?',
+                          'Want to explore the design process in detail?'
+                        )}
+                      </h4>
+                    </div>
+
+                    <button
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-zinc-200 text-xs font-semibold text-zinc-800 hover:text-zinc-950 hover:border-zinc-300 shadow-2xs transition-colors self-start sm:self-auto cursor-pointer"
+                    >
+                      <ArrowUp className="w-3.5 h-3.5" />
+                      <span>{t('Voltar ao início do case', 'Back to top of case')}</span>
+                    </button>
+                  </div>
+
+                  {project.sections && project.sections.length > 0 && (
+                    <div className="pt-3 border-t border-zinc-200/80">
+                      <p className="text-xs text-zinc-600 mb-3 font-medium">
+                        {t('Acesse diretamente os principais blocos do case:', 'Jump directly to key sections:')}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.sections.map((sec) => (
+                          <a
+                            key={sec.id}
+                            href={`#${sec.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const el = document.getElementById(sec.id);
+                              if (el) {
+                                el.scrollIntoView({ behavior: 'smooth' });
+                                window.history.pushState(null, '', `#${sec.id}`);
+                              }
+                            }}
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-zinc-200/90 text-xs font-medium text-zinc-700 hover:text-zinc-950 hover:border-zinc-300 transition-colors shadow-2xs"
+                          >
+                            <span>{sec.title}</span>
+                            <ArrowRight className="w-3 h-3 text-zinc-400" />
+                          </a>
+                        ))}
                       </div>
-                    )}
-
-                    {/* Process Flow Diagram */}
-                    {section.processFlow && (
-                      <CaseStudyProcessFlow flow={section.processFlow} />
-                    )}
-
-                    {/* Visual Artifact Presentation */}
-                    {section.image && (
-                      <CaseStudyVisual imageSpec={section.image} />
-                    )}
-                  </>
-                )}
-              </section>
-            ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Case Study Bottom Navigator */}
         <div className="mt-16 pt-8 border-t border-zinc-200 flex flex-col sm:flex-row items-stretch justify-between gap-5">

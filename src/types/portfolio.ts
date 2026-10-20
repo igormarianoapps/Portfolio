@@ -19,6 +19,12 @@ export interface SocialLinks {
     isPlaceholder: boolean;
     note: string;
   };
+  behance?: {
+    label: string;
+    url: string;
+    isPlaceholder: boolean;
+    note: string;
+  };
 }
 
 export interface StrategicWidgetData {
@@ -151,12 +157,20 @@ export interface CaseStudyExecutiveSummary {
   };
 }
 
+export interface CaseStudyFeatureCard {
+  title: string;
+  description: string;
+  icon?: 'users' | 'messages' | 'chart' | 'survey' | 'search' | 'benchmark';
+}
+
 export interface CaseStudySection {
   id: string;
   title: string;
   lead?: string;
   paragraphs: string[];
   bulletPoints?: string[];
+  featureCards?: CaseStudyFeatureCard[];
+  closingParagraph?: string;
   decisionLog?: CaseStudyDecision[];
   processFlow?: CaseStudyProcessFlow;
   executiveSummary?: CaseStudyExecutiveSummary;
@@ -176,6 +190,11 @@ export interface CaseStudySection {
   };
 }
 
+export interface CaseStudyTocItem {
+  id: string;
+  title: string;
+}
+
 export interface CaseStudy {
   slug: string;
   title: string;
@@ -189,7 +208,7 @@ export interface CaseStudy {
     timeline: string;
     team: string;
     platform: string;
-    tools: string[];
+    tools?: string[];
   };
   isPlaceholder: boolean;
   placeholderNotice?: string;
@@ -199,6 +218,7 @@ export interface CaseStudy {
     context: string;
     isPlaceholderMetric?: boolean;
   }[];
+  tableOfContents?: CaseStudyTocItem[];
   sections: CaseStudySection[];
 }
 

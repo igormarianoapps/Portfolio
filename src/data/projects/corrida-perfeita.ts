@@ -222,7 +222,7 @@ export const corridaPerfeitaProject: LocalizedCaseStudy = {
       },
       {
         id: 'design-handoff',
-        title: '09. Design Handoff — Conectando design e desenvolvimento',
+        title: '09. Design Handoff',
         lead: 'Da interface às regras de negócio.',
         paragraphs: [
           'Para garantir que as soluções fossem implementadas conforme o planejado, estruturei no Miro uma documentação reunindo fluxogramas, histórias de usuários e comportamentos esperados das funcionalidades.',
@@ -270,7 +270,7 @@ export const corridaPerfeitaProject: LocalizedCaseStudy = {
       },
       {
         id: 'aprendizados',
-        title: '10. Implementação, impacto e aprendizados',
+        title: '10. Implementação e aprendizados',
         lead: 'O maior resultado não foi redesenhar o aplicativo. Foi ajudar os usuários a encontrar valor nele.',
         paragraphs: [
           'O projeto começou com um problema de abandono e evoluiu para uma transformação mais ampla na forma como o Corrida Perfeita recebia, orientava e se comunicava com seus usuários.',

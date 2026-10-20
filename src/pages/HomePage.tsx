@@ -8,7 +8,7 @@ import { ProjectCard } from '../components/ProjectCard';
 import { SkillsSection } from '../components/SkillsSection';
 import { AboutHomeBlock } from '../components/AboutHomeBlock';
 import { SEOHead } from '../components/SEOHead';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
   const { language, t } = useLanguage();
@@ -161,6 +161,59 @@ export const HomePage: React.FC = () => {
             {projects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
+          </div>
+
+          {/* Behance Archive CTA */}
+          <div className="mt-8 sm:mt-10 lg:mt-12 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#12151B] via-[#141822] to-[#101217] border border-white/[0.08] hover:border-white/[0.18] transition-all p-6 sm:p-8 lg:p-9 group">
+            {/* Subtle radial ambient glow in the background */}
+            <div
+              className="absolute -right-24 -bottom-24 w-80 h-80 rounded-full pointer-events-none opacity-10 group-hover:opacity-20 blur-3xl transition-opacity"
+              style={{ backgroundColor: 'var(--color-accent)' }}
+              aria-hidden="true"
+            />
+
+            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-2 mb-2.5">
+                  <span
+                    className="text-xs font-mono font-bold tracking-wider uppercase"
+                    style={{ color: 'var(--color-accent)' }}
+                  >
+                    {siteConfig.behanceCta.eyebrow[language]}
+                  </span>
+                  <span className="w-1 h-1 rounded-full bg-zinc-600" />
+                  <span className="text-xs font-mono text-zinc-400">behance.net/igormariano</span>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2">
+                  {siteConfig.behanceCta.title[language]}
+                </h3>
+
+                <p className="text-sm sm:text-base text-zinc-300 leading-relaxed">
+                  {siteConfig.behanceCta.description[language]}
+                </p>
+              </div>
+
+              <div className="shrink-0 flex items-center">
+                <a
+                  href={siteConfig.behanceCta.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm text-white bg-zinc-800/90 hover:bg-zinc-700/90 border border-white/[0.1] hover:border-white/[0.25] transition-all shadow-md focus-ring-accent cursor-pointer group/btn"
+                >
+                  {/* Behance Logo SVG */}
+                  <svg
+                    className="w-4 h-4 fill-current text-white group-hover/btn:scale-110 transition-transform"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M7.79 11.23c.9 0 1.62-.2 2.15-.6.54-.4.81-1 .81-1.8 0-.74-.25-1.3-.76-1.68-.5-.38-1.2-.57-2.09-.57H3.45v4.65h4.34zm.21 4.54c1.07 0 1.9-.24 2.5-.72.6-.48.9-1.18.9-2.1 0-.9-.3-1.6-.92-2.07-.61-.48-1.5-.72-2.65-.72H3.45v5.61H8zm5.7-4.47h6.05c-.06-.88-.34-1.57-.83-2.07-.5-.5-1.18-.75-2.06-.75-.85 0-1.54.26-2.08.77-.53.52-.89 1.2-1.08 2.05zm6.18 1.48H13.7c.05 1.05.42 1.86 1.1 2.43.68.57 1.5.85 2.45.85.73 0 1.37-.16 1.91-.48.55-.32.93-.72 1.15-1.2h2.24c-.38.98-1.03 1.76-1.95 2.34-.92.58-2.03.87-3.35.87-1.74 0-3.12-.53-4.14-1.6-1.02-1.06-1.53-2.5-1.53-4.32 0-1.84.5-3.3 1.5-4.36 1.01-1.07 2.36-1.6 4.05-1.6 1.62 0 2.92.52 3.9 1.56.98 1.04 1.47 2.44 1.47 4.2v1.71h-.01zM14.28 6.44h4.75V5.12h-4.75v1.32zM0 3.25h8.18c1.65 0 2.96.38 3.93 1.14.97.76 1.46 1.82 1.46 3.18 0 .86-.23 1.6-.7 2.22-.46.62-1.12 1.09-1.97 1.41.98.3 1.76.81 2.34 1.54.58.73.87 1.63.87 2.7 0 1.52-.52 2.73-1.56 3.63-1.04.9-2.48 1.35-4.32 1.35H0V3.25z" />
+                  </svg>
+                  <span>{siteConfig.behanceCta.buttonText[language]}</span>
+                  <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover/btn:text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
