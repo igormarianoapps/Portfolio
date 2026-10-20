@@ -108,7 +108,14 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'arquitetura',
         title: '03. Arquitetura e identidade visual',
         lead: 'De uma ideia inicial à estrutura de uma plataforma completa.',
-        paragraphs: [
+        decisionLog: [
+          {
+            challenge: 'Organizar módulos e funcionalidades diferentes sem fragmentar a experiência.',
+            decision: 'Estruturar a navegação em três níveis: módulos, categorias e telas.',
+            rationale: 'Criar uma organização comum para o produto, com padrões que pudessem ser reutilizados entre módulos.',
+          },
+        ],
+                paragraphs: [
           'A primeira proposta visual se inspirava no cockpit de um carro esportivo. Questionei essa referência porque ela não ajudava a comunicar a finalidade analítica da plataforma.',
           'A partir disso, trabalhei em uma identidade visual orientada à leitura de dados, com hierarquia clara e padrões que pudessem ser aplicados aos diferentes módulos.',
           '### Organizando a complexidade',
@@ -151,7 +158,14 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'dashboards-ia',
         title: '04. Dashboards e inteligência artificial',
         lead: 'Transformando informações complexas em decisões mais claras.',
-        paragraphs: [
+        decisionLog: [
+          {
+            challenge: 'Apresentar muitos indicadores eleitorais sem dificultar a interpretação.',
+            decision: 'Agrupar informações relacionadas e definir hierarquias visuais consistentes nos dashboards.',
+            rationale: 'Ajudar os usuários a comparar dados e compreender cada cenário com mais clareza.',
+          },
+        ],
+                paragraphs: [
           'Os dashboards precisavam reunir pesquisas, indicadores e dados eleitorais sem exigir que o usuário interpretasse informações dispersas em diferentes telas.',
           'Como responsável pelo UX/UI da plataforma, trabalhei na construção de dashboards que organizavam indicadores, pesquisas, dados históricos e análises estratégicas em interfaces voltadas à tomada de decisão.',
           '### Dados que ajudam a entender o cenário',
@@ -223,7 +237,14 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'designops',
         title: '06. DesignOps',
         lead: 'Organizar o processo para dar autonomia às pessoas e consistência às entregas.',
-        paragraphs: [
+        decisionLog: [
+          {
+            challenge: 'Reduzir mudanças durante o desenvolvimento e divergências entre protótipos e entregas.',
+            decision: 'Propor um fluxo compartilhado com etapas, status e documentação no Figma e no Jira.',
+            rationale: 'Dar visibilidade às decisões validadas e mais autonomia à equipe durante a implementação.',
+          },
+        ],
+                paragraphs: [
           'Além dos desafios de produto, havia um problema operacional: o acompanhamento constante da liderança durante design e desenvolvimento provocava mudanças frequentes, retrabalho e divergências entre o protótipo aprovado e a interface entregue.',
           'Sem PO ou PM naquele momento de transição, propus uma organização de trabalho baseada em etapas, responsáveis, estados claros e documentação acessível. Apresentei a proposta ao CEO, que concordou em testá-la.',
           '### Um fluxo compartilhado entre design e desenvolvimento',
@@ -376,7 +397,14 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'arquitetura',
         title: '03. Architecture & visual identity',
         lead: 'From an initial concept to the structure of a complete platform.',
-        paragraphs: [
+        decisionLog: [
+          {
+            challenge: 'Organize different modules and features without fragmenting the experience.',
+            decision: 'Structure navigation into three levels: modules, categories, and screens.',
+            rationale: 'Provide a shared structure and reusable patterns across modules.',
+          },
+        ],
+                paragraphs: [
           'The initial visual concept drew inspiration from a sports car cockpit. I challenged that reference because it did not clearly communicate the platform’s analytical purpose.',
           'I then worked on a visual identity centered on data readability, clear hierarchy, and reusable patterns across modules.',
           '### Organizing complexity',
@@ -419,7 +447,14 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'dashboards-ia',
         title: '04. Dashboards & artificial intelligence',
         lead: 'Transforming complex information into clearer decisions.',
-        paragraphs: [
+        decisionLog: [
+          {
+            challenge: 'Present a large volume of electoral indicators without making them harder to interpret.',
+            decision: 'Group related information and establish consistent visual hierarchy across dashboards.',
+            rationale: 'Help users compare data and understand each scenario more clearly.',
+          },
+        ],
+                paragraphs: [
           'The dashboards needed to bring together research, indicators, and electoral data without forcing users to interpret information scattered across multiple screens.',
           'As the platform’s sole UX/UI Designer, I worked on dashboards organizing indicators, polling data, historical results, and strategic analyses.',
           '### Data that helps understand the landscape',
@@ -489,7 +524,14 @@ export const candidattusProject: LocalizedCaseStudy = {
       {
         id: 'designops', title: '06. DesignOps',
         lead: 'Organizing the process to give teams autonomy and improve delivery consistency.',
-        paragraphs: [
+        decisionLog: [
+          {
+            challenge: 'Reduce changes during development and gaps between approved prototypes and delivered interfaces.',
+            decision: 'Propose a shared workflow with stages, statuses, and documentation in Figma and Jira.',
+            rationale: 'Make validated decisions visible and give the team more autonomy during implementation.',
+          },
+        ],
+                paragraphs: [
           'Beyond product challenges, there was an operational issue: constant leadership oversight during design and development led to frequent changes, rework, and gaps between approved prototypes and delivered interfaces.',
           'With no PO or PM during that transition, I proposed a workflow with clear stages, owners, statuses, and accessible documentation. I presented it to the CEO, who agreed to pilot it.',
           '### A shared flow across design and engineering',
