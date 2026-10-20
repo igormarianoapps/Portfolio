@@ -22,6 +22,12 @@ import {
   Search,
 } from 'lucide-react';
 
+// Links externos dos protótipos; o controle de acesso é feito pelo Figma.
+const prototypeUrls: Record<string, string> = {
+  candidattus: 'https://www.figma.com/proto/YbNiUS5OSX5hnobsOVTxwI/Candidattus?node-id=0-6805&p=f&viewport=-5084%2C12080%2C0.47&t=pSdVJeLhrYdp0l4l-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1',
+  'corrida-perfeita': 'https://www.figma.com/proto/GO0OxkHXBMJsV7wMm6D3yY/Discovery---Criar-Setup--Copy-?node-id=105-351&p=f&viewport=513%2C61%2C0.05&t=MIc1jX0tHqqZz6QP-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=105%3A351&page-id=105%3A146',
+};
+
 function renderCardIcon(icon?: string, fallbackIndex = 0) {
   switch (icon) {
     case 'users':
@@ -616,6 +622,34 @@ export const CaseStudyPage: React.FC = () => {
               )}
             </div>
           </div>
+        )}
+
+        {/* Prototype access card: case stays public; Figma manages permissions. */}
+        {prototypeUrls[project.slug] && (
+          <section className="mt-12 rounded-2xl bg-[#111318] text-white border border-white/10 p-6 sm:p-8">
+            <div className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-4">
+              <span aria-hidden="true">🔒</span>
+              <span>{t('Protótipo com acesso restrito', 'Restricted-access prototype')}</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-3">
+              {t('Explore a experiência na prática.', 'Explore the experience in practice.')}
+            </h2>
+            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl mb-6">
+              {t(
+                'Por questões de confidencialidade, o protótipo deste projeto possui acesso restrito. Ao abrir o Figma, você poderá solicitar permissão para explorar os fluxos e interações.',
+                'For confidentiality reasons, this project’s prototype has restricted access. When you open Figma, you can request permission to explore its flows and interactions.'
+              )}
+            </p>
+            <a
+              href={prototypeUrls[project.slug]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#111318] hover:bg-zinc-200 transition-colors focus-ring-accent"
+            >
+              <span>{t('Solicitar acesso no Figma', 'Request access on Figma')}</span>
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </section>
         )}
 
         {/* Case Study Bottom Navigator */}
