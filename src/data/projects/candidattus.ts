@@ -66,10 +66,10 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'desafio',
         title: '01. O desafio',
         paragraphs: [
-          'Quando entrei no Candidattus, a plataforma ainda estava em estágio inicial. Existia uma proposta complexa de inteligência eleitoral, mas apenas a tela inicial havia sido desenhada, com uma abordagem visual inspirada no cockpit de um carro esportivo, pouco conectada à finalidade do produto.',
+          'Quando entrei no Candidattus, a plataforma ainda estava no início: havia uma proposta ambiciosa de inteligência eleitoral, mas somente a tela inicial tinha sido desenhada. Faltava transformar essa visão em uma experiência de produto estruturada.',
           'Como único UX/UI Designer, meu primeiro desafio foi transformar essa ideia em uma experiência coerente e estruturada, capaz de organizar diferentes módulos, dashboards e funcionalidades para apoiar decisões estratégicas durante campanhas eleitorais.',
           'Ao mesmo tempo, o processo de trabalho era bastante centralizado na liderança. Alterações frequentes durante o design e desenvolvimento geravam retrabalho e inconsistências entre os protótipos aprovados e as funcionalidades implementadas, dificultando inclusive a validação pelo time de QA.',
-          'O desafio, portanto, não era apenas construir uma plataforma complexa, mas também estabelecer uma maneira mais organizada de projetar, validar e entregar suas funcionalidades.',
+          'Meu desafio era duplo: estruturar a experiência de um produto complexo e melhorar a forma como as decisões de design chegavam ao desenvolvimento.',
         ],
       },
       {
@@ -109,16 +109,16 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '03. Arquitetura e identidade visual',
         lead: 'De uma ideia inicial à estrutura de uma plataforma completa.',
         paragraphs: [
-          'Quando entrei no Candidattus, a única interface existente era a página inicial, inspirada visualmente no cockpit de um carro esportivo. Embora fosse uma referência interessante para a liderança, percebi que essa abordagem não representava adequadamente a proposta de inteligência eleitoral do produto.',
-          'Meu primeiro trabalho foi questionar essa direção e reestruturar a identidade visual, buscando uma linguagem mais coerente com uma plataforma voltada à análise de dados e à tomada de decisões.',
+          'A primeira proposta visual se inspirava no cockpit de um carro esportivo. Questionei essa referência porque ela não ajudava a comunicar a finalidade analítica da plataforma.',
+          'A partir disso, trabalhei em uma identidade visual orientada à leitura de dados, com hierarquia clara e padrões que pudessem ser aplicados aos diferentes módulos.',
           '### Organizando a complexidade',
           'O produto precisava reunir diferentes áreas, como gestão de candidatura, estratégia eleitoral, inteligência política e acompanhamento de indicadores.',
           'Para acomodar essas funcionalidades, estruturei uma navegação em três níveis, permitindo que os usuários acessassem módulos, categorias e telas específicas dentro de uma mesma plataforma.',
-          'A proposta buscava criar uma organização consistente, que pudesse acompanhar a expansão das funcionalidades sem exigir uma navegação completamente diferente a cada novo módulo.',
+          'A navegação em três níveis criou uma base comum para os módulos, embora sua capacidade de acompanhar o crescimento do produto precisasse ser reavaliada mais adiante.',
           '### Uma linguagem visual consistente',
           'A evolução da interface também envolveu a definição de padrões visuais para dashboards, gráficos, formulários, indicadores e componentes de navegação.',
           'O objetivo era manter consistência entre as diferentes áreas e facilitar a interpretação de informações complexas, mesmo quando os conteúdos e as funcionalidades variavam bastante entre os módulos.',
-          'Essa estrutura serviu como base para a construção das interfaces apresentadas nas próximas etapas do projeto.',
+          'Os padrões definidos orientaram as interfaces dos dashboards e dos demais fluxos do produto.',
         ],
         inlineImages: [
           {
@@ -152,18 +152,18 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '04. Dashboards e inteligência artificial',
         lead: 'Transformando informações complexas em decisões mais claras.',
         paragraphs: [
-          'Um dos principais desafios do Candidattus era reunir diferentes fontes de informações eleitorais e apresentá-las de maneira que os candidatos conseguissem interpretar o cenário e identificar oportunidades para suas campanhas.',
+          'Os dashboards precisavam reunir pesquisas, indicadores e dados eleitorais sem exigir que o usuário interpretasse informações dispersas em diferentes telas.',
           'Como responsável pelo UX/UI da plataforma, trabalhei na construção de dashboards que organizavam indicadores, pesquisas, dados históricos e análises estratégicas em interfaces voltadas à tomada de decisão.',
           '### Dados que ajudam a entender o cenário',
           'Os painéis foram estruturados para apresentar diferentes perspectivas da campanha, incluindo análises do ambiente político, resultados eleitorais, preferências do eleitorado e acompanhamento de atividades.',
-          'O desafio de design estava em organizar essas informações, estabelecer hierarquias visuais e facilitar a leitura dos dados, evitando que a quantidade de indicadores comprometesse a compreensão de cada tela.',
+          'Trabalhei a hierarquia dos indicadores, o agrupamento de informações relacionadas e a consistência entre gráficos para facilitar comparações e a leitura de cada cenário.',
           '### Inteligência artificial como apoio à estratégia',
           'A plataforma também incorporava recursos de inteligência artificial para apoiar a interpretação de informações e a análise de cenários.',
           'Durante sua evolução inicial, trabalhamos com uma experiência de chat com IA, permitindo que o candidato discutisse possibilidades e próximos passos para sua campanha.',
           'Posteriormente, a proposta evoluiu para experiências que conectavam análises e recursos de IA aos painéis da plataforma, aproximando a inteligência artificial das informações utilizadas pelos candidatos.',
           '### Do dado à decisão',
-          'Mais do que apresentar gráficos, o objetivo era criar experiências que ajudassem os usuários a compreender informações relevantes para suas campanhas.',
-          'Os fluxos e as interfaces foram bem recebidos nas validações com clientes, e a plataforma passou a desempenhar um papel importante no acompanhamento estratégico das campanhas atendidas.',
+          'Cada painel precisava conectar os dados apresentados a uma pergunta prática da campanha, como compreender o ambiente político ou comparar preferências do eleitorado.',
+          'As validações conduzidas com clientes trouxeram retornos positivos sobre os fluxos e as interfaces. Não tenho métricas de uso que permitam quantificar esse impacto.',
         ],
         inlineImages: [
           {
@@ -231,9 +231,9 @@ export const candidattusProject: LocalizedCaseStudy = {
           'A proposta buscava tornar visível o estágio de cada demanda, seus critérios de passagem e o que já havia sido validado antes de chegar à engenharia.',
           '### Organização no Figma e no Jira',
           'No Figma, estruturei áreas para criação, desenvolvimento, itens implementados e documentação, com cards e status padronizados. No Jira, o trabalho seguia etapas compatíveis com o fluxo, facilitando o acompanhamento entre as equipes.',
-          'Essa estrutura reduziu a necessidade de intervenções a cada etapa e ajudou a preservar as decisões aprovadas até a implementação.',
+          'Com etapas e status visíveis, o time passou a consultar o andamento das demandas sem depender de alinhamentos constantes com a liderança.',
           '### Mudança percebida no dia a dia',
-          'Depois da adoção do processo, percebemos entregas mais rápidas e consistentes, menos alterações durante o desenvolvimento e mais liberdade para a equipe trabalhar. A liderança passou a acompanhar o andamento pelos cards, com menos necessidade de participar de todas as decisões operacionais.',
+          'Na rotina, observamos menos mudanças durante o desenvolvimento e maior consistência entre o que havia sido validado e o que era entregue. A liderança conseguia acompanhar o progresso pelos cards.',
           'Esses efeitos foram observados na rotina do time; não houve registro de indicadores quantitativos comparáveis para atribuir percentuais à melhoria.',
         ],
         inlineImages: [
@@ -247,10 +247,10 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '07. Resultados e impactos',
         lead: 'Mais previsibilidade no processo e uma plataforma útil para as campanhas.',
         paragraphs: [
-          'A implementação do DesignOps trouxe uma mudança perceptível na rotina de trabalho: as demandas chegavam mais bem definidas ao desenvolvimento e as entregas ficaram mais consistentes com os protótipos validados.',
-          'A equipe ganhou autonomia para executar, enquanto a liderança pôde acompanhar o progresso sem intervir continuamente na construção de cada tela.',
-          'Do lado do produto, os dashboards e fluxos foram bem recebidos nas validações. A plataforma passou a ser utilizada como apoio recorrente para acompanhamento e decisões estratégicas dos candidatos atendidos.',
-          'Os ganhos de velocidade, consistência e autonomia são resultados qualitativos observados durante o projeto. Não disponho de medições históricas que permitam quantificá-los com precisão.',
+          'O principal resultado do DesignOps foi tornar mais claras as etapas de cada demanda e os acordos feitos antes do desenvolvimento.',
+          'Na prática, isso deu mais autonomia à equipe e diminuiu a necessidade de intervenções operacionais da liderança.',
+          'No produto, os retornos das validações foram positivos e ajudaram a orientar os ajustes de fluxos e dashboards.',
+          'Esses resultados são observações qualitativas do trabalho em equipe; não houve medição comparável para atribuir percentuais às melhorias.',
         ],
       },
       {
@@ -334,10 +334,10 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'desafio',
         title: '01. The challenge',
         paragraphs: [
-          'When I joined Candidattus, the platform was still in its early stages. There was an ambitious vision for electoral intelligence, but only the initial screen had been designed, with a visual approach inspired by a sports car cockpit that had little connection to the product’s actual purpose.',
+          'When I joined Candidattus, the product was still taking shape. There was an ambitious vision for electoral intelligence, but only the initial screen had been designed. The experience still needed a clear structure.',
           'As the sole UX/UI Designer, my first challenge was to transform that concept into a coherent, structured experience capable of organizing diverse modules, dashboards, and features to support strategic decisions during political campaigns.',
           'At the same time, the workflow was heavily centralized around leadership. Frequent changes during design and development led to rework and discrepancies between approved prototypes and implemented features, which also complicated QA testing and validation.',
-          'The challenge, therefore, was not only to architect a complex platform, but also to establish a structured, disciplined way to design, validate, and ship product features.',
+          'My challenge was twofold: structure a complex product experience and improve how design decisions moved into development.',
         ],
       },
       {
@@ -377,16 +377,16 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '03. Architecture & visual identity',
         lead: 'From an initial concept to the structure of a complete platform.',
         paragraphs: [
-          'When I joined Candidattus, the only existing interface was the homepage, visually inspired by a sports car cockpit. While it was an interesting reference point for leadership, I realized that approach did not adequately represent the product’s electoral intelligence purpose.',
-          'My first responsibility was to challenge that direction and restructure the visual identity, creating a design language far more coherent with a platform dedicated to data analytics and strategic decision-making.',
+          'The initial visual concept drew inspiration from a sports car cockpit. I challenged that reference because it did not clearly communicate the platform’s analytical purpose.',
+          'I then worked on a visual identity centered on data readability, clear hierarchy, and reusable patterns across modules.',
           '### Organizing complexity',
           'The product needed to unite different areas, including campaign management, electoral strategy, political intelligence, and key indicator tracking.',
           'To accommodate these capabilities, I structured a three-level navigation system, allowing users to access modules, categories, and specific views seamlessly within a unified platform.',
-          'The proposal aimed to establish a consistent organization that could support feature expansion without requiring a completely new navigation model for every module.',
+          'The three-level navigation provided a shared structure across modules, although its ability to scale would need reassessment as the product grew.',
           '### A consistent visual language',
           'Evolving the interface also involved defining visual standards for dashboards, charts, forms, KPI indicators, and navigational components.',
           'The objective was to maintain consistency across disparate areas and facilitate the interpretation of complex information, even when content and features varied significantly between modules.',
-          'This foundational structure served as the baseline for constructing the interfaces featured in subsequent stages of the project.',
+          'These patterns informed the dashboards and other product flows.',
         ],
         inlineImages: [
           {
@@ -420,18 +420,18 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '04. Dashboards & artificial intelligence',
         lead: 'Transforming complex information into clearer decisions.',
         paragraphs: [
-          'One of Candidattus’ core challenges was aggregating disparate electoral data sources and presenting them so that campaign teams could readily interpret landscape dynamics and uncover strategic opportunities.',
-          'As lead UX/UI designer for the platform, I designed dashboards that structured KPIs, polling benchmarks, historical election results, and strategic intelligence into decision-oriented interfaces.',
+          'The dashboards needed to bring together research, indicators, and electoral data without forcing users to interpret information scattered across multiple screens.',
+          'As the platform’s sole UX/UI Designer, I worked on dashboards organizing indicators, polling data, historical results, and strategic analyses.',
           '### Data that helps understand the landscape',
           'The dashboards were architected to present varied campaign dimensions, encompassing political climate diagnostics, historical election outcomes, voter preferences, and field activity tracking.',
-          'The design challenge lay in organizing this data volume, establishing clear visual hierarchies, and streamlining scanning so that metric density never hindered comprehension.',
+          'I focused on indicator hierarchy, grouping related information, and consistent chart patterns to make comparisons and scenario reading easier.',
           '### Artificial intelligence as strategic support',
           'The platform also embedded artificial intelligence features to support data interpretation and scenario analysis.',
           'During early product evolution, we developed an AI chat assistant allowing candidates to explore possibilities and discuss strategic next steps for their campaigns.',
           'Subsequently, the product vision evolved toward embedding AI capabilities directly within platform dashboards, bringing contextual intelligence closer to the metrics candidates consult daily.',
           '### From data to decision',
-          'Beyond displaying graphs, the objective was crafting experiences that helped users distill actionable insights relevant to their electoral race.',
-          'The workflows and interfaces were positively validated with clients, establishing the platform as an indispensable asset for strategic campaign oversight.',
+          'Each dashboard needed to answer a practical campaign question, such as understanding the political landscape or comparing voter preferences.',
+          'Client validation sessions brought positive feedback on the flows and interfaces. I do not have usage metrics to quantify their impact.',
         ],
         inlineImages: [
           {
@@ -440,7 +440,7 @@ export const candidattusProject: LocalizedCaseStudy = {
               url: macroAmbienteImage,
               alt: 'Political climate diagnostic dashboard in Candidattus featuring diverse indicators and scenario visualizations',
               caption:
-                'Political climate diagnostic dashboard featuring diverse indicators and scenario modeling visualizations.',
+                'Political landscape dashboard with indicators and visualizations for scenario analysis.',
               presentation: 'contain',
               frameTitle:
                 'Candidattus · Macro Political Climate Diagnostic',
@@ -452,7 +452,7 @@ export const candidattusProject: LocalizedCaseStudy = {
               url: candidatoPreferidoImage,
               alt: 'Voter preference and archetype visualization in Candidattus for comparative analysis',
               caption:
-                'Voter preference visualization structured for effortless scanning and comparative analysis.',
+                'Voter preference visualization designed to support reading and comparison.',
               presentation: 'contain',
               frameTitle:
                 'Candidattus · Voter Preferences & Candidate Archetypes',
@@ -497,9 +497,9 @@ export const candidattusProject: LocalizedCaseStudy = {
           'The goal was to make each request’s stage, handoff criteria, and prior approvals visible before it reached engineering.',
           '### Organizing Figma and Jira',
           'In Figma, I organized creation, development, implemented items, and documentation, with standardized cards and statuses. Jira stages mirrored the workflow, making cross-team progress easier to track.',
-          'This structure reduced the need for intervention at every stage and helped preserve approved decisions through implementation.',
+          'With visible stages and statuses, the team could follow requests without relying on constant leadership check-ins.',
           '### Changes observed in everyday work',
-          'After adoption, we observed faster and more consistent delivery, fewer changes during development, and greater team autonomy. Leadership could follow progress through cards instead of joining every operational decision.',
+          'In day-to-day work, we observed fewer changes during development and closer alignment between validated designs and delivered interfaces. Leadership could track progress through the cards.',
           'These improvements were observed in day-to-day work; no comparable quantitative tracking was retained to assign precise percentages.',
         ],
         inlineImages: [
@@ -512,10 +512,10 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'resultados', title: '07. Results & impact',
         lead: 'More predictable delivery and a platform that supported real campaign work.',
         paragraphs: [
-          'DesignOps brought a noticeable change to the team’s daily work: requests reached engineering with clearer definitions, and delivered interfaces aligned more closely with validated prototypes.',
-          'The team gained more autonomy while leadership could track progress without continuously intervening in the design of each screen.',
-          'On the product side, dashboards and flows received positive feedback during validation. The platform became a recurring tool for candidates to monitor campaigns and support strategic decisions.',
-          'Improvements in speed, consistency, and autonomy are qualitative observations from the project. I do not have historical measurements that would support precise figures.',
+          'The main DesignOps outcome was greater clarity around each request’s stages and the decisions made before development.',
+          'In practice, the team gained autonomy and needed fewer operational interventions from leadership.',
+          'On the product side, client validation feedback was positive and informed refinements to flows and dashboards.',
+          'These outcomes reflect qualitative observations from the team’s work; no comparable measurements were available to assign precise percentages.',
         ],
       },
       {
