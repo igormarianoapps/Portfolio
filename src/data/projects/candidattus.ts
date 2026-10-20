@@ -66,7 +66,7 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'desafio',
         title: '01. O desafio',
         paragraphs: [
-          'Quando entrei no Candidattus, a plataforma ainda estava no início: havia uma proposta ambiciosa de inteligência eleitoral, mas somente a tela inicial tinha sido desenhada. Faltava transformar essa visão em uma experiência de produto estruturada.',
+          'Quando entrei na Candidattus, a plataforma ainda estava no início: havia uma proposta ambiciosa de inteligência eleitoral, mas somente a tela inicial tinha sido desenhada. Faltava transformar essa visão em uma experiência de produto estruturada.',
           'Como único UX/UI Designer, meu primeiro desafio foi transformar essa ideia em uma experiência coerente e estruturada, capaz de organizar diferentes módulos, dashboards e funcionalidades para apoiar decisões estratégicas durante campanhas eleitorais.',
           'Ao mesmo tempo, o processo de trabalho era bastante centralizado na liderança. Alterações frequentes durante o design e desenvolvimento geravam retrabalho e inconsistências entre os protótipos aprovados e as funcionalidades implementadas, dificultando inclusive a validação pelo time de QA.',
           'Meu desafio era duplo: estruturar a experiência de um produto complexo e melhorar a forma como as decisões de design chegavam ao desenvolvimento.',
@@ -79,7 +79,7 @@ export const candidattusProject: LocalizedCaseStudy = {
         paragraphs: [
           'Construir uma plataforma de inteligência eleitoral exigia compreender diferentes perfis de usuários, necessidades estratégicas e um volume significativo de informações.',
           'O discovery combinava pesquisas quantitativas, análise de referências e informações obtidas em entrevistas com clientes. Por questões de confidencialidade, essas conversas eram conduzidas pela liderança, mas eu participava da preparação, levantando dúvidas e hipóteses que precisavam ser investigadas.',
-          'Para complementar esse entendimento, utilizamos surveys com Hotjar no site do Candidattus e análises de benchmark, buscando identificar oportunidades e referências para a experiência do produto.',
+          'Para complementar esse entendimento, utilizamos surveys com Hotjar no site da Candidattus e análises de benchmark, buscando identificar oportunidades e referências para a experiência do produto.',
         ],
         featureCards: [
           {
@@ -132,7 +132,7 @@ export const candidattusProject: LocalizedCaseStudy = {
             afterParagraph: 5,
             image: {
               url: resultadoEleicoesImage,
-              alt: 'Aplicação da mesma estrutura de navegação em um módulo de análise eleitoral no Candidattus',
+              alt: 'Aplicação da mesma estrutura de navegação em um módulo de análise eleitoral na Candidattus',
               caption:
                 'Aplicação da mesma estrutura de navegação em um módulo de análise eleitoral.',
               presentation: 'contain',
@@ -172,7 +172,7 @@ export const candidattusProject: LocalizedCaseStudy = {
             afterParagraph: 4,
             image: {
               url: escutaPoliticaImage,
-              alt: 'Interface de escuta política no Candidattus apresentando informações para acompanhamento e análise de candidatos',
+              alt: 'Interface de escuta política na Candidattus apresentando informações para acompanhamento e análise de candidatos',
               caption:
                 'Interface de escuta política, apresentando informações para acompanhamento e análise de candidatos.',
               presentation: 'contain',
@@ -183,7 +183,7 @@ export const candidattusProject: LocalizedCaseStudy = {
             afterParagraph: 8,
             image: {
               url: candidatoPreferidoImage,
-              alt: 'Visualização de preferências eleitorais no Candidattus facilitando a leitura e comparação de informações',
+              alt: 'Visualização de preferências eleitorais na Candidattus facilitando a leitura e comparação de informações',
               caption:
                 'Visualização de preferências eleitorais, organizada para facilitar a leitura e comparação de informações.',
               presentation: 'contain',
@@ -254,7 +254,7 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '08. Desafios de escalabilidade',
         lead: 'Quando a expansão das funcionalidades começou a comprometer a navegação.',
         paragraphs: [
-          'Com a evolução do Candidattus, novas funcionalidades passaram a ser adicionadas rapidamente, muitas vezes a partir de solicitações recebidas durante as próprias campanhas.',
+          'Com a evolução da Candidattus, novas funcionalidades passaram a ser adicionadas rapidamente, muitas vezes a partir de solicitações recebidas durante as próprias campanhas.',
           'A navegação em três níveis, que inicialmente organizou a plataforma, começou a mostrar limites: encontrar recursos específicos ficou mais difícil para quem não conhecia profundamente o sistema.',
           'Propus investigar os caminhos de navegação dos usuários e revisitar a arquitetura da informação antes de definir uma nova solução. A proposta não avançou naquele momento, pois a liderança, já familiarizada com o sistema, não percebia a mesma dificuldade.',
           'O desafio permaneceu em aberto: o valor das funcionalidades precisava ser acompanhado por uma experiência que facilitasse encontrá-las.',
@@ -282,7 +282,7 @@ export const candidattusProject: LocalizedCaseStudy = {
         title: '09. Aprendizados',
         lead: 'Design de produto também é criar condições para que o time entregue melhor.',
         paragraphs: [
-          'O Candidattus ampliou minha visão sobre o papel de Product Design: além das interfaces, foi necessário organizar informações complexas e melhorar a colaboração entre as áreas.',
+          'A Candidattus ampliou minha visão sobre o papel de Product Design: além das interfaces, foi necessário organizar informações complexas e melhorar a colaboração entre as áreas.',
           'Levo desse projeto a importância de tornar decisões claras para o time e de reconhecer quando uma solução precisa ser revista à medida que o produto evolui.',
         ],
         featureCards: [
