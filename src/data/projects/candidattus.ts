@@ -280,28 +280,28 @@ export const candidattusProject: LocalizedCaseStudy = {
       {
         id: 'aprendizados',
         title: '09. Aprendizados',
-        lead: 'Design de produto também é criar condições para que o time entregue melhor.',
-        paragraphs: [
-          'A Candidattus ampliou minha visão sobre o papel de Product Design: além das interfaces, foi necessário organizar informações complexas e melhorar a colaboração entre as áreas.',
-          'Levo desse projeto a importância de tornar decisões claras para o time e de reconhecer quando uma solução precisa ser revista à medida que o produto evolui.',
-        ],
-        featureCards: [
-          {
-            title: 'Clareza nas decisões',
-            description: 'Explicar e registrar decisões facilita o alinhamento entre design, desenvolvimento e liderança.',
-            icon: 'users',
-          },
-          {
-            title: 'Processos que dão autonomia',
-            description: 'Um fluxo de trabalho compartilhado ajuda a reduzir retrabalho sem centralizar cada decisão.',
-            icon: 'chart',
-          },
-          {
-            title: 'Reavaliar o que funcionava',
-            description: 'Consistência visual não substitui a revisão da arquitetura conforme o produto cresce.',
-            icon: 'search',
-          },
-        ],
+        learningHighlights: {
+          headline: 'Design de produto também é criar condições para que o time entregue melhor.',
+          title: 'Três aprendizados que levo deste projeto',
+          learnings: [
+            {
+              number: '01',
+              title: 'Decisões precisam ser compreendidas por todos.',
+              paragraphs: ['Organizar informações complexas e apresentar uma solução não basta. As decisões precisam ser claras para liderança e desenvolvimento, para que o time compartilhe o mesmo entendimento.'],
+            },
+            {
+              number: '02',
+              title: 'Processos claros ajudam o time a ganhar autonomia.',
+              paragraphs: ['A experiência com DesignOps mostrou como acordos, documentação e etapas definidas podem reduzir retrabalho e intervenções operacionais sem afastar a liderança das decisões importantes.'],
+            },
+            {
+              number: '03',
+              title: 'Uma solução precisa acompanhar o crescimento do produto.',
+              paragraphs: ['A navegação em três níveis ajudou a estruturar a plataforma, mas começou a apresentar limites com a expansão das funcionalidades. Isso reforçou a importância de revisitar a arquitetura a partir do uso real.'],
+            },
+          ],
+        },
+        paragraphs: [],
       },
 
     ],
@@ -569,28 +569,28 @@ export const candidattusProject: LocalizedCaseStudy = {
       },
       {
         id: 'aprendizados', title: '09. Learnings',
-        lead: 'Product design also means enabling the team to deliver better work.',
-        paragraphs: [
-          'Candidattus broadened my understanding of Product Design: beyond interfaces, the work involved organizing complex information and improving collaboration across teams.',
-          'I took away the importance of making decisions clear to everyone involved and recognizing when a solution needs to be revisited as the product evolves.',
-        ],
-        featureCards: [
-          {
-            title: 'Make decisions clear',
-            description: 'Explaining and documenting decisions supports alignment across design, engineering, and leadership.',
-            icon: 'users',
-          },
-          {
-            title: 'Processes enable autonomy',
-            description: 'A shared workflow can reduce rework without centralizing every operational decision.',
-            icon: 'chart',
-          },
-          {
-            title: 'Revisit earlier solutions',
-            description: 'Visual consistency cannot replace reassessing information architecture as the product grows.',
-            icon: 'search',
-          },
-        ],
+        learningHighlights: {
+          headline: 'Product design also means creating the conditions for a team to deliver better work.',
+          title: 'Three learnings I took from this project',
+          learnings: [
+            {
+              number: '01',
+              title: 'Decisions need to make sense to everyone.',
+              paragraphs: ['Organizing complex information and proposing a solution is not enough. Decisions must be clear to leadership and engineering so the team shares the same understanding.'],
+            },
+            {
+              number: '02',
+              title: 'Clear processes give teams more autonomy.',
+              paragraphs: ['DesignOps showed how shared agreements, documentation, and defined stages can reduce rework and operational interventions while keeping leadership involved in important decisions.'],
+            },
+            {
+              number: '03',
+              title: 'Solutions need to evolve as the product grows.',
+              paragraphs: ['Three-level navigation helped structure the platform but began to show limitations as features expanded. This reinforced the importance of revisiting information architecture based on actual usage.'],
+            },
+          ],
+        },
+        paragraphs: [],
       },
 
     ],
