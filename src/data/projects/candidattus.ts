@@ -278,6 +278,13 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'escalabilidade',
         title: '08. Desafios de escalabilidade',
         lead: 'Quando a expansão das funcionalidades começou a comprometer a navegação.',
+        decisionLog: [
+          {
+            challenge: 'A expansão rápida das funcionalidades tornou mais difícil encontrar recursos específicos.',
+            decision: 'Propus revisar a arquitetura da informação e investigar os caminhos de navegação antes de redesenhar a solução.',
+            rationale: 'A estrutura inicial precisava ser reavaliada considerando usuários menos familiarizados. A proposta não avançou naquele momento.',
+          },
+        ],
         paragraphs: [
           'Com a evolução do Candidattus, novas funcionalidades passaram a ser adicionadas rapidamente, muitas vezes a partir de solicitações recebidas durante as próprias campanhas.',
           'Embora as telas individualmente resolvessem necessidades relevantes, encontrar um recurso específico ficou cada vez mais difícil. A navegação em três níveis, que inicialmente ajudou a organizar a plataforma, começou a mostrar limites diante do crescimento do produto.',
@@ -291,6 +298,13 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'aprendizados',
         title: '09. Aprendizados',
         lead: 'Design de produto também é criar condições para que o time entregue melhor.',
+        decisionLog: [
+          {
+            challenge: 'Manter clareza nas decisões de design e consistência em um produto que continuava crescendo.',
+            decision: 'Levar adiante dois princípios: tornar as decisões compreensíveis entre áreas e revisitar soluções conforme o contexto muda.',
+            rationale: 'DesignOps e os limites da navegação mostraram que processos e interfaces precisam evoluir junto com o produto.',
+          },
+        ],
         paragraphs: [
           'O Candidattus reforçou minha visão de que atuar de ponta a ponta não significa apenas desenhar interfaces. Foi necessário questionar a direção visual inicial, organizar informações complexas, validar fluxos e estruturar a colaboração entre áreas.',
           'A experiência com DesignOps mostrou como processos claros podem reduzir retrabalho e dar autonomia ao time sem afastar a liderança das decisões importantes.',
@@ -563,6 +577,13 @@ export const candidattusProject: LocalizedCaseStudy = {
       {
         id: 'escalabilidade', title: '08. Scalability challenges',
         lead: 'When feature growth began to make navigation harder.',
+        decisionLog: [
+          {
+            challenge: 'Rapid feature expansion made specific capabilities harder to find.',
+            decision: 'I proposed revisiting information architecture and researching navigation paths before redesigning the solution.',
+            rationale: 'The initial structure needed reassessment for less familiar users. The proposal did not move forward at that time.',
+          },
+        ],
         paragraphs: [
           'As Candidattus evolved, new features were added quickly, often in response to requests arising during active campaigns.',
           'Although individual screens addressed relevant needs, finding a particular feature became increasingly difficult. The three-level navigation that initially organized the platform began to show its limits as the product grew.',
@@ -575,6 +596,13 @@ export const candidattusProject: LocalizedCaseStudy = {
       {
         id: 'aprendizados', title: '09. Learnings',
         lead: 'Product design also means enabling the team to deliver better work.',
+        decisionLog: [
+          {
+            challenge: 'Keep design decisions clear and experiences consistent as the product continued to grow.',
+            decision: 'Carry forward two principles: make decisions understandable across teams and revisit solutions as the context changes.',
+            rationale: 'DesignOps and navigation limitations showed that workflows and interfaces must evolve alongside the product.',
+          },
+        ],
         paragraphs: [
           'Candidattus reinforced my view that end-to-end design goes beyond creating interfaces. I had to challenge the initial visual direction, organize complex information, validate flows, and structure cross-functional collaboration.',
           'DesignOps showed me how clear processes can reduce rework and give teams autonomy while keeping leadership involved in meaningful decisions.',
