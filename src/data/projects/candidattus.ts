@@ -131,18 +131,6 @@ export const candidattusProject: LocalizedCaseStudy = {
           {
             afterParagraph: 5,
             image: {
-              url: navegacaoDashboardImage,
-              alt: 'Estrutura visual da plataforma Candidattus reunindo navegação, indicadores e informações estratégicas',
-              caption:
-                'Estrutura visual da plataforma, reunindo navegação, indicadores e informações estratégicas.',
-              presentation: 'contain',
-              frameTitle:
-                'Candidattus · Navegação e Dashboard (Três Níveis Estruturais)',
-            },
-          },
-          {
-            afterParagraph: 8,
-            image: {
               url: resultadoEleicoesImage,
               alt: 'Aplicação da mesma estrutura de navegação em um módulo de análise eleitoral no Candidattus',
               caption:
@@ -174,7 +162,7 @@ export const candidattusProject: LocalizedCaseStudy = {
           '### Inteligência artificial como apoio à estratégia',
           'A plataforma também incorporava recursos de inteligência artificial para apoiar a interpretação de informações e a análise de cenários.',
           'Durante sua evolução inicial, trabalhamos com uma experiência de chat com IA, permitindo que o candidato discutisse possibilidades e próximos passos para sua campanha.',
-          'Posteriormente, a proposta evoluiu para experiências que conectavam análises e recursos de IA aos painéis da plataforma, aproximando a inteligência artificial das informações utilizadas pelos candidatos.',
+          'Posteriormente, a proposta evoluiu para experiências que conectavam análises e recursos de IA aos painéis da plataforma, incluindo integrações com redes sociais e plataformas como Instagram, Facebook, Reddit e YouTube, para ampliar o contexto das informações utilizadas pelos candidatos.',
           '### Do dado à decisão',
           'Cada painel precisava conectar os dados apresentados a uma pergunta prática da campanha, como compreender o ambiente político ou comparar preferências do eleitorado.',
           'As validações conduzidas com clientes trouxeram retornos positivos sobre os fluxos e as interfaces. Não tenho métricas de uso que permitam quantificar esse impacto.',
@@ -183,16 +171,15 @@ export const candidattusProject: LocalizedCaseStudy = {
           {
             afterParagraph: 4,
             image: {
-              url: macroAmbienteImage,
-              alt: 'Painel de diagnóstico do ambiente político no Candidattus com diferentes indicadores e visualizações para análise de cenário',
+              url: escutaPoliticaImage,
+              alt: 'Interface de escuta política no Candidattus apresentando informações para acompanhamento e análise de candidatos',
               caption:
-                'Painel de diagnóstico do ambiente político, com diferentes indicadores e visualizações para análise de cenário.',
+                'Interface de escuta política, apresentando informações para acompanhamento e análise de candidatos.',
               presentation: 'contain',
               frameTitle:
-                'Candidattus · Diagnóstico do Ambiente Político (Macro Ambiente)',
+                'Candidattus · Escuta Política e Análise de Sentimento (Politica Vox®)',
             },
-          },
-          {
+          },          {
             afterParagraph: 8,
             image: {
               url: candidatoPreferidoImage,
@@ -204,18 +191,7 @@ export const candidattusProject: LocalizedCaseStudy = {
                 'Candidattus · Preferência do Eleitorado (Arquétipos e Segmentação)',
             },
           },
-          {
-            afterParagraph: 8,
-            image: {
-              url: escutaPoliticaImage,
-              alt: 'Interface de escuta política no Candidattus apresentando informações para acompanhamento e análise de candidatos',
-              caption:
-                'Interface de escuta política, apresentando informações para acompanhamento e análise de candidatos.',
-              presentation: 'contain',
-              frameTitle:
-                'Candidattus · Escuta Política e Análise de Sentimento (Politica Vox®)',
-            },
-          },
+
         ],
       },
       {
@@ -271,7 +247,6 @@ export const candidattusProject: LocalizedCaseStudy = {
           'O principal resultado do DesignOps foi tornar mais claras as etapas de cada demanda e os acordos feitos antes do desenvolvimento.',
           'Na prática, isso deu mais autonomia à equipe e diminuiu a necessidade de intervenções operacionais da liderança.',
           'No produto, os retornos das validações foram positivos e ajudaram a orientar os ajustes de fluxos e dashboards.',
-          'Esses resultados são observações qualitativas do trabalho em equipe; não houve medição comparável para atribuir percentuais às melhorias.',
         ],
       },
       {
@@ -450,18 +425,6 @@ export const candidattusProject: LocalizedCaseStudy = {
           {
             afterParagraph: 5,
             image: {
-              url: navegacaoDashboardImage,
-              alt: 'Visual structure of Candidattus platform uniting navigation, indicators, and strategic information',
-              caption:
-                'Visual structure of the platform, uniting navigation, indicators, and strategic information.',
-              presentation: 'contain',
-              frameTitle:
-                'Candidattus · Navigation & Dashboard (Three Structural Levels)',
-            },
-          },
-          {
-            afterParagraph: 8,
-            image: {
               url: resultadoEleicoesImage,
               alt: 'Application of the same navigation structure within an electoral analysis module in Candidattus',
               caption:
@@ -493,7 +456,7 @@ export const candidattusProject: LocalizedCaseStudy = {
           '### Artificial intelligence as strategic support',
           'The platform also embedded artificial intelligence features to support data interpretation and scenario analysis.',
           'During early product evolution, we developed an AI chat assistant allowing candidates to explore possibilities and discuss strategic next steps for their campaigns.',
-          'Subsequently, the product vision evolved toward embedding AI capabilities directly within platform dashboards, bringing contextual intelligence closer to the metrics candidates consult daily.',
+          'Subsequently, the product vision evolved toward embedding AI capabilities directly within dashboards, including integrations with social platforms such as Instagram, Facebook, Reddit, and YouTube to broaden the context available to candidates.',
           '### From data to decision',
           'Each dashboard needed to answer a practical campaign question, such as understanding the political landscape or comparing voter preferences.',
           'Client validation sessions brought positive feedback on the flows and interfaces. I do not have usage metrics to quantify their impact.',
@@ -502,16 +465,15 @@ export const candidattusProject: LocalizedCaseStudy = {
           {
             afterParagraph: 4,
             image: {
-              url: macroAmbienteImage,
-              alt: 'Political climate diagnostic dashboard in Candidattus featuring diverse indicators and scenario visualizations',
+              url: escutaPoliticaImage,
+              alt: 'Political social listening interface in Candidattus with sentiment analysis and topic tracking',
               caption:
-                'Political landscape dashboard with indicators and visualizations for scenario analysis.',
+                'Political social listening interface presenting sentiment tracking and candidate intelligence.',
               presentation: 'contain',
               frameTitle:
-                'Candidattus · Macro Political Climate Diagnostic',
+                'Candidattus · Political Listening & Sentiment Tracking (Politica Vox®)',
             },
-          },
-          {
+          },          {
             afterParagraph: 8,
             image: {
               url: candidatoPreferidoImage,
@@ -523,18 +485,7 @@ export const candidattusProject: LocalizedCaseStudy = {
                 'Candidattus · Voter Preferences & Candidate Archetypes',
             },
           },
-          {
-            afterParagraph: 8,
-            image: {
-              url: escutaPoliticaImage,
-              alt: 'Political social listening interface in Candidattus with sentiment analysis and topic tracking',
-              caption:
-                'Political social listening interface presenting sentiment tracking and candidate intelligence.',
-              presentation: 'contain',
-              frameTitle:
-                'Candidattus · Political Listening & Sentiment Tracking (Politica Vox®)',
-            },
-          },
+
         ],
       },
       {
@@ -587,7 +538,6 @@ export const candidattusProject: LocalizedCaseStudy = {
           'The main DesignOps outcome was greater clarity around each request’s stages and the decisions made before development.',
           'In practice, the team gained autonomy and needed fewer operational interventions from leadership.',
           'On the product side, client validation feedback was positive and informed refinements to flows and dashboards.',
-          'These outcomes reflect qualitative observations from the team’s work; no comparable measurements were available to assign precise percentages.',
         ],
       },
       {
