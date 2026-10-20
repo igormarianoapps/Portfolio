@@ -278,38 +278,54 @@ export const candidattusProject: LocalizedCaseStudy = {
         id: 'escalabilidade',
         title: '08. Desafios de escalabilidade',
         lead: 'Quando a expansão das funcionalidades começou a comprometer a navegação.',
-        decisionLog: [
-          {
-            challenge: 'A expansão rápida das funcionalidades tornou mais difícil encontrar recursos específicos.',
-            decision: 'Propus revisar a arquitetura da informação e investigar os caminhos de navegação antes de redesenhar a solução.',
-            rationale: 'A estrutura inicial precisava ser reavaliada considerando usuários menos familiarizados. A proposta não avançou naquele momento.',
-          },
-        ],
         paragraphs: [
           'Com a evolução do Candidattus, novas funcionalidades passaram a ser adicionadas rapidamente, muitas vezes a partir de solicitações recebidas durante as próprias campanhas.',
-          'Embora as telas individualmente resolvessem necessidades relevantes, encontrar um recurso específico ficou cada vez mais difícil. A navegação em três níveis, que inicialmente ajudou a organizar a plataforma, começou a mostrar limites diante do crescimento do produto.',
-          '### Um problema que ainda precisava ser investigado',
-          'Propus revisitar a arquitetura de informação e realizar uma pesquisa mais aprofundada sobre os caminhos de navegação dos usuários, antes de definir uma nova solução.',
-          'A proposta não avançou naquele momento. A liderança conhecia profundamente a estrutura existente e não percebia a mesma dificuldade enfrentada por usuários menos familiarizados com o sistema.',
-          'Esse foi um desafio que permaneceu em aberto: havia valor nas funcionalidades, mas a descoberta e o acesso a elas precisavam evoluir junto com o produto.',
+          'A navegação em três níveis, que inicialmente organizou a plataforma, começou a mostrar limites: encontrar recursos específicos ficou mais difícil para quem não conhecia profundamente o sistema.',
+          'Propus investigar os caminhos de navegação dos usuários e revisitar a arquitetura da informação antes de definir uma nova solução. A proposta não avançou naquele momento, pois a liderança, já familiarizada com o sistema, não percebia a mesma dificuldade.',
+          'O desafio permaneceu em aberto: o valor das funcionalidades precisava ser acompanhado por uma experiência que facilitasse encontrá-las.',
+        ],
+        featureCards: [
+          {
+            title: 'Expansão do produto',
+            description: 'Novas funcionalidades eram incorporadas rapidamente para atender às demandas das campanhas.',
+            icon: 'chart',
+          },
+          {
+            title: 'Dificuldade de descoberta',
+            description: 'O crescimento tornou menos evidente onde encontrar recursos na navegação existente.',
+            icon: 'search',
+          },
+          {
+            title: 'Investigação proposta',
+            description: 'Sugeri pesquisar os caminhos de navegação e revisar a arquitetura. A proposta não foi implementada.',
+            icon: 'users',
+          },
         ],
       },
       {
         id: 'aprendizados',
         title: '09. Aprendizados',
         lead: 'Design de produto também é criar condições para que o time entregue melhor.',
-        decisionLog: [
-          {
-            challenge: 'Manter clareza nas decisões de design e consistência em um produto que continuava crescendo.',
-            decision: 'Levar adiante dois princípios: tornar as decisões compreensíveis entre áreas e revisitar soluções conforme o contexto muda.',
-            rationale: 'DesignOps e os limites da navegação mostraram que processos e interfaces precisam evoluir junto com o produto.',
-          },
-        ],
         paragraphs: [
-          'O Candidattus reforçou minha visão de que atuar de ponta a ponta não significa apenas desenhar interfaces. Foi necessário questionar a direção visual inicial, organizar informações complexas, validar fluxos e estruturar a colaboração entre áreas.',
-          'A experiência com DesignOps mostrou como processos claros podem reduzir retrabalho e dar autonomia ao time sem afastar a liderança das decisões importantes.',
-          'Também ficou evidente que consistência visual não resolve, sozinha, os desafios de um produto em expansão. Quando novas funcionalidades se acumulam, a arquitetura da informação precisa ser reavaliada com base no uso real.',
-          'Levo desse projeto dois aprendizados centrais: tornar as decisões de design compreensíveis para todos os envolvidos e continuar questionando soluções que funcionaram no início, mas podem deixar de funcionar conforme o produto cresce.',
+          'O Candidattus ampliou minha visão sobre o papel de Product Design: além das interfaces, foi necessário organizar informações complexas e melhorar a colaboração entre as áreas.',
+          'Levo desse projeto a importância de tornar decisões claras para o time e de reconhecer quando uma solução precisa ser revista à medida que o produto evolui.',
+        ],
+        featureCards: [
+          {
+            title: 'Clareza nas decisões',
+            description: 'Explicar e registrar decisões facilita o alinhamento entre design, desenvolvimento e liderança.',
+            icon: 'users',
+          },
+          {
+            title: 'Processos que dão autonomia',
+            description: 'Um fluxo de trabalho compartilhado ajuda a reduzir retrabalho sem centralizar cada decisão.',
+            icon: 'chart',
+          },
+          {
+            title: 'Reavaliar o que funcionava',
+            description: 'Consistência visual não substitui a revisão da arquitetura conforme o produto cresce.',
+            icon: 'search',
+          },
         ],
       },
 
@@ -577,37 +593,53 @@ export const candidattusProject: LocalizedCaseStudy = {
       {
         id: 'escalabilidade', title: '08. Scalability challenges',
         lead: 'When feature growth began to make navigation harder.',
-        decisionLog: [
-          {
-            challenge: 'Rapid feature expansion made specific capabilities harder to find.',
-            decision: 'I proposed revisiting information architecture and researching navigation paths before redesigning the solution.',
-            rationale: 'The initial structure needed reassessment for less familiar users. The proposal did not move forward at that time.',
-          },
-        ],
         paragraphs: [
-          'As Candidattus evolved, new features were added quickly, often in response to requests arising during active campaigns.',
-          'Although individual screens addressed relevant needs, finding a particular feature became increasingly difficult. The three-level navigation that initially organized the platform began to show its limits as the product grew.',
-          '### A problem that still needed research',
-          'I proposed revisiting the information architecture and conducting deeper research into users’ navigation paths before choosing a replacement solution.',
-          'That proposal did not move forward at the time. Leadership was deeply familiar with the existing structure and did not perceive the same friction experienced by less familiar users.',
-          'This remained an open challenge: features delivered value, but discovering and accessing them needed to evolve alongside the product.',
+          'As Candidattus evolved, new features were added quickly, often in response to requests during active campaigns.',
+          'The three-level navigation initially helped organize the platform, but its limitations became more apparent as features accumulated. Finding specific capabilities became harder for people less familiar with the system.',
+          'I proposed researching users’ navigation paths and revisiting the information architecture before defining a new solution. The proposal did not move forward at the time, as leadership was already familiar with the system and did not perceive the same friction.',
+          'The challenge remained unresolved: valuable features also needed to be easier to discover.',
+        ],
+        featureCards: [
+          {
+            title: 'Product expansion',
+            description: 'New features were added quickly to respond to campaign needs.',
+            icon: 'chart',
+          },
+          {
+            title: 'Discoverability friction',
+            description: 'As the product grew, finding specific features within the existing navigation became harder.',
+            icon: 'search',
+          },
+          {
+            title: 'Proposed research',
+            description: 'I suggested researching navigation paths and revisiting the architecture. The proposal was not implemented.',
+            icon: 'users',
+          },
         ],
       },
       {
         id: 'aprendizados', title: '09. Learnings',
         lead: 'Product design also means enabling the team to deliver better work.',
-        decisionLog: [
-          {
-            challenge: 'Keep design decisions clear and experiences consistent as the product continued to grow.',
-            decision: 'Carry forward two principles: make decisions understandable across teams and revisit solutions as the context changes.',
-            rationale: 'DesignOps and navigation limitations showed that workflows and interfaces must evolve alongside the product.',
-          },
-        ],
         paragraphs: [
-          'Candidattus reinforced my view that end-to-end design goes beyond creating interfaces. I had to challenge the initial visual direction, organize complex information, validate flows, and structure cross-functional collaboration.',
-          'DesignOps showed me how clear processes can reduce rework and give teams autonomy while keeping leadership involved in meaningful decisions.',
-          'It also became clear that visual consistency alone does not solve the challenges of a growing product. As features accumulate, information architecture must be reassessed based on real usage.',
-          'I took away two key lessons: make design decisions understandable to everyone involved, and keep questioning solutions that worked early on but may no longer work as the product scales.',
+          'Candidattus broadened my understanding of Product Design: beyond interfaces, the work involved organizing complex information and improving collaboration across teams.',
+          'I took away the importance of making decisions clear to everyone involved and recognizing when a solution needs to be revisited as the product evolves.',
+        ],
+        featureCards: [
+          {
+            title: 'Make decisions clear',
+            description: 'Explaining and documenting decisions supports alignment across design, engineering, and leadership.',
+            icon: 'users',
+          },
+          {
+            title: 'Processes enable autonomy',
+            description: 'A shared workflow can reduce rework without centralizing every operational decision.',
+            icon: 'chart',
+          },
+          {
+            title: 'Revisit earlier solutions',
+            description: 'Visual consistency cannot replace reassessing information architecture as the product grows.',
+            icon: 'search',
+          },
         ],
       },
 
