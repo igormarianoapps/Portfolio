@@ -9,7 +9,7 @@ interface SEOProps {
 }
 
 const SITE_URL = 'https://igormariano.vercel.app';
-const DEFAULT_IMAGE = SITE_URL + '/Background.jpg';
+const DEFAULT_IMAGE = SITE_URL + '/og-image.jpg';
 
 const setMeta = (selector: string, attribute: string, value: string) => {
   let element = document.head.querySelector<HTMLMetaElement>(selector);
@@ -33,7 +33,7 @@ export const SEOHead: React.FC<SEOProps> = ({ title, description, ogImage }) => 
     const pageTitle = title ? `${title} · Igor Mariano` : defaultTitle;
     const pageDesc = description || defaultDesc;
     const canonical = SITE_URL + (pathname === '/' ? '/' : pathname.replace(/\/$/, ''));
-    const image = ogImage ? new URL(ogImage, SITE_URL).href : DEFAULT_IMAGE;
+    const image = DEFAULT_IMAGE; // Consistent preview across all public pages, including case studies.
 
     document.title = pageTitle;
     setMeta('meta[name="description"]', 'name', pageDesc);
