@@ -341,6 +341,39 @@ export const CaseStudyPage: React.FC = () => {
                         </p>
                       )}
 
+                      {slug === 'candidattus' && section.id === 'resultados' && (
+                        <div className="rounded-xl border border-zinc-200 bg-white p-4 sm:p-5 my-6">
+                          <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">
+                            {t('O que mudou no processo', 'What changed in the workflow')}
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="rounded-lg bg-zinc-100 p-4">
+                              <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">
+                                {t('Antes', 'Before')}
+                              </h3>
+                              <ul className="space-y-3 text-sm text-zinc-700 leading-relaxed">
+                                <li>{t('Decisões operacionais concentradas na liderança', 'Operational decisions concentrated in leadership')}</li>
+                                <li>{t('Mudanças frequentes durante o desenvolvimento', 'Frequent changes during development')}</li>
+                                <li>{t('Diferenças entre protótipos aprovados e entregas', 'Gaps between approved prototypes and delivered interfaces')}</li>
+                              </ul>
+                            </div>
+                            <div className="rounded-lg border border-zinc-200 p-4">
+                              <h3 className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: 'var(--color-accent)' }}>
+                                {t('Depois', 'After')}
+                              </h3>
+                              <ul className="space-y-3 text-sm text-zinc-800 leading-relaxed">
+                                <li>{t('Mais autonomia para a equipe', 'Greater team autonomy')}</li>
+                                <li>{t('Menos alterações durante a implementação', 'Fewer changes during implementation')}</li>
+                                <li>{t('Maior consistência entre validação e entrega', 'Closer alignment between validation and delivery')}</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <p className="text-xs text-zinc-500 mt-4 leading-relaxed">
+                            {t('Mudanças observadas qualitativamente, sem métricas comparáveis.', 'Qualitative observations, without comparable quantitative metrics.')}
+                          </p>
+                        </div>
+                      )}
+
                       <div className="space-y-3.5 text-sm sm:text-base text-zinc-700 leading-relaxed">
                         {section.paragraphs.map((p, pIdx) => {
                           const matchingInlineImages = [
