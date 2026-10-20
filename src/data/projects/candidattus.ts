@@ -16,9 +16,9 @@ export const candidattusProject: LocalizedCaseStudy = {
     slug: 'candidattus',
     title: 'Candidattus',
     clientOrContext: 'Plataforma SaaS de inteligência eleitoral',
-    tagline: 'Transformando dados eleitorais em decisões estratégicas.',
+    tagline: 'Estruturando uma plataforma de inteligência eleitoral, do produto ao processo.',
     summary:
-      'Plataforma SaaS de inteligência eleitoral que reúne dados, dashboards e recursos de inteligência artificial para apoiar decisões estratégicas em campanhas.',
+      'Como único UX/UI Designer, atuei na arquitetura da informação, nos dashboards e na organização do processo de design e desenvolvimento de uma plataforma de inteligência eleitoral.',
     coverImage: cockpitImage,
     tags: [
       'Product Design',
@@ -284,9 +284,9 @@ export const candidattusProject: LocalizedCaseStudy = {
     slug: 'candidattus',
     title: 'Candidattus',
     clientOrContext: 'Electoral intelligence SaaS platform',
-    tagline: 'Transforming electoral data into strategic decisions.',
+    tagline: 'Structuring an electoral intelligence platform, from product to process.',
     summary:
-      'Electoral intelligence SaaS platform that brings together data, dashboards, and AI capabilities to support strategic campaign decisions.',
+      'As the sole UX/UI Designer, I worked on information architecture, dashboards, and design-to-development workflows for an electoral intelligence platform.',
     coverImage: cockpitImage,
     tags: [
       'Product Design',
