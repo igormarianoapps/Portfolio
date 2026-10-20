@@ -174,6 +174,11 @@ export interface CaseStudySection {
   decisionLog?: CaseStudyDecision[];
   processFlow?: CaseStudyProcessFlow;
   executiveSummary?: CaseStudyExecutiveSummary;
+  learningHighlights?: {
+    headline: string;
+    title: string;
+    learnings: CaseStudyLearningItem[];
+  };
   image?: CaseStudyImageSpec;
   inlineImage?: {
     afterParagraph: number;

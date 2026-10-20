@@ -335,10 +335,96 @@ export const CaseStudyPage: React.FC = () => {
                     />
                   ) : (
                     <>
+                      {section.learningHighlights && (
+                        <div className="space-y-10 pt-2">
+                          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900 text-white border border-zinc-800 shadow-md relative overflow-hidden">
+                            <div
+                              className="absolute -right-16 -top-16 w-56 h-56 rounded-full blur-3xl opacity-20 pointer-events-none"
+                              style={{ backgroundColor: 'var(--color-accent, #E05A47)' }}
+                            />
+                            <div className="relative z-10 space-y-2">
+                              <span
+                                className="inline-block font-mono text-[11px] font-bold tracking-widest uppercase px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700/60"
+                                style={{ color: 'var(--color-accent, #E05A47)' }}
+                              >
+                                {t('Visão Central', 'Core Vision')}
+                              </span>
+                              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white tracking-tight leading-snug">
+                                "{section.learningHighlights.headline}"
+                              </h3>
+                            </div>
+                          </div>
+                          <div className="space-y-4">
+                            <div className="flex items-center gap-2 pb-2 border-b border-zinc-200">
+                              <span className="text-xl" aria-hidden="true">✦</span>
+                              <h3 className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
+                                {section.learningHighlights.title}
+                              </h3>
+                            </div>
+                            <div className="space-y-4">
+                              {section.learningHighlights.learnings.map((item) => (
+                                <div
+                                  key={item.number}
+                                  className="group p-5 sm:p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition-all space-y-3"
+                                >
+                                  <div className="flex items-baseline gap-3">
+                                    <span
+                                      className="font-mono text-xl sm:text-2xl font-bold shrink-0 tracking-tight"
+                                      style={{ color: 'var(--color-accent, #E05A47)' }}
+                                    >
+                                      {item.number}.
+                                    </span>
+                                    <h4 className="text-sm sm:text-base font-bold text-zinc-900 tracking-tight leading-snug">
+                                      {item.title}
+                                    </h4>
+                                  </div>
+                                  <div className="space-y-2.5 text-xs sm:text-sm text-zinc-700 leading-relaxed pl-0 sm:pl-9">
+                                    {item.paragraphs.map((paragraph, idx) => <p key={idx}>{paragraph}</p>)}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       {section.lead && (
                         <p className="text-sm sm:text-base font-medium text-zinc-800 leading-relaxed">
                           {section.lead}
                         </p>
+                      )}
+
+                      {slug === 'candidattus' && section.id === 'resultados' && (
+                        <div className="rounded-xl border border-zinc-200 bg-white p-4 sm:p-5 my-6">
+                          <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">
+                            {t('O que mudou no processo', 'What changed in the workflow')}
+                          </p>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div className="rounded-lg bg-zinc-100 p-4">
+                              <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">
+                                {t('Antes', 'Before')}
+                              </h3>
+                              <ul className="space-y-3 text-sm text-zinc-700 leading-relaxed">
+                                <li>{t('Decisões operacionais concentradas na liderança', 'Operational decisions concentrated in leadership')}</li>
+                                <li>{t('Mudanças frequentes durante o desenvolvimento', 'Frequent changes during development')}</li>
+                                <li>{t('Diferenças entre protótipos aprovados e entregas', 'Gaps between approved prototypes and delivered interfaces')}</li>
+                              </ul>
+                            </div>
+                            <div className="rounded-lg border border-zinc-200 p-4">
+                              <h3 className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: 'var(--color-accent)' }}>
+                                {t('Depois', 'After')}
+                              </h3>
+                              <ul className="space-y-3 text-sm text-zinc-800 leading-relaxed">
+                                <li>{t('Mais autonomia para a equipe', 'Greater team autonomy')}</li>
+                                <li>{t('Menos alterações durante a implementação', 'Fewer changes during implementation')}</li>
+                                <li>{t('Maior consistência entre validação e entrega', 'Closer alignment between validation and delivery')}</li>
+                              </ul>
+                            </div>
+                          </div>
+                          <p className="text-xs text-zinc-500 mt-4 leading-relaxed">
+                            {t('Mudanças observadas qualitativamente, sem métricas comparáveis.', 'Qualitative observations, without comparable quantitative metrics.')}
+                          </p>
+                        </div>
                       )}
 
                       <div className="space-y-3.5 text-sm sm:text-base text-zinc-700 leading-relaxed">
