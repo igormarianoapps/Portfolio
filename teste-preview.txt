@@ -1,3 +1,0 @@
-Teste de integração GitHub + Vercel Preview.
-Branch: desenvolvimento.
-Este arquivo não altera a interface do portfólio.
