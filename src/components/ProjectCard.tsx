@@ -30,6 +30,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               onError={() => setImageError(true)}
               className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-300"
               loading="lazy"
+              decoding="async"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-zinc-900 text-zinc-400 text-xs">

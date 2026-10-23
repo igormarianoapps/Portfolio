@@ -30,7 +30,7 @@ export const CaseStudyVisual: React.FC<{imageSpec: CaseStudyImageSpec; projectSl
     return <div className="min-w-0">
       <button type="button" onClick={open} aria-label={t(`Ampliar imagem: ${item.alt}`,`Expand image: ${item.alt}`)} className="group relative block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
         <div className="relative mx-auto overflow-hidden" style={{maxHeight:shouldPreview?PREVIEW_HEIGHT:undefined,maxWidth:isCorrida && /analytics-mobile/.test(item.url)?325:isAnalytics?650:isMobileWireframe?320:undefined}}>
-          <img src={item.url} alt={item.alt} loading="lazy" onLoad={e=>measure(e.currentTarget)} className="block w-full h-auto object-contain"/>
+          <img src={item.url} alt={item.alt} loading="lazy" decoding="async" onLoad={e=>measure(e.currentTarget)} className="block w-full h-auto object-contain"/>
           {shouldPreview && <>
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/25 transition-colors duration-200"/>
             <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8F9FA] via-[#F8F9FA]/70 to-transparent group-hover:opacity-30 transition-opacity"/>

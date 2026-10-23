@@ -48,6 +48,8 @@ export const HomePage: React.FC = () => {
             alt={`${siteConfig.name} — Product Designer`}
             className="w-full h-full object-cover select-none object-[76%_20%] sm:object-[76%_22%] lg:object-[76%_24%]"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
             referrerPolicy="no-referrer"
           />
 

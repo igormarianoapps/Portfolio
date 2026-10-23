@@ -151,3 +151,10 @@
 }
 
 .case-study-canvas figcaption { text-align: center; font-style: italic; }
+
+/* Keyboard accessibility: visible, neutral focus across the portfolio. */
+.case-study-canvas button:focus-visible,
+.case-study-canvas a:focus-visible { outline: 2px solid #18181b; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-pulse-line { animation: none; }
+}
