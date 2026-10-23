@@ -19,9 +19,9 @@ export const DifferentialPillars: React.FC = () => {
                 >
                   {pillar.number}
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight mb-2 group-hover:text-zinc-200 transition-colors">
+                <h2 className="text-base sm:text-lg font-bold text-white tracking-tight mb-2 group-hover:text-zinc-200 transition-colors">
                   {pillar.title[language]}
-                </h3>
+                </h2>
                 <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
                   {pillar.desc[language]}
                 </p>
