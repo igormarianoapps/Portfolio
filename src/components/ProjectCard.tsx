@@ -24,10 +24,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         >
           {!imageError ? (
             <img
-              src={project.coverImage}
+              src={`/optimized/${project.slug === 'corrida-perfeita' ? 'corrida' : project.slug === 'taskcheck-design-system' ? 'taskcheck' : 'candidattus'}-card.webp`}
               alt={project.title}
               referrerPolicy="no-referrer"
-              onError={() => setImageError(true)}
+              onError={(e) => { if (!e.currentTarget.dataset.fallback) { e.currentTarget.dataset.fallback = 'true'; e.currentTarget.src = project.coverImage; } else { setImageError(true); } }}
               className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-300"
               loading="lazy"
               decoding="async"

@@ -43,6 +43,9 @@ export const HomePage: React.FC = () => {
       <section className="relative w-full border-b border-white/[0.08] overflow-hidden min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-4.5rem)] flex flex-col justify-between bg-[#0D0F12]">
         {/* Full-Bleed Background Photograph */}
         <div className="absolute inset-0 z-0">
+          <picture className="block w-full h-full">
+            <source media="(max-width: 767px)" srcSet="/optimized/hero-mobile.webp" type="image/webp" />
+            <source media="(min-width: 768px)" srcSet="/optimized/hero-desktop.webp" type="image/webp" />
           <img
             src={siteConfig.portraitImage}
             alt={`${siteConfig.name} — Product Designer`}
@@ -52,6 +55,7 @@ export const HomePage: React.FC = () => {
             decoding="async"
             referrerPolicy="no-referrer"
           />
+          </picture>
 
           {/* Editorial Gradient Scrims:
               1. Desktop/Tablet Horizontal Scrim: solid graphite over text on the left, feathering smoothly to reveal Igor's portrait on the right.
