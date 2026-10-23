@@ -20,18 +20,28 @@ import {
   Users,
   BarChart2,
   Search,
+  Monitor,
+  Smartphone,
+  RefreshCw,
+  Layers,
+  BookOpen,
+  Sparkles,
+  Box,
 } from 'lucide-react';
 
 // Links externos dos protótipos; o controle de acesso é feito pelo Figma.
 const prototypeUrls: Record<string, string> = {
   candidattus: 'https://www.figma.com/proto/YbNiUS5OSX5hnobsOVTxwI/Candidattus?node-id=0-6805&p=f&viewport=-5084%2C12080%2C0.47&t=pSdVJeLhrYdp0l4l-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1',
   'corrida-perfeita': 'https://www.figma.com/proto/GO0OxkHXBMJsV7wMm6D3yY/Discovery---Criar-Setup--Copy-?node-id=105-351&p=f&viewport=513%2C61%2C0.05&t=MIc1jX0tHqqZz6QP-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=105%3A351&page-id=105%3A146',
+  'taskcheck-design-system': 'https://www.figma.com/proto/ywdKoynIEJGIaT4SHcdbTC/Design-System---TaskCheck?node-id=31-1591&p=f&t=1Cm1YLJltC5mSv2V-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=31%3A1591&page-id=6%3A3',
 };
 
 function renderCardIcon(icon?: string, fallbackIndex = 0) {
   switch (icon) {
     case 'users':
     case 'messages':
+    case 'collab':
+    case 'collaboration':
       return <Users className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
     case 'chart':
     case 'survey':
@@ -39,6 +49,30 @@ function renderCardIcon(icon?: string, fallbackIndex = 0) {
     case 'search':
     case 'benchmark':
       return <Search className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'monitor':
+    case 'desktop':
+      return <Monitor className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'smartphone':
+    case 'mobile':
+      return <Smartphone className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'refresh':
+    case 'reuse':
+      return <RefreshCw className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'layers':
+    case 'consistency':
+      return <Layers className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'book':
+    case 'documentation':
+    case 'recipes':
+    case 'patterns':
+    case 'handoff':
+      return <BookOpen className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'sparkles':
+    case 'ai':
+      return <Sparkles className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
+    case 'box':
+    case 'components':
+      return <Box className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
     default:
       if (fallbackIndex === 0) return <Users className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
       if (fallbackIndex === 1) return <BarChart2 className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />;
@@ -180,14 +214,10 @@ export const CaseStudyPage: React.FC = () => {
           </p>
 
           {/* Metadata Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 pt-6 border-t border-white/[0.08] text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-6 border-t border-white/[0.08] text-xs">
             <div>
               <span className="text-zinc-400 block mb-1">{t('Meu Papel', 'My Role')}</span>
               <span className="text-zinc-200 font-medium">{project.metadata.role}</span>
-            </div>
-            <div>
-              <span className="text-zinc-400 block mb-1">{t('Prazo & Ciclo', 'Timeline')}</span>
-              <span className="text-zinc-200 font-medium">{project.metadata.timeline}</span>
             </div>
             <div>
               <span className="text-zinc-400 block mb-1">{t('Equipe', 'Team')}</span>
@@ -461,9 +491,21 @@ export const CaseStudyPage: React.FC = () => {
                         })}
                       </div>
 
-                      {/* Feature Cards (e.g. Three Investigation Fronts) */}
+                      {/* Feature Cards (e.g. Three Investigation Fronts, Context Cards, Documentation) */}
                       {section.featureCards && section.featureCards.length > 0 && (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                        <div
+                          className={`grid grid-cols-1 ${
+                            section.featureCardsLayout === '2x2'
+                              ? 'md:grid-cols-2'
+                              : section.featureCardsLayout === '4-col'
+                              ? 'sm:grid-cols-2 lg:grid-cols-4'
+                              : section.featureCards.length === 2
+                              ? 'sm:grid-cols-2'
+                              : section.featureCards.length === 4
+                              ? 'sm:grid-cols-2 lg:grid-cols-4'
+                              : 'md:grid-cols-3'
+                          } gap-4 my-6`}
+                        >
                           {section.featureCards.map((card, cIdx) => (
                             <div
                               key={cIdx}
@@ -482,6 +524,125 @@ export const CaseStudyPage: React.FC = () => {
                               </div>
                             </div>
                           ))}
+                        </div>
+                      )}
+
+                      {/* Step Cards Horizontal Flow (e.g. 4 horizontal cards in Solution) */}
+                      {section.stepCards && section.stepCards.length > 0 && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 my-6">
+                          {section.stepCards.map((step, sIdx) => (
+                            <div
+                              key={sIdx}
+                              className="h-full p-4 sm:p-5 rounded-xl bg-white border border-zinc-200/90 shadow-2xs hover:border-zinc-300 transition-all flex flex-col justify-between"
+                            >
+                              <div>
+                                <span
+                                  className="font-mono text-xs font-bold tracking-wider block mb-2"
+                                  style={{ color: 'var(--color-accent)' }}
+                                >
+                                  {step.number}
+                                </span>
+                                <h4 className="text-sm font-bold text-zinc-900 tracking-tight leading-snug mb-1.5">
+                                  {step.title}
+                                </h4>
+                                <p className="text-xs text-zinc-600 leading-relaxed">
+                                  {step.description}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* Conceptual Tags (e.g. Foundations categories, shared elements) */}
+                      {section.conceptualTags && section.conceptualTags.length > 0 && (
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 my-5">
+                          {section.conceptualTags.map((tag, tIdx) => (
+                            <div
+                              key={tIdx}
+                              className="px-3.5 py-2 rounded-xl bg-white border border-zinc-200/90 shadow-2xs text-xs font-semibold text-zinc-800 tracking-tight flex items-center gap-2 hover:border-zinc-300 transition-colors"
+                            >
+                              <span
+                                className="w-1.5 h-1.5 rounded-full shrink-0"
+                                style={{ backgroundColor: 'var(--color-accent)' }}
+                              />
+                              <span>{tag}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                      {/* System Comparison (e.g. V1 Base estruturada vs V2 Oportunidades de evolução) */}
+                      {section.systemComparison && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                          <div className="p-5 sm:p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-2xs space-y-4">
+                            <div className="flex items-center justify-between gap-2 pb-3 border-b border-zinc-100">
+                              <div>
+                                <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-700">
+                                  {section.systemComparison.left.badge || 'V1'}
+                                </span>
+                                <h3 className="text-base font-bold text-zinc-900 tracking-tight mt-1.5">
+                                  {section.systemComparison.left.title}
+                                </h3>
+                              </div>
+                            </div>
+                            <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-700">
+                              {section.systemComparison.left.items.map((item, iIdx) => (
+                                <li key={iIdx} className="flex items-center gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-emerald-500" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <div className="p-5 sm:p-6 rounded-2xl bg-zinc-50/70 border border-dashed border-zinc-300 shadow-2xs space-y-4">
+                            <div className="flex items-center justify-between gap-2 pb-3 border-b border-zinc-200/70">
+                              <div>
+                                <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200/60">
+                                  {section.systemComparison.right.badge || 'V2'}
+                                </span>
+                                <h3 className="text-base font-bold text-zinc-900 tracking-tight mt-1.5">
+                                  {section.systemComparison.right.title}
+                                </h3>
+                              </div>
+                            </div>
+                            <ul className="space-y-2.5 text-xs sm:text-sm text-zinc-600">
+                              {section.systemComparison.right.items.map((item, iIdx) => (
+                                <li key={iIdx} className="flex items-center gap-2.5">
+                                  <span className="w-1.5 h-1.5 rounded-full shrink-0 bg-zinc-400" />
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* AI Process Highlight */}
+                      {section.aiHighlight && (
+                        <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900 text-white border border-zinc-800 shadow-sm relative overflow-hidden my-6">
+                          <div
+                            className="absolute -right-12 -top-12 w-44 h-44 rounded-full blur-3xl opacity-20 pointer-events-none"
+                            style={{ backgroundColor: 'var(--color-accent, #E05A47)' }}
+                          />
+                          <div className="relative z-10 space-y-2.5">
+                            <div className="flex items-center gap-2">
+                              <Sparkles className="w-4 h-4" style={{ color: 'var(--color-accent, #E05A47)' }} />
+                              <span
+                                className="font-mono text-[11px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-zinc-800 border border-zinc-700/60"
+                                style={{ color: 'var(--color-accent, #E05A47)' }}
+                              >
+                                {section.aiHighlight.badge || t('Apoio ao Processo', 'Process Support')}
+                              </span>
+                            </div>
+                            <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                              {section.aiHighlight.title}
+                            </h3>
+                            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-2xl">
+                              {section.aiHighlight.text}
+                            </p>
+                          </div>
                         </div>
                       )}
 
@@ -628,17 +789,28 @@ export const CaseStudyPage: React.FC = () => {
         {prototypeUrls[project.slug] && (
           <section className="mt-12 rounded-2xl bg-[#111318] text-white border border-white/10 p-6 sm:p-8">
             <div className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-zinc-400 mb-4">
-              <span aria-hidden="true">🔒</span>
-              <span>{t('Protótipo com acesso restrito', 'Restricted-access prototype')}</span>
+              <span aria-hidden="true">{project.slug === 'taskcheck-design-system' ? '❖' : '🔒'}</span>
+              <span>
+                {project.slug === 'taskcheck-design-system'
+                  ? 'Design System · Figma'
+                  : t('Protótipo com acesso restrito', 'Restricted-access prototype')}
+              </span>
             </div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight mb-3">
-              {t('Explore a experiência na prática.', 'Explore the experience in practice.')}
+              {project.slug === 'taskcheck-design-system'
+                ? t('Explore o Design System na prática.', 'Explore the Design System in practice.')
+                : t('Explore a experiência na prática.', 'Explore the experience in practice.')}
             </h2>
             <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl mb-6">
-              {t(
-                'Por questões de confidencialidade, o protótipo deste projeto possui acesso restrito. Ao abrir o Figma, você poderá solicitar permissão para explorar os fluxos e interações.',
-                'For confidentiality reasons, this project’s prototype has restricted access. When you open Figma, you can request permission to explore its flows and interactions.'
-              )}
+              {project.slug === 'taskcheck-design-system'
+                ? t(
+                    'Acesse a apresentação completa da versão 1.0 do Design System no Figma para navegar pelas foundations, componentes, estados e regras de documentação.',
+                    'Access the full Design System version 1.0 presentation on Figma to explore foundations, components, states, and documentation guidelines.'
+                  )
+                : t(
+                    'Por questões de confidencialidade, o protótipo deste projeto possui acesso restrito. Ao abrir o Figma, você poderá solicitar permissão para explorar os fluxos e interações.',
+                    'For confidentiality reasons, this project’s prototype has restricted access. When you open Figma, you can request permission to explore its flows and interactions.'
+                  )}
             </p>
             <a
               href={prototypeUrls[project.slug]}
@@ -646,7 +818,11 @@ export const CaseStudyPage: React.FC = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#111318] hover:bg-zinc-200 transition-colors focus-ring-accent"
             >
-              <span>{t('Solicitar acesso no Figma', 'Request access on Figma')}</span>
+              <span>
+                {project.slug === 'taskcheck-design-system'
+                  ? t('Ver Design System no Figma', 'View Design System in Figma')
+                  : t('Solicitar acesso no Figma', 'Request access on Figma')}
+              </span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
             </a>
           </section>

@@ -1,6 +1,7 @@
 import { Language, ProjectCardData, CaseStudy } from '../types/portfolio';
 import { corridaPerfeitaProject } from './projects/corrida-perfeita';
 import { candidattusProject } from './projects/candidattus';
+import { taskcheckProject } from './projects/taskcheck';
 
 /**
  * REGISTRO CENTRAL DE PROJETOS
@@ -13,6 +14,7 @@ import { candidattusProject } from './projects/candidattus';
 export const PROJECTS_REGISTRY = [
   corridaPerfeitaProject,
   candidattusProject,
+  taskcheckProject,
 ];
 
 /**

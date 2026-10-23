@@ -1,6 +1,6 @@
 import React from 'react';
 import { CaseStudyProcessFlow as ICaseStudyProcessFlow } from '../types/portfolio';
-import { FileText, Users, RefreshCw, ArrowRight, Check, Sparkles } from 'lucide-react';
+import { FileText, Users, RefreshCw, ArrowRight, Check, Sparkles, Layers, Box } from 'lucide-react';
 
 interface CaseStudyProcessFlowProps {
   flow: ICaseStudyProcessFlow;
@@ -12,8 +12,10 @@ export const CaseStudyProcessFlow: React.FC<CaseStudyProcessFlowProps> = ({ flow
       case 0:
         return <FileText className="w-4 h-4" style={{ color: 'var(--color-accent, #E05A47)' }} />;
       case 1:
-        return <Users className="w-4 h-4" style={{ color: 'var(--color-accent, #E05A47)' }} />;
+        return <Layers className="w-4 h-4" style={{ color: 'var(--color-accent, #E05A47)' }} />;
       case 2:
+        return <Box className="w-4 h-4" style={{ color: 'var(--color-accent, #E05A47)' }} />;
+      case 3:
       default:
         return <RefreshCw className="w-4 h-4" style={{ color: 'var(--color-accent, #E05A47)' }} />;
     }
@@ -47,8 +49,16 @@ export const CaseStudyProcessFlow: React.FC<CaseStudyProcessFlowProps> = ({ flow
         </div>
       </div>
 
-      {/* 3-Step Pipeline Flow */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+      {/* Pipeline Flow */}
+      <div
+        className={`grid grid-cols-1 ${
+          flow.steps.length === 4
+            ? 'sm:grid-cols-2 lg:grid-cols-4'
+            : flow.steps.length === 2
+            ? 'sm:grid-cols-2'
+            : 'md:grid-cols-3'
+        } gap-4 relative`}
+      >
         {flow.steps.map((step, idx) => (
           <div key={idx} className="relative group">
             <div className="h-full p-4 sm:p-5 rounded-xl bg-white border border-zinc-200/80 shadow-2xs hover:border-zinc-300 hover:shadow-xs transition-all flex flex-col justify-between">

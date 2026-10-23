@@ -521,6 +521,8 @@ export const CaseStudyVisual: React.FC<CaseStudyVisualProps> = ({ imageSpec }) =
 
   // 5. Contain / App Showcase Presentation (for app screens & research matrices, preserving full aspect ratio)
   if (presentation === 'contain') {
+    const isScrollable = imageSpec.scrollable;
+
     return (
       <figure className="my-8 space-y-2.5">
         <div className="rounded-xl overflow-hidden border border-zinc-200/90 shadow-sm bg-gradient-to-b from-[#14171E] to-[#0D0F13] p-3 sm:p-5">
@@ -544,25 +546,56 @@ export const CaseStudyVisual: React.FC<CaseStudyVisualProps> = ({ imageSpec }) =
             </button>
           </div>
 
-          <div
-            className="flex items-center justify-center cursor-zoom-in py-2"
-            onClick={() =>
-              openLightbox(
-                imageSpec.url,
-                imageSpec.alt,
-                imageSpec.frameTitle || imageSpec.alt,
-                imageSpec.caption
-              )
-            }
-          >
-            <img
-              src={imageSpec.url}
-              alt={imageSpec.alt}
-              className="max-h-[480px] w-auto max-w-full object-contain rounded-lg shadow-lg select-none"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-          </div>
+          {isScrollable ? (
+            <div className="relative group rounded-lg overflow-hidden border border-white/5 bg-[#101217]">
+              <div
+                className="overflow-y-auto relative scroll-smooth cursor-zoom-in"
+                style={{ maxHeight: imageSpec.viewportHeight || '520px' }}
+                tabIndex={0}
+                aria-label="Área de rolagem da tela completa"
+              >
+                <img
+                  src={imageSpec.url}
+                  alt={imageSpec.alt}
+                  className="w-full h-auto block select-none"
+                  onClick={() =>
+                    openLightbox(
+                      imageSpec.url,
+                      imageSpec.alt,
+                      imageSpec.frameTitle || imageSpec.alt,
+                      imageSpec.caption
+                    )
+                  }
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="pointer-events-none absolute bottom-3 right-3 flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-950/85 backdrop-blur-md border border-white/10 text-white text-[11px] shadow-lg group-hover:opacity-100 opacity-80 transition-opacity">
+                <MousePointer2 className="w-3 h-3 text-zinc-400 animate-bounce" />
+                <span>Role para navegar · Clique para ampliar</span>
+              </div>
+            </div>
+          ) : (
+            <div
+              className="flex items-center justify-center cursor-zoom-in py-2"
+              onClick={() =>
+                openLightbox(
+                  imageSpec.url,
+                  imageSpec.alt,
+                  imageSpec.frameTitle || imageSpec.alt,
+                  imageSpec.caption
+                )
+              }
+            >
+              <img
+                src={imageSpec.url}
+                alt={imageSpec.alt}
+                className="max-h-[480px] w-auto max-w-full object-contain rounded-lg shadow-lg select-none"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          )}
         </div>
 
         {imageSpec.caption && (

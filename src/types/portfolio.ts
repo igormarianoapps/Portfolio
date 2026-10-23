@@ -99,6 +99,7 @@ export interface CaseStudyImageSpec {
   deviceFrame?: 'browser' | 'mobile' | 'canvas' | 'none';
   frameTitle?: string;
   badge?: string;
+  scrollable?: boolean;
   viewportHeight?: string;
   secondaryImage?: {
     url: string;
@@ -160,7 +161,59 @@ export interface CaseStudyExecutiveSummary {
 export interface CaseStudyFeatureCard {
   title: string;
   description: string;
-  icon?: 'users' | 'messages' | 'chart' | 'survey' | 'search' | 'benchmark';
+  icon?:
+    | 'users'
+    | 'messages'
+    | 'chart'
+    | 'survey'
+    | 'search'
+    | 'benchmark'
+    | 'desktop'
+    | 'mobile'
+    | 'monitor'
+    | 'smartphone'
+    | 'reuse'
+    | 'refresh'
+    | 'consistency'
+    | 'layers'
+    | 'collab'
+    | 'collaboration'
+    | 'book'
+    | 'documentation'
+    | 'recipes'
+    | 'patterns'
+    | 'handoff'
+    | 'box'
+    | 'components'
+    | 'sparkles'
+    | 'ai';
+}
+
+export interface CaseStudySystemComparison {
+  left: {
+    title: string;
+    subtitle?: string;
+    badge?: string;
+    items: string[];
+  };
+  right: {
+    title: string;
+    subtitle?: string;
+    badge?: string;
+    items: string[];
+  };
+}
+
+export interface CaseStudyAiHighlight {
+  title: string;
+  text: string;
+  badge?: string;
+}
+
+export interface CaseStudyStepCard {
+  number: string;
+  title: string;
+  description: string;
 }
 
 export interface CaseStudySection {
@@ -170,6 +223,8 @@ export interface CaseStudySection {
   paragraphs: string[];
   bulletPoints?: string[];
   featureCards?: CaseStudyFeatureCard[];
+  featureCardsLayout?: '2x2' | '3-col' | '4-col';
+  stepCards?: CaseStudyStepCard[];
   closingParagraph?: string;
   decisionLog?: CaseStudyDecision[];
   processFlow?: CaseStudyProcessFlow;
@@ -179,6 +234,9 @@ export interface CaseStudySection {
     title: string;
     learnings: CaseStudyLearningItem[];
   };
+  conceptualTags?: string[];
+  systemComparison?: CaseStudySystemComparison;
+  aiHighlight?: CaseStudyAiHighlight;
   image?: CaseStudyImageSpec;
   inlineImage?: {
     afterParagraph: number;
@@ -210,7 +268,7 @@ export interface CaseStudy {
   tags: string[];
   metadata: {
     role: string;
-    timeline: string;
+    timeline?: string;
     team: string;
     platform: string;
     tools?: string[];

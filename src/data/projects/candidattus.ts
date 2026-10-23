@@ -176,10 +176,12 @@ export const candidattusProject: LocalizedCaseStudy = {
               caption:
                 'Interface de escuta política, apresentando informações para acompanhamento e análise de candidatos.',
               presentation: 'contain',
+              scrollable: true,
               frameTitle:
                 'Candidattus · Escuta Política e Análise de Sentimento (Politica Vox®)',
             },
-          },          {
+          },
+          {
             afterParagraph: 8,
             image: {
               url: candidatoPreferidoImage,
@@ -187,11 +189,11 @@ export const candidattusProject: LocalizedCaseStudy = {
               caption:
                 'Visualização de preferências eleitorais, organizada para facilitar a leitura e comparação de informações.',
               presentation: 'contain',
+              scrollable: true,
               frameTitle:
                 'Candidattus · Preferência do Eleitorado (Arquétipos e Segmentação)',
             },
           },
-
         ],
       },
       {
@@ -470,10 +472,12 @@ export const candidattusProject: LocalizedCaseStudy = {
               caption:
                 'Political social listening interface presenting sentiment tracking and candidate intelligence.',
               presentation: 'contain',
+              scrollable: true,
               frameTitle:
                 'Candidattus · Political Listening & Sentiment Tracking (Politica Vox®)',
             },
-          },          {
+          },
+          {
             afterParagraph: 8,
             image: {
               url: candidatoPreferidoImage,
@@ -481,11 +485,11 @@ export const candidattusProject: LocalizedCaseStudy = {
               caption:
                 'Voter preference visualization designed to support reading and comparison.',
               presentation: 'contain',
+              scrollable: true,
               frameTitle:
                 'Candidattus · Voter Preferences & Candidate Archetypes',
             },
           },
-
         ],
       },
       {
