@@ -6,7 +6,7 @@ import {useLanguage} from '../../context/LanguageContext';
 export const MediaPreviewTall:React.FC<{item:CaseStudyMediaItem;maxHeight?:number;highlightText?:string}>=({item,maxHeight=520})=>{
  const [open,setOpen]=useState(false);const {t}=useLanguage();
  return <><figure className="my-8 space-y-3">
-  <button type="button" onClick={()=>setOpen(true)} aria-label={t('Abrir imagem completa','Open full image')} className="block relative w-full overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600" style={{maxHeight}}>
+  <button type="button" onClick={()=>setOpen(true)} aria-label={t('Abrir imagem completa','Open full image')} className="block relative w-full overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black" style={{maxHeight}}>
    <img src={item.url} alt={item.alt} loading="lazy" className="block w-full h-auto object-top"/>
    <span aria-hidden="true" className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#F8F9FA] to-transparent"/>
   </button>

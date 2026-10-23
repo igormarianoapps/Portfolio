@@ -28,7 +28,7 @@ export const CaseStudyVisual: React.FC<{imageSpec: CaseStudyImageSpec; projectSl
       compute();
     };
     return <div className="min-w-0">
-      <button type="button" onClick={open} aria-label={t(`Ampliar imagem: ${item.alt}`,`Expand image: ${item.alt}`)} className="group relative block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600">
+      <button type="button" onClick={open} aria-label={t(`Ampliar imagem: ${item.alt}`,`Expand image: ${item.alt}`)} className="group relative block w-full text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black">
         <div className="relative mx-auto overflow-hidden" style={{maxHeight:shouldPreview?PREVIEW_HEIGHT:undefined,maxWidth:isCorrida && /analytics-mobile/.test(item.url)?325:isAnalytics?650:isMobileWireframe?320:undefined}}>
           <img src={item.url} alt={item.alt} loading="lazy" onLoad={e=>measure(e.currentTarget)} className="block w-full h-auto object-contain"/>
           {shouldPreview && <>
