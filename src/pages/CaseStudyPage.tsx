@@ -232,30 +232,11 @@ export const CaseStudyPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Main Cover Showcase Visual */}
-      <div className="max-w-5xl mx-auto px-6 -mt-8 mb-10">
-        <div
-          className="rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-gradient-to-b from-[#141720] via-[#0E1015] to-[#0A0C0F] p-4 sm:p-8 flex items-center justify-center relative group cursor-zoom-in"
-          onClick={() => setCoverLightboxOpen(true)}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') setCoverLightboxOpen(true);
-          }}
-          aria-label={t('Ampliar imagem de capa', 'Expand cover image')}
-        >
-          <img
-            src={project.coverImage}
-            alt={project.title}
-            className="w-full max-h-[520px] object-contain mx-auto rounded-lg shadow-xl drop-shadow-2xl select-none group-hover:scale-[1.01] transition-transform duration-200"
-            referrerPolicy="no-referrer"
-          />
-
-          <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-            <Maximize2 className="w-3.5 h-3.5" />
-            <span>{t('Ampliar', 'Expand')}</span>
-          </div>
-        </div>
+      {/* Image-first editorial hero, without simulated browser or card */}
+      <div className="max-w-5xl mx-auto px-6 mt-8 mb-10">
+        <button type="button" className="group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600" onClick={() => setCoverLightboxOpen(true)} aria-label={t('Ampliar imagem de capa', 'Expand cover image')}>
+          <img src={project.coverImage} alt={project.title} className="block w-full h-auto max-h-[560px] object-contain mx-auto" referrerPolicy="no-referrer" />
+        </button>
       </div>
 
       {/* Editorial Content Container (Light Canvas for High Readability) */}
@@ -486,7 +467,7 @@ export const CaseStudyPage: React.FC = () => {
                               )}
                               {matchingInlineImages.map((imgSpec, imgIdx) => (
                                 <div key={imgIdx} className="my-6">
-                                  <CaseStudyVisual imageSpec={imgSpec} />
+                                  <CaseStudyVisual imageSpec={imgSpec} projectSlug={project.slug} />
                                 </div>
                               ))}
                             </React.Fragment>
@@ -723,7 +704,7 @@ export const CaseStudyPage: React.FC = () => {
 
                       {/* Visual Artifact Presentation */}
                       {section.image && (
-                        <CaseStudyVisual imageSpec={section.image} />
+                        <CaseStudyVisual imageSpec={section.image} projectSlug={project.slug} />
                       )}
                     </>
                   )}
