@@ -60,7 +60,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </h3>
 
           {/* Concise 1-2 line summary */}
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-2">
+          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4 line-clamp-2">
             {project.summary}
           </p>
 
@@ -79,7 +79,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </span>
               </div>
               {project.isPlaceholder && (
-                <span className="text-[10px] text-zinc-400 uppercase tracking-wider shrink-0">
+                <span className="text-[10px] text-zinc-300 uppercase tracking-wider shrink-0">
                   [Demo]
                 </span>
               )}

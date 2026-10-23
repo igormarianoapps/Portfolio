@@ -116,7 +116,7 @@ export const HomePage: React.FC = () => {
           <a
             href="#projetos"
             onClick={scrollToProjects}
-            className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.35em] text-zinc-400 font-light pb-1 hover:text-white transition-colors group cursor-pointer ml-auto"
+            className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.35em] text-zinc-300 font-light pb-1 hover:text-white transition-colors group cursor-pointer ml-auto"
             aria-label={t('Rolar para os projetos', 'Scroll to projects')}
           >
             <span className="group-hover:text-white transition-colors">SCROLL</span>
