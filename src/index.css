@@ -11,7 +11,8 @@
 
     /* Terracotta / Burnt Orange Accent */
     --color-accent: #E15B38;
-    --color-accent-hover: #C84B29;
+    --color-accent-hover: #A4371D;
+    --color-accent-cta: #BD4324;
     --color-accent-light: #FF7D5A;
     --color-accent-subtle: rgba(225, 91, 56, 0.12);
     --color-accent-glow: rgba(225, 91, 56, 0.25);

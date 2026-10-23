@@ -100,9 +100,9 @@ export const HomePage: React.FC = () => {
               <button
                 onClick={scrollToProjects}
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm text-white transition-all shadow-lg focus-ring-accent cursor-pointer group"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-cta)')}
               >
                 <span>{siteConfig.heroCtas.explore[language]}</span>
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
@@ -127,7 +127,7 @@ export const HomePage: React.FC = () => {
             <div className="w-[1px] h-10 bg-white/20 relative overflow-hidden group-hover:bg-white/40 transition-colors">
               <div
                 className="w-full h-full scroll-pulse-line"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
               />
             </div>
           </a>
@@ -174,7 +174,7 @@ export const HomePage: React.FC = () => {
             {/* Subtle radial ambient glow in the background */}
             <div
               className="absolute -right-24 -bottom-24 w-80 h-80 rounded-full pointer-events-none opacity-10 group-hover:opacity-20 blur-3xl transition-opacity"
-              style={{ backgroundColor: 'var(--color-accent)' }}
+              style={{ backgroundColor: 'var(--color-accent-cta)' }}
               aria-hidden="true"
             />
 

@@ -108,7 +108,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             backgroundColor: 'transparent',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+            e.currentTarget.style.backgroundColor = 'var(--color-accent-cta)';
             e.currentTarget.style.borderColor = 'var(--color-accent)';
           }}
           onMouseLeave={(e) => {
