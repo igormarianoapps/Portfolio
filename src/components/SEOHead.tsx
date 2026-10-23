@@ -2,59 +2,43 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-interface SEOProps {
-  title?: string;
-  description?: string;
-  ogImage?: string;
-}
-
+interface SEOProps { title?: string; description?: string; ogImage?: string }
 const SITE_URL = 'https://igormariano.vercel.app';
 const DEFAULT_IMAGE = SITE_URL + '/og-image.jpg';
-
-const setMeta = (selector: string, attribute: string, value: string) => {
-  let element = document.head.querySelector<HTMLMetaElement>(selector);
-  if (!element) {
-    element = document.createElement('meta');
-    element.setAttribute(attribute, selector.match(/\[(?:name|property)="([^"]+)"/)?.[1] || '');
-    document.head.appendChild(element);
-  }
-  element.content = value;
-};
-
-export const SEOHead: React.FC<SEOProps> = ({ title, description, ogImage }) => {
-  const { language } = useLanguage();
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    const defaultTitle = 'Igor Mariano — Product Designer · UX/UI · Design Systems';
-    const defaultDesc = language === 'pt'
-      ? 'Portfólio de Igor Mariano. Projetos de Product Design, UX Research e Design Systems: decisões de produto fundamentadas em dados e necessidades reais.'
-      : 'Igor Mariano’s portfolio. Product Design, UX Research and Design Systems: product decisions informed by data and real user needs.';
-    const pageTitle = title ? `${title} · Igor Mariano` : defaultTitle;
-    const pageDesc = description || defaultDesc;
-    const canonical = SITE_URL + (pathname === '/' ? '/' : pathname.replace(/\/$/, ''));
-    const image = DEFAULT_IMAGE; // Consistent preview across all public pages, including case studies.
-
-    document.title = pageTitle;
-    setMeta('meta[name="description"]', 'name', pageDesc);
-    setMeta('meta[property="og:title"]', 'property', pageTitle);
-    setMeta('meta[property="og:description"]', 'property', pageDesc);
-    setMeta('meta[property="og:image"]', 'property', image);
-    setMeta('meta[property="og:url"]', 'property', canonical);
-    setMeta('meta[property="og:locale"]', 'property', language === 'pt' ? 'pt_BR' : 'en_US');
-    setMeta('meta[name="twitter:title"]', 'name', pageTitle);
-    setMeta('meta[name="twitter:description"]', 'name', pageDesc);
-    setMeta('meta[name="twitter:image"]', 'name', image);
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
-
-    let canonicalLink = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.rel = 'canonical';
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonical;
-  }, [title, description, ogImage, language, pathname]);
-
+function setMeta(key: string, value: string, attribute: 'name'|'property'='property') {
+  let meta = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
+  if (!meta) { meta=document.createElement('meta'); meta.setAttribute(attribute,key); document.head.appendChild(meta); }
+  meta.content = value;
+}
+export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
+  const {language}=useLanguage();
+  const {pathname}=useLocation();
+  useEffect(()=>{
+    const defaultTitle='Igor Mariano — Product Designer · UX/UI · Design Systems';
+    const defaultDesc=language==='pt'
+      ? 'Portfólio de Igor Mariano: Product Design, UX Research e Design Systems orientados por dados.'
+      : 'Igor Mariano portfolio: data-informed Product Design, UX Research and Design Systems.';
+    const pageTitle=title ? `${title} · Igor Mariano` : defaultTitle;
+    const pageDesc=description||defaultDesc;
+    const canonical=SITE_URL+(pathname==='/' ? '/' : pathname.replace(/\/$/,''));
+    const image=ogImage ? new URL(ogImage,SITE_URL).href : DEFAULT_IMAGE;
+    document.title=pageTitle;
+    setMeta('description',pageDesc,'name');
+    setMeta('og:title',pageTitle);
+    setMeta('og:description',pageDesc);
+    setMeta('og:image',image);
+    setMeta('og:image:alt',title || 'Igor Mariano — Product Designer');
+    setMeta('og:url',canonical);
+    setMeta('og:type',pathname.startsWith('/projetos/')?'article':'website');
+    setMeta('og:locale',language==='pt'?'pt_BR':'en_US');
+    setMeta('twitter:card','summary_large_image','name');
+    setMeta('twitter:title',pageTitle,'name');
+    setMeta('twitter:description',pageDesc,'name');
+    setMeta('twitter:image',image,'name');
+    document.documentElement.lang=language==='pt'?'pt-BR':'en';
+    let link=document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if(!link){link=document.createElement('link');link.rel='canonical';document.head.appendChild(link);}
+    link.href=canonical;
+  },[title,description,ogImage,language,pathname]);
   return null;
 };
