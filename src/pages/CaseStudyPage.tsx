@@ -233,7 +233,7 @@ export const CaseStudyPage: React.FC = () => {
       </header>
 
       {/* Image-first editorial hero, without simulated browser or card */}
-      <div className="max-w-5xl mx-auto px-6 mt-8 mb-10">
+      <div className="relative max-w-5xl mx-auto px-6 -mt-8 mb-10">
         <button type="button" className="group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600" onClick={() => setCoverLightboxOpen(true)} aria-label={t('Ampliar imagem de capa', 'Expand cover image')}>
           <img src={project.coverImage} alt={project.title} className="block w-full h-auto max-h-[560px] object-contain mx-auto" referrerPolicy="no-referrer" />
         </button>

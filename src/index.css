@@ -149,3 +149,5 @@
     scroll-behavior: auto !important;
   }
 }
+
+.case-study-canvas figcaption { text-align: center; font-style: italic; }
