@@ -7,6 +7,7 @@ import { SEOHead } from '../components/SEOHead';
 import { CaseStudyVisual } from '../components/CaseStudyVisual';
 import { CaseStudyProcessFlow } from '../components/CaseStudyProcessFlow';
 import { CaseStudyExecutiveSummary } from '../components/CaseStudyExecutiveSummary';
+import { CaseStudyQuickSummary } from '../components/CaseStudyQuickSummary';
 import { ImageLightboxModal } from '../components/ImageLightboxModal';
 import { siteConfig } from '../data/site';
 import {
@@ -305,6 +306,8 @@ export const CaseStudyPage: React.FC = () => {
             ))}
           </div>
         )}
+
+        <CaseStudyQuickSummary project={project} />
 
         {/* Layout with Sticky Table of Contents and Main Editorial Column */}
         {((project.sections && project.sections.length > 0) || (project.tableOfContents && project.tableOfContents.length > 0)) && (
