@@ -74,10 +74,10 @@ export const Footer: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-4 rounded-xl font-bold text-sm sm:text-base text-white transition-all shadow-xl hover:shadow-2xl focus-ring-accent min-h-[48px] cursor-pointer group"
             style={{
-              backgroundColor: 'var(--color-accent)',
+              backgroundColor: 'var(--color-accent-cta)',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-cta)')}
           >
             {/* Recognizable LinkedIn Icon */}
             <div className="p-1 rounded-sm bg-white/15 text-white group-hover:bg-white/25 transition-colors">

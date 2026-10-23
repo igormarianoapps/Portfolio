@@ -43,6 +43,9 @@ export const HomePage: React.FC = () => {
       <section className="relative w-full border-b border-white/[0.08] overflow-hidden min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-4.5rem)] flex flex-col justify-between bg-[#0D0F12]">
         {/* Full-Bleed Background Photograph */}
         <div className="absolute inset-0 z-0">
+          <picture className="block w-full h-full">
+            <source media="(max-width: 767px)" srcSet="/optimized/hero-mobile.webp" type="image/webp" />
+            <source media="(min-width: 768px)" srcSet="/optimized/hero-desktop.webp" type="image/webp" />
           <img
             src={siteConfig.portraitImage}
             alt={`${siteConfig.name} — Product Designer`}
@@ -52,6 +55,7 @@ export const HomePage: React.FC = () => {
             decoding="async"
             referrerPolicy="no-referrer"
           />
+          </picture>
 
           {/* Editorial Gradient Scrims:
               1. Desktop/Tablet Horizontal Scrim: solid graphite over text on the left, feathering smoothly to reveal Igor's portrait on the right.
@@ -96,9 +100,9 @@ export const HomePage: React.FC = () => {
               <button
                 onClick={scrollToProjects}
                 className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-bold text-sm text-white transition-all shadow-lg focus-ring-accent cursor-pointer group"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-hover)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-accent-cta)')}
               >
                 <span>{siteConfig.heroCtas.explore[language]}</span>
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
@@ -116,14 +120,14 @@ export const HomePage: React.FC = () => {
           <a
             href="#projetos"
             onClick={scrollToProjects}
-            className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.35em] text-zinc-400 font-light pb-1 hover:text-white transition-colors group cursor-pointer ml-auto"
+            className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.35em] text-zinc-300 font-light pb-1 hover:text-white transition-colors group cursor-pointer ml-auto"
             aria-label={t('Rolar para os projetos', 'Scroll to projects')}
           >
             <span className="group-hover:text-white transition-colors">SCROLL</span>
             <div className="w-[1px] h-10 bg-white/20 relative overflow-hidden group-hover:bg-white/40 transition-colors">
               <div
                 className="w-full h-full scroll-pulse-line"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
               />
             </div>
           </a>
@@ -170,7 +174,7 @@ export const HomePage: React.FC = () => {
             {/* Subtle radial ambient glow in the background */}
             <div
               className="absolute -right-24 -bottom-24 w-80 h-80 rounded-full pointer-events-none opacity-10 group-hover:opacity-20 blur-3xl transition-opacity"
-              style={{ backgroundColor: 'var(--color-accent)' }}
+              style={{ backgroundColor: 'var(--color-accent-cta)' }}
               aria-hidden="true"
             />
 

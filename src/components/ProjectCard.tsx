@@ -24,10 +24,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         >
           {!imageError ? (
             <img
-              src={project.coverImage}
+              src={`/optimized/${project.slug === 'corrida-perfeita' ? 'corrida' : project.slug === 'taskcheck-design-system' ? 'taskcheck' : 'candidattus'}-card.webp`}
               alt={project.title}
               referrerPolicy="no-referrer"
-              onError={() => setImageError(true)}
+              onError={(e) => { if (!e.currentTarget.dataset.fallback) { e.currentTarget.dataset.fallback = 'true'; e.currentTarget.src = project.coverImage; } else { setImageError(true); } }}
               className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-300"
               loading="lazy"
               decoding="async"
@@ -60,7 +60,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </h3>
 
           {/* Concise 1-2 line summary */}
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4 line-clamp-2">
+          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed mb-4 line-clamp-2">
             {project.summary}
           </p>
 
@@ -79,7 +79,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </span>
               </div>
               {project.isPlaceholder && (
-                <span className="text-[10px] text-zinc-400 uppercase tracking-wider shrink-0">
+                <span className="text-[10px] text-zinc-300 uppercase tracking-wider shrink-0">
                   [Demo]
                 </span>
               )}
@@ -108,7 +108,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             backgroundColor: 'transparent',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'var(--color-accent)';
+            e.currentTarget.style.backgroundColor = 'var(--color-accent-cta)';
             e.currentTarget.style.borderColor = 'var(--color-accent)';
           }}
           onMouseLeave={(e) => {

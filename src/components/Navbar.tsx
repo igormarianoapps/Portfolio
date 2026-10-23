@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
             {isCurrent('/') && (
               <span
                 className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
               />
             )}
           </Link>
@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
             {isCurrent('/sobre') && (
               <span
                 className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
               />
             )}
           </Link>
@@ -95,7 +95,7 @@ export const Navbar: React.FC = () => {
             {isCurrent('/contato') && (
               <span
                 className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
-                style={{ backgroundColor: 'var(--color-accent)' }}
+                style={{ backgroundColor: 'var(--color-accent-cta)' }}
               />
             )}
           </Link>
@@ -229,7 +229,7 @@ export const Navbar: React.FC = () => {
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-2.5 px-4 text-xs font-semibold text-white rounded-lg transition-colors"
-              style={{ backgroundColor: 'var(--color-accent)' }}
+              style={{ backgroundColor: 'var(--color-accent-cta)' }}
             >
               <span>{siteConfig.heroCtas.talk[language]}</span>
               <ArrowUpRight className="w-4 h-4" />

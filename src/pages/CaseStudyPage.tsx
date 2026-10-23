@@ -235,7 +235,7 @@ export const CaseStudyPage: React.FC = () => {
       {/* Image-first editorial hero, without simulated browser or card */}
       <div className="relative max-w-5xl mx-auto px-6 -mt-8 mb-10">
         <button type="button" className="group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black" onClick={() => setCoverLightboxOpen(true)} aria-label={t('Ampliar imagem de capa', 'Expand cover image')}>
-          <img src={project.coverImage} alt={project.title} loading="eager" fetchPriority="high" decoding="async" className="block w-full h-auto max-h-[560px] object-contain mx-auto" referrerPolicy="no-referrer" />
+          <img src={`/optimized/${project.slug === 'corrida-perfeita' ? 'corrida' : project.slug === 'taskcheck-design-system' ? 'taskcheck' : 'candidattus'}-full.webp`} onError={(e) => { if (!e.currentTarget.dataset.fallback) { e.currentTarget.dataset.fallback = 'true'; e.currentTarget.src = project.coverImage; } }} alt={project.title} loading="eager" fetchPriority="high" decoding="async" className="block w-full h-auto max-h-[560px] object-contain mx-auto" referrerPolicy="no-referrer" />
         </button>
       </div>
 
