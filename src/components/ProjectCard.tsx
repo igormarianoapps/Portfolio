@@ -24,10 +24,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         >
           {!imageError ? (
             <img
-              src={`/optimized/covers/${project.slug}.webp`}
-              alt=""
+              src={project.coverImage}
+              alt={project.title}
               referrerPolicy="no-referrer"
-              onError={(e) => { if (e.currentTarget.src.endsWith(".webp")) { e.currentTarget.src = project.coverImage; } else { setImageError(true); } }}
+              onError={() => setImageError(true)}
               className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-300"
               loading="lazy"
               decoding="async"
