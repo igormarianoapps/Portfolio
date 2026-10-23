@@ -1,6 +1,18 @@
 {
   "rewrites": [
     {
+      "source": "/sobre",
+      "destination": "/sobre/index.html"
+    },
+    {
+      "source": "/contato",
+      "destination": "/contato/index.html"
+    },
+    {
+      "source": "/projetos/:slug",
+      "destination": "/projetos/:slug/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
