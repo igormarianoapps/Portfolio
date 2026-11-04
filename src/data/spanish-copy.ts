@@ -87,3 +87,105 @@ export const spanishCopy = {
     },
   },
 } as const;
+
+
+/**
+ * Case-study editorial sections (es-ES).
+ * These are reviewed narrative drafts; they are not published as complete
+ * case studies until the full section hierarchy and supporting captions exist.
+ */
+export const spanishCaseNarratives = {
+  corridaPerfeita: {
+    title: 'Corrida Perfeita',
+    challenge: {
+      heading: 'El reto',
+      paragraphs: [
+        'La aplicación necesitaba ayudar a las personas a entender su propuesta de valor desde los primeros minutos. El recorrido inicial presentaba fricciones que dificultaban llegar al primer entrenamiento.',
+        'El objetivo no era únicamente simplificar pantallas, sino entender por qué parte de los usuarios abandonaba la experiencia después de registrarse.',
+      ],
+    },
+    discovery: {
+      heading: 'Investigación y análisis',
+      paragraphs: [
+        'Combiné datos de Google Analytics y Hotjar con investigación de usuarios para identificar los momentos de mayor fricción y contrastar hipótesis antes de diseñar la solución.',
+        'Los datos también mostraban la importancia de priorizar la experiencia móvil: el 83,2 % de los accesos procedía de estos dispositivos.',
+      ],
+    },
+    solution: {
+      heading: 'La solución',
+      paragraphs: [
+        'Rediseñé el onboarding para explicar mejor el valor de la aplicación y acompañar al usuario en sus primeros pasos. También trabajé en la pantalla de inicio para facilitar la continuidad del recorrido.',
+        'El proyecto incluyó la evolución de la experiencia web, buscando una comunicación más clara y coherente entre los puntos de contacto.',
+      ],
+    },
+    outcome: {
+      heading: 'Resultados y aprendizajes',
+      paragraphs: [
+        'El abandono tras el registro pasó de aproximadamente el 63 % a cerca del 20 %. Este resultado reforzó la importancia de abordar la activación como un problema de comprensión y experiencia, no solo de interfaz.',
+        'La principal lección fue conectar las decisiones de diseño con evidencias y objetivos de producto, y seguir observando el comportamiento después de la entrega.',
+      ],
+    },
+  },
+  candidattus: {
+    title: 'Candidattus',
+    challenge: {
+      heading: 'El reto',
+      paragraphs: [
+        'Candidattus reunía información y funcionalidades de inteligencia electoral que debían organizarse de manera comprensible para diferentes necesidades de análisis.',
+        'A medida que el producto crecía, también aumentaba la necesidad de establecer patrones visuales y un proceso de trabajo más consistente entre diseño y desarrollo.',
+      ],
+    },
+    discovery: {
+      heading: 'Comprender el producto y sus usuarios',
+      paragraphs: [
+        'Trabajé a partir de las necesidades de negocio, las conversaciones con los responsables del producto y los conocimientos sobre los usuarios disponibles en el equipo.',
+        'El análisis de los recorridos y de la arquitectura de información ayudó a identificar oportunidades para estructurar la navegación y los cuadros de mando.',
+      ],
+    },
+    solution: {
+      heading: 'Producto, Design System y DesignOps',
+      paragraphs: [
+        'Diseñé interfaces y patrones reutilizables para mejorar la coherencia de la plataforma, además de organizar componentes y criterios de uso en un Design System creado desde cero.',
+        'También contribuí a estructurar el flujo de trabajo entre diseño y desarrollo, con el objetivo de reducir decisiones repetitivas y facilitar la colaboración.',
+      ],
+    },
+    outcome: {
+      heading: 'Aprendizajes',
+      paragraphs: [
+        'El proyecto mostró que un Design System no se limita a una biblioteca de componentes: también necesita documentación, acuerdos y un proceso de evolución.',
+        'Una arquitectura de información debe revisarse conforme aparecen nuevas funcionalidades y cambian las necesidades del producto.',
+      ],
+    },
+  },
+  taskcheck: {
+    title: 'TaskCheck',
+    challenge: {
+      heading: 'El reto',
+      paragraphs: [
+        'TaskCheck necesitaba una base compartida para mantener la consistencia entre las experiencias de escritorio y móvil y evitar que cada nueva funcionalidad se diseñara desde cero.',
+        'El reto consistía en establecer una primera versión útil y viable del Design System sin intentar resolver todas las necesidades futuras de una sola vez.',
+      ],
+    },
+    discovery: {
+      heading: 'Definir los fundamentos',
+      paragraphs: [
+        'Revisé las interfaces existentes para identificar patrones recurrentes, diferencias entre plataformas y componentes que podían reutilizarse.',
+        'Organicé los fundamentos visuales, como color, tipografía, espaciado y reglas de composición, como punto de partida para la biblioteca.',
+      ],
+    },
+    solution: {
+      heading: 'Un Design System preparado para evolucionar',
+      paragraphs: [
+        'La primera versión reunió botones, campos de formulario, casillas de selección, menús desplegables, estados, tarjetas de tareas y ventanas modales, con variantes para escritorio y móvil.',
+        'La documentación incluyó pautas de uso y criterios de entrega al equipo de desarrollo para favorecer una implementación coherente.',
+      ],
+    },
+    outcome: {
+      heading: 'Aprendizajes y siguientes pasos',
+      paragraphs: [
+        'El principal valor de esta primera versión fue establecer un lenguaje compartido para el equipo y una base de componentes que pudiera ampliarse de forma progresiva.',
+        'La evolución prevista contemplaba otros elementos de navegación y patrones más complejos, priorizados según las necesidades reales del producto.',
+      ],
+    },
+  },
+} as const;
