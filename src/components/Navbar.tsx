@@ -8,11 +8,12 @@ export const Navbar: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const prefix = `/${language}`;
   const navigate = useNavigate();
 
   const isCurrent = (path: string) => {
-    if (path === '/' && location.pathname === '/' && !location.search.includes('section=projetos')) return true;
-    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    if (path === '/' && location.pathname === prefix && !location.search.includes('section=projetos')) return true;
+    if (path !== '/' && location.pathname.startsWith(prefix + path)) return true;
     return false;
   };
 
@@ -26,7 +27,7 @@ export const Navbar: React.FC = () => {
         el.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      navigate('/?section=projetos');
+      navigate(`${prefix}?section=projetos`);
     }
   };
 
@@ -35,7 +36,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 h-16 sm:h-18 flex items-center justify-between gap-8">
         {/* Zone 1: Brand Title Wordmark */}
         <Link
-          to="/"
+          to={prefix}
           className="text-base sm:text-lg font-bold tracking-tight text-white hover:text-white/90 transition-colors whitespace-nowrap shrink-0 tracking-tight"
           aria-label="Igor Mariano — Home"
         >
@@ -48,7 +49,7 @@ export const Navbar: React.FC = () => {
           aria-label="Navegação principal"
         >
           <Link
-            to="/"
+            to={prefix}
             className={`whitespace-nowrap shrink-0 transition-colors py-1 relative hover:text-white ${
               isCurrent('/') ? 'text-white font-semibold' : ''
             }`}
@@ -71,7 +72,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           <Link
-            to="/sobre"
+            to={`${prefix}/sobre`}
             className={`whitespace-nowrap shrink-0 transition-colors py-1 relative hover:text-white ${
               isCurrent('/sobre') ? 'text-white font-semibold' : ''
             }`}
@@ -86,7 +87,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <Link
-            to="/contato"
+            to={`${prefix}/contato`}
             className={`whitespace-nowrap shrink-0 transition-colors py-1 relative hover:text-white ${
               isCurrent('/contato') ? 'text-white font-semibold' : ''
             }`}
@@ -187,7 +188,7 @@ export const Navbar: React.FC = () => {
         <div className="md:hidden border-b border-white/[0.08] bg-[#0E1014] px-6 py-5 space-y-4">
           <nav className="flex flex-col space-y-3 text-base font-medium">
             <Link
-              to="/"
+              to={prefix}
               onClick={() => setMobileMenuOpen(false)}
               className={`py-1 transition-colors ${
                 isCurrent('/') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
@@ -203,7 +204,7 @@ export const Navbar: React.FC = () => {
               {siteConfig.nav.projects[language]}
             </a>
             <Link
-              to="/sobre"
+              to={`${prefix}/sobre`}
               onClick={() => setMobileMenuOpen(false)}
               className={`py-1 transition-colors ${
                 isCurrent('/sobre') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
@@ -212,7 +213,7 @@ export const Navbar: React.FC = () => {
               {siteConfig.nav.about[language]}
             </Link>
             <Link
-              to="/contato"
+              to={`${prefix}/contato`}
               onClick={() => setMobileMenuOpen(false)}
               className={`py-1 transition-colors ${
                 isCurrent('/contato') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
