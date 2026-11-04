@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate, Outlet, useParams } from 'react-router-dom';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -23,6 +23,12 @@ function ScrollToTop() {
   return null;
 }
 
+function LocaleGuard() {
+  const { locale } = useParams();
+  if (locale !== 'en' && locale !== 'pt') return <NotFoundPage />;
+  return <Outlet />;
+}
+
 function LocalizedRoutes() {
   const { language } = useLanguage();
   return <Routes>
@@ -30,10 +36,12 @@ function LocalizedRoutes() {
     <Route path="/sobre" element={<Navigate to={`/${language}/sobre`} replace />} />
     <Route path="/contato" element={<Navigate to={`/${language}/contato`} replace />} />
     <Route path="/projetos/:slug" element={<LegacyCaseRedirect />} />
-    <Route path="/:locale" element={<HomePage />} />
-    <Route path="/:locale/sobre" element={<AboutPage />} />
-    <Route path="/:locale/contato" element={<ContactPage />} />
-    <Route path="/:locale/projetos/:slug" element={<CaseStudyPage />} />
+    <Route path="/:locale" element={<LocaleGuard />}>
+      <Route index element={<HomePage />} />
+      <Route path="sobre" element={<AboutPage />} />
+      <Route path="contato" element={<ContactPage />} />
+      <Route path="projetos/:slug" element={<CaseStudyPage />} />
+    </Route>
     <Route path="*" element={<NotFoundPage />} />
   </Routes>;
 }
