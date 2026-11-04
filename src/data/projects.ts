@@ -1,4 +1,7 @@
 import { Language, ProjectCardData, CaseStudy } from '../types/portfolio';
+import { spanishCaseStudy, taskcheckEs } from './projects/spanish';
+import { corridaEs } from './projects/corrida-es';
+import { candidattusEs } from './projects/candidattus-es';
 import { corridaPerfeitaProject } from './projects/corrida-perfeita';
 import { candidattusProject } from './projects/candidattus';
 import { taskcheckProject } from './projects/taskcheck';
@@ -12,9 +15,9 @@ import { taskcheckProject } from './projects/taskcheck';
  * 3. O site atualizará automaticamente a Home, os Cards, as Rotas e os Links de Próximo Projeto!
  */
 export const PROJECTS_REGISTRY = [
-  corridaPerfeitaProject,
-  candidattusProject,
-  taskcheckProject,
+  { ...corridaPerfeitaProject, es: spanishCaseStudy(corridaPerfeitaProject.en, corridaEs) },
+  { ...candidattusProject, es: spanishCaseStudy(candidattusProject.en, candidattusEs) },
+  { ...taskcheckProject, es: spanishCaseStudy(taskcheckProject.en, taskcheckEs) },
 ];
 
 /**
