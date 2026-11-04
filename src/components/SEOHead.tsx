@@ -17,11 +17,12 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     const defaultTitle='Igor Mariano — Product Designer · UX/UI · Design Systems';
     const defaultDesc=language==='pt'
       ? 'Portfólio de Igor Mariano: Product Design, UX Research e Design Systems orientados por dados.'
+      : language==='es' ? 'Portfolio de Igor Mariano: Product Design, investigación UX y Design Systems basados en datos.'
       : 'Igor Mariano portfolio: data-informed Product Design, UX Research and Design Systems.';
     const pageTitle=title ? `${title} · Igor Mariano` : defaultTitle;
     const pageDesc=description||defaultDesc;
     const canonical=SITE_URL+(pathname==='/' ? '/' : pathname.replace(/\/$/,''));
-    const isNotFound = !/^\/(en|pt)(?:\/|$)/.test(pathname) && pathname !== '/';
+    const isNotFound = !/^\/(en|pt|es)(?:\/|$)/.test(pathname) && pathname !== '/';
     const image=ogImage ? new URL(ogImage,SITE_URL).href : DEFAULT_IMAGE;
     document.title=pageTitle;
     setMeta('description',pageDesc,'name');
@@ -32,13 +33,13 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     setMeta('og:image',image);
     setMeta('og:image:alt',title || 'Igor Mariano — Product Designer');
     setMeta('og:url',canonical);
-    setMeta('og:type',/^\/(pt|en)\/projetos\//.test(pathname)?'article':'website');
-    setMeta('og:locale',language==='pt'?'pt_BR':'en_US');
+    setMeta('og:type',/^\/(pt|en|es)\/projetos\//.test(pathname)?'article':'website');
+    setMeta('og:locale',language==='pt'?'pt_BR':language==='es'?'es_ES':'en_US');
     setMeta('twitter:card','summary_large_image','name');
     setMeta('twitter:title',pageTitle,'name');
     setMeta('twitter:description',pageDesc,'name');
     setMeta('twitter:image',image,'name');
-    document.documentElement.lang=language==='pt'?'pt-BR':'en';
+    document.documentElement.lang=language==='pt'?'pt-BR':language==='es'?'es-ES':'en';
     let link=document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if(!link){link=document.createElement('link');link.rel='canonical';document.head.appendChild(link);}
     link.href=canonical;
@@ -51,6 +52,7 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     const alternates: Array<[string,string]> = [
       ['en',SITE_URL+'/en'+suffix],
       ['pt-BR',SITE_URL+'/pt'+suffix],
+      ['es-ES',SITE_URL+'/es'+suffix],
       ['x-default',SITE_URL+'/en'+suffix],
     ];
     for (const [hreflang,href] of alternates) {
