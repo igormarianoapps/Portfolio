@@ -543,11 +543,6 @@ export const siteConfig: SiteConfig = {
               pt: "Na AutoForce, trabalhei na criação e evolução de interfaces para diferentes marcas do setor automotivo, equilibrando identidade visual, usabilidade, consistência e necessidades comerciais.",
               en: "At AutoForce, I designed and evolved digital experiences for various automotive brands, balancing visual identity, usability, consistency, and commercial requirements.",
             },
-            link: "/projetos/autoforce",
-            linkText: {
-              pt: "Ver case AutoForce",
-              en: "View AutoForce case",
-            },
           },
         ],
       },
