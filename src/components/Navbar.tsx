@@ -104,7 +104,7 @@ export const Navbar: React.FC = () => {
 
         {/* Zone 3: Language Switcher & Quick Contact Action */}
         <div className="hidden md:flex items-center gap-3.5 shrink-0">
-          {/* Functional PT/EN Language Toggle */}
+          {/* Functional PT/EN/ES Language Toggle */}
           <div
             className="flex items-center p-0.5 rounded-lg bg-[#14171C] border border-white/[0.08] text-xs font-medium"
             role="group"
@@ -132,6 +132,17 @@ export const Navbar: React.FC = () => {
             >
               EN
             </button>
+<button
+              onClick={() => setLanguage('es')}
+              className={`px-2.5 py-1 rounded-md transition-all whitespace-nowrap cursor-pointer ${
+                language === 'es'
+                  ? 'bg-zinc-800 text-white font-semibold shadow-xs'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+              aria-pressed={language === 'es'}
+            >
+              EN
+            </button>
           </div>
 
           {/* Quick Direct Message Action */}
@@ -148,7 +159,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Controls */}
         <div className="flex md:hidden items-center gap-2">
-          {/* Mobile PT/EN */}
+          {/* Mobile PT/EN/ES */}
           <div
             className="flex items-center p-0.5 rounded-lg bg-[#14171C] border border-white/[0.08] text-xs font-medium"
             role="group"
@@ -166,6 +177,14 @@ export const Navbar: React.FC = () => {
               onClick={() => setLanguage('en')}
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'en' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
+              }`}
+            >
+              EN
+            </button>
+<button
+              onClick={() => setLanguage('es')}
+              className={`px-2 py-1 rounded-md transition-colors ${
+                language === 'es' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
             >
               EN
