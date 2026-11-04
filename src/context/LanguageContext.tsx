@@ -17,11 +17,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const location = useLocation();
   const navigate = useNavigate();
   const routeLocale = location.pathname.split('/')[1];
-  const validRouteLocale = routeLocale === 'pt' || routeLocale === 'en' ? routeLocale : null;
+  const validRouteLocale = routeLocale === 'pt' || routeLocale === 'en' || routeLocale === 'es' ? routeLocale : null;
   const [preferredLanguage, setLanguageState] = useState<Language>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'en' || saved === 'pt') return saved;
+      if (saved === 'en' || saved === 'pt' || saved === 'es') return saved;
     } catch {
       // Ignore localStorage exceptions in restrictive environments
     }
@@ -31,7 +31,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const preferences = navigator.languages?.length ? navigator.languages : [navigator.language];
       for (const preference of preferences) {
         const locale = preference.toLowerCase().split('-')[0];
-        if (locale === 'pt' || locale === 'en') return locale;
+        if (locale === 'pt' || locale === 'en' || locale === 'es') return locale;
       }
     }
     return 'en';
@@ -42,7 +42,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     const parts = location.pathname.split('/');
-    if (parts[1] === 'pt' || parts[1] === 'en') parts[1] = lang;
+    if (parts[1] === 'pt' || parts[1] === 'en' || parts[1] === 'es') parts[1] = lang;
     else parts.splice(1, 0, lang);
     navigate(parts.join('/') + location.search + location.hash);
     try {
@@ -57,7 +57,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   useEffect(() => {
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+    document.documentElement.lang = language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en';
   }, [language]);
 
   const t = (pt: string, en: string) => (language === 'pt' ? pt : en);
