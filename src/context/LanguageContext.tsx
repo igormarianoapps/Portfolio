@@ -17,7 +17,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const location = useLocation();
   const navigate = useNavigate();
   const routeLocale = location.pathname.split('/')[1];
-  const [language, setLanguageState] = useState<Language>(() => {
+  const validRouteLocale = routeLocale === 'pt' || routeLocale === 'en' ? routeLocale : null;
+  const [preferredLanguage, setLanguageState] = useState<Language>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === 'en' || saved === 'pt') return saved;
@@ -36,9 +37,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return 'en';
   });
 
-  useEffect(() => {
-    if (routeLocale === 'pt' || routeLocale === 'en') setLanguageState(routeLocale);
-  }, [routeLocale]);
+  const language: Language = validRouteLocale || preferredLanguage;
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
