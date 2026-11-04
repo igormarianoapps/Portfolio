@@ -5,7 +5,7 @@ import type { CaseStudy, CaseStudySection, CaseStudyMediaItem, CaseStudyImageSpe
  * the published English case so the visual artifacts remain faithful.
  */
 type SectionEdition = Omit<CaseStudySection, 'id' | 'image' | 'inlineImage' | 'inlineImages'> & { id: string };
-type Edition = {
+export type Edition = {
   clientOrContext: string;
   tagline: string;
   summary: string;
