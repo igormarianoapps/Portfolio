@@ -1,11 +1,8 @@
 name: Validate portfolio
+# Disabled automatic runs while the trilingual branch is being completed.
+# Run manually only after reviewing the build configuration.
 on:
-  push:
-    branches:
-      - feature/portfolio-trilingue
-  pull_request:
-    branches:
-      - desenvolvimento
+  workflow_dispatch:
 jobs:
   validate:
     runs-on: ubuntu-latest
