@@ -21,9 +21,12 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     const pageTitle=title ? `${title} · Igor Mariano` : defaultTitle;
     const pageDesc=description||defaultDesc;
     const canonical=SITE_URL+(pathname==='/' ? '/' : pathname.replace(/\/$/,''));
+    const isNotFound = !/^\/(en|pt)(?:\/|$)/.test(pathname) && pathname !== '/';
     const image=ogImage ? new URL(ogImage,SITE_URL).href : DEFAULT_IMAGE;
     document.title=pageTitle;
     setMeta('description',pageDesc,'name');
+    if (isNotFound) setMeta('robots','noindex, follow','name');
+    else document.head.querySelector('meta[name="robots"]')?.remove();
     setMeta('og:title',pageTitle);
     setMeta('og:description',pageDesc);
     setMeta('og:image',image);
@@ -41,6 +44,10 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     link.href=canonical;
     // Keep language alternatives in sync with client-side navigation.
     const suffix=pathname.replace(/^\/(pt|en)(?=\/|$)/,'') || '';
+    if (isNotFound) {
+      document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach(node=>node.remove());
+      return;
+    }
     const alternates: Array<[string,string]> = [
       ['en',SITE_URL+'/en'+suffix],
       ['pt-BR',SITE_URL+'/pt'+suffix],
