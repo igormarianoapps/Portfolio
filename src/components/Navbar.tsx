@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
         <Link
           to={prefix}
           className="text-base sm:text-lg font-bold tracking-tight text-white hover:text-white/90 transition-colors whitespace-nowrap shrink-0 tracking-tight"
-          aria-label="Igor Mariano — Home"
+          aria-label={language === 'es' ? 'Igor Mariano — Inicio' : 'Igor Mariano — Home'}
         >
           {siteConfig.name}
         </Link>
@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
         {/* Zone 2: Navigation Links */}
         <nav
           className="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-400"
-          aria-label="Navegação principal"
+          aria-label={language === 'pt' ? 'Navegação principal' : language === 'es' ? 'Navegación principal' : 'Main navigation'}
         >
           <Link
             to={prefix}
@@ -108,7 +108,7 @@ export const Navbar: React.FC = () => {
           <div
             className="flex items-center p-0.5 rounded-lg bg-[#14171C] border border-white/[0.08] text-xs font-medium"
             role="group"
-            aria-label="Alternar idioma"
+            aria-label={language === 'pt' ? 'Alternar idioma' : language === 'es' ? 'Cambiar idioma' : 'Change language'}
           >
             <button
               onClick={() => setLanguage('pt')}
@@ -163,7 +163,7 @@ export const Navbar: React.FC = () => {
           <div
             className="flex items-center p-0.5 rounded-lg bg-[#14171C] border border-white/[0.08] text-xs font-medium"
             role="group"
-            aria-label="Alternar idioma"
+            aria-label={language === 'pt' ? 'Alternar idioma' : language === 'es' ? 'Cambiar idioma' : 'Change language'}
           >
             <button
               onClick={() => setLanguage('pt')}
@@ -194,7 +194,7 @@ export const Navbar: React.FC = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-zinc-400 hover:text-white rounded-lg focus-visible:outline-2 focus-visible:outline-white"
-            aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-label={mobileMenuOpen ? (language === 'es' ? 'Cerrar menú' : language === 'en' ? 'Close menu' : 'Fechar menu') : (language === 'es' ? 'Abrir menú' : language === 'en' ? 'Open menu' : 'Abrir menu')}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
