@@ -1,16 +1,28 @@
 {
   "rewrites": [
     {
-      "source": "/sobre",
-      "destination": "/sobre/index.html"
+      "source": "/en",
+      "destination": "/en/index.html"
     },
     {
-      "source": "/contato",
-      "destination": "/contato/index.html"
+      "source": "/pt",
+      "destination": "/pt/index.html"
     },
     {
-      "source": "/projetos/:slug",
-      "destination": "/projetos/:slug/index.html"
+      "source": "/es",
+      "destination": "/es/index.html"
+    },
+    {
+      "source": "/:locale/sobre",
+      "destination": "/:locale/sobre/index.html"
+    },
+    {
+      "source": "/:locale/contato",
+      "destination": "/:locale/contato/index.html"
+    },
+    {
+      "source": "/:locale/projetos/:slug",
+      "destination": "/:locale/projetos/:slug/index.html"
     },
     {
       "source": "/(.*)",

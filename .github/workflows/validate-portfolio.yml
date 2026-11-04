@@ -1,0 +1,17 @@
+name: Validate portfolio
+# Disabled automatic runs while the trilingual branch is being completed.
+# Run manually only after reviewing the build configuration.
+on:
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run check:i18n

@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { LanguageProvider } from './context/LanguageContext';
+import { BrowserRouter, Routes, Route, useLocation, Navigate, Outlet, useParams } from 'react-router-dom';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -23,27 +23,48 @@ function ScrollToTop() {
   return null;
 }
 
+function LocaleGuard() {
+  const { locale } = useParams();
+  if (locale !== 'en' && locale !== 'pt' && locale !== 'es') return <NotFoundPage />;
+  return <Outlet />;
+}
+
+function LocalizedRoutes() {
+  const { language } = useLanguage();
+  return <Routes>
+    <Route path="/" element={<Navigate to={`/${language}`} replace />} />
+    <Route path="/sobre" element={<Navigate to={`/${language}/sobre`} replace />} />
+    <Route path="/contato" element={<Navigate to={`/${language}/contato`} replace />} />
+    <Route path="/projetos/:slug" element={<LegacyCaseRedirect />} />
+    <Route path="/:locale" element={<LocaleGuard />}>
+      <Route index element={<HomePage />} />
+      <Route path="sobre" element={<AboutPage />} />
+      <Route path="contato" element={<ContactPage />} />
+      <Route path="projetos/:slug" element={<CaseStudyPage />} />
+    </Route>
+    <Route path="*" element={<NotFoundPage />} />
+  </Routes>;
+}
+function LegacyCaseRedirect() {
+  const { pathname } = useLocation();
+  const { language } = useLanguage();
+  return <Navigate to={`/${language}${pathname}`} replace />;
+}
 export default function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <LanguageProvider>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-[#0B0C0E] text-[#EDEDED]">
           <Navbar />
           <main className="flex-1">
             <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/sobre" element={<AboutPage />} />
-              <Route path="/contato" element={<ContactPage />} />
-              <Route path="/projetos/:slug" element={<CaseStudyPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+            <LocalizedRoutes />
             </Suspense>
           </main>
           <Footer />
         </div>
-      </BrowserRouter>
-    </LanguageProvider>
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }

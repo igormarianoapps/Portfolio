@@ -1,11 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Language } from '../types/portfolio';
+import { spanishUi } from '../data/ui-es';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
-  t: (pt: string, en: string) => string;
+  t: (pt: string, en: string, es?: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -13,18 +15,37 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const STORAGE_KEY = 'igor_mariano_portfolio_lang';
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routeLocale = location.pathname.split('/')[1];
+  const validRouteLocale = routeLocale === 'pt' || routeLocale === 'en' || routeLocale === 'es' ? routeLocale : null;
+  const [preferredLanguage, setLanguageState] = useState<Language>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved === 'en' || saved === 'pt') return saved;
+      if (saved === 'en' || saved === 'pt' || saved === 'es') return saved;
     } catch {
       // Ignore localStorage exceptions in restrictive environments
     }
-    return 'pt';
+    // Browser language is used only until the visitor chooses a language.
+    // Unsupported locales default to English.
+    if (typeof navigator !== 'undefined') {
+      const preferences = navigator.languages?.length ? navigator.languages : [navigator.language];
+      for (const preference of preferences) {
+        const locale = preference.toLowerCase().split('-')[0];
+        if (locale === 'pt' || locale === 'en' || locale === 'es') return locale;
+      }
+    }
+    return 'en';
   });
+
+  const language: Language = validRouteLocale || preferredLanguage;
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
+    const parts = location.pathname.split('/');
+    if (parts[1] === 'pt' || parts[1] === 'en' || parts[1] === 'es') parts[1] = lang;
+    else parts.splice(1, 0, lang);
+    navigate(parts.join('/') + location.search + location.hash);
     try {
       localStorage.setItem(STORAGE_KEY, lang);
     } catch {
@@ -37,10 +58,10 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   useEffect(() => {
-    document.documentElement.lang = language === 'pt' ? 'pt-BR' : 'en';
+    document.documentElement.lang = language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en';
   }, [language]);
 
-  const t = (pt: string, en: string) => (language === 'pt' ? pt : en);
+  const t = (pt: string, en: string, es?: string) => (language === 'pt' ? pt : language === 'es' ? (es ?? spanishUi[en] ?? en) : en);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>

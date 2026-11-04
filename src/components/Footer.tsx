@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { siteConfig } from '../data/site';
+import { getWhatsappUrl, siteConfig } from '../data/site';
 import { Linkedin, MessageSquare, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -101,7 +101,7 @@ export const Footer: React.FC = () => {
           {/* Secondary quiet channels without competing */}
           <div className="flex items-center gap-5 text-xs">
             <a
-              href={siteConfig.contacts.whatsapp.url}
+              href={getWhatsappUrl(language)}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-zinc-200 transition-colors inline-flex items-center gap-1"
@@ -133,10 +133,10 @@ export const Footer: React.FC = () => {
 
           {/* Nav & Copyright */}
           <div className="flex items-center gap-5">
-            <Link to="/sobre" className="hover:text-zinc-200 transition-colors">
+            <Link to={`/${language}/sobre`} className="hover:text-zinc-200 transition-colors">
               {siteConfig.nav.about[language]}
             </Link>
-            <Link to="/contato" className="hover:text-zinc-200 transition-colors">
+            <Link to={`/${language}/contato`} className="hover:text-zinc-200 transition-colors">
               {siteConfig.nav.contact[language]}
             </Link>
             <span>© {currentYear}</span>

@@ -9,7 +9,7 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [imageError, setImageError] = useState(false);
 
   return (
@@ -17,7 +17,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       <div>
         {/* Compact Image Container with Consistent Aspect Ratio */}
         <Link
-          to={`/projetos/${project.slug}`}
+          to={`/${language}/projetos/${project.slug}`}
           className="block relative aspect-16/9 w-full overflow-hidden bg-zinc-950 focus-ring-accent"
           tabIndex={-1}
           aria-hidden="true"
@@ -52,7 +52,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           {/* Title */}
           <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight mb-2 group-hover:text-zinc-100 transition-colors">
             <Link
-              to={`/projetos/${project.slug}`}
+              to={`/${language}/projetos/${project.slug}`}
               className="focus-ring-accent rounded-sm inline-block"
             >
               {project.title}
@@ -102,7 +102,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
         {/* Highlighted CTA Button with Terracotta Hover & Defined Focus */}
         <Link
-          to={`/projetos/${project.slug}`}
+          to={`/${language}/projetos/${project.slug}`}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white transition-all shrink-0 focus-ring-accent border border-white/[0.12] hover:border-transparent group/btn"
           style={{
             backgroundColor: 'transparent',

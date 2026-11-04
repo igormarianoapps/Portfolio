@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { siteConfig } from '../data/site';
+import { getWhatsappUrl, siteConfig } from '../data/site';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const prefix = `/${language}`;
   const navigate = useNavigate();
 
   const isCurrent = (path: string) => {
-    if (path === '/' && location.pathname === '/' && !location.search.includes('section=projetos')) return true;
-    if (path !== '/' && location.pathname.startsWith(path)) return true;
+    if (path === '/' && location.pathname === prefix && !location.search.includes('section=projetos')) return true;
+    if (path !== '/' && location.pathname.startsWith(prefix + path)) return true;
     return false;
   };
 
@@ -20,13 +21,13 @@ export const Navbar: React.FC = () => {
     e.preventDefault();
     setMobileMenuOpen(false);
 
-    if (location.pathname === '/') {
+    if (location.pathname === prefix || location.pathname === `${prefix}/`) {
       const el = document.getElementById('projetos');
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      navigate('/?section=projetos');
+      navigate(`${prefix}?section=projetos`);
     }
   };
 
@@ -35,9 +36,9 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 h-16 sm:h-18 flex items-center justify-between gap-8">
         {/* Zone 1: Brand Title Wordmark */}
         <Link
-          to="/"
+          to={prefix}
           className="text-base sm:text-lg font-bold tracking-tight text-white hover:text-white/90 transition-colors whitespace-nowrap shrink-0 tracking-tight"
-          aria-label="Igor Mariano — Home"
+          aria-label={language === 'es' ? 'Igor Mariano — Inicio' : 'Igor Mariano — Home'}
         >
           {siteConfig.name}
         </Link>
@@ -45,10 +46,10 @@ export const Navbar: React.FC = () => {
         {/* Zone 2: Navigation Links */}
         <nav
           className="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-400"
-          aria-label="Navegação principal"
+          aria-label={language === 'pt' ? 'Navegação principal' : language === 'es' ? 'Navegación principal' : 'Main navigation'}
         >
           <Link
-            to="/"
+            to={prefix}
             className={`whitespace-nowrap shrink-0 transition-colors py-1 relative hover:text-white ${
               isCurrent('/') ? 'text-white font-semibold' : ''
             }`}
@@ -71,7 +72,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           <Link
-            to="/sobre"
+            to={`${prefix}/sobre`}
             className={`whitespace-nowrap shrink-0 transition-colors py-1 relative hover:text-white ${
               isCurrent('/sobre') ? 'text-white font-semibold' : ''
             }`}
@@ -86,7 +87,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           <Link
-            to="/contato"
+            to={`${prefix}/contato`}
             className={`whitespace-nowrap shrink-0 transition-colors py-1 relative hover:text-white ${
               isCurrent('/contato') ? 'text-white font-semibold' : ''
             }`}
@@ -103,11 +104,11 @@ export const Navbar: React.FC = () => {
 
         {/* Zone 3: Language Switcher & Quick Contact Action */}
         <div className="hidden md:flex items-center gap-3.5 shrink-0">
-          {/* Functional PT/EN Language Toggle */}
+          {/* Functional PT/EN/ES Language Toggle */}
           <div
             className="flex items-center p-0.5 rounded-lg bg-[#14171C] border border-white/[0.08] text-xs font-medium"
             role="group"
-            aria-label="Alternar idioma"
+            aria-label={language === 'pt' ? 'Alternar idioma' : language === 'es' ? 'Cambiar idioma' : 'Change language'}
           >
             <button
               onClick={() => setLanguage('pt')}
@@ -131,11 +132,22 @@ export const Navbar: React.FC = () => {
             >
               EN
             </button>
+            <button
+              onClick={() => setLanguage('es')}
+              className={`px-2.5 py-1 rounded-md transition-all whitespace-nowrap cursor-pointer ${
+                language === 'es'
+                  ? 'bg-zinc-800 text-white font-semibold shadow-xs'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+              aria-pressed={language === 'es'}
+            >
+              ES
+            </button>
           </div>
 
           {/* Quick Direct Message Action */}
           <a
-            href={siteConfig.contacts.whatsapp.url}
+            href={getWhatsappUrl(language)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-white rounded-lg transition-all whitespace-nowrap border border-white/[0.1] hover:border-white/[0.2] bg-[#171A20] hover:bg-[#1E222A]"
@@ -147,17 +159,18 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Controls */}
         <div className="flex md:hidden items-center gap-2">
-          {/* Mobile PT/EN */}
+          {/* Mobile PT/EN/ES */}
           <div
             className="flex items-center p-0.5 rounded-lg bg-[#14171C] border border-white/[0.08] text-xs font-medium"
             role="group"
-            aria-label="Alternar idioma"
+            aria-label={language === 'pt' ? 'Alternar idioma' : language === 'es' ? 'Cambiar idioma' : 'Change language'}
           >
             <button
               onClick={() => setLanguage('pt')}
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'pt' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
+              aria-pressed={language === 'pt'}
             >
               PT
             </button>
@@ -166,15 +179,25 @@ export const Navbar: React.FC = () => {
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'en' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
+              aria-pressed={language === 'en'}
             >
               EN
+            </button>
+            <button
+              onClick={() => setLanguage('es')}
+              className={`px-2 py-1 rounded-md transition-colors ${
+                language === 'es' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
+              }`}
+              aria-pressed={language === 'es'}
+            >
+              ES
             </button>
           </div>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 text-zinc-400 hover:text-white rounded-lg focus-visible:outline-2 focus-visible:outline-white"
-            aria-label={mobileMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-label={mobileMenuOpen ? (language === 'es' ? 'Cerrar menú' : language === 'en' ? 'Close menu' : 'Fechar menu') : (language === 'es' ? 'Abrir menú' : language === 'en' ? 'Open menu' : 'Abrir menu')}
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -187,7 +210,7 @@ export const Navbar: React.FC = () => {
         <div className="md:hidden border-b border-white/[0.08] bg-[#0E1014] px-6 py-5 space-y-4">
           <nav className="flex flex-col space-y-3 text-base font-medium">
             <Link
-              to="/"
+              to={prefix}
               onClick={() => setMobileMenuOpen(false)}
               className={`py-1 transition-colors ${
                 isCurrent('/') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
@@ -203,7 +226,7 @@ export const Navbar: React.FC = () => {
               {siteConfig.nav.projects[language]}
             </a>
             <Link
-              to="/sobre"
+              to={`${prefix}/sobre`}
               onClick={() => setMobileMenuOpen(false)}
               className={`py-1 transition-colors ${
                 isCurrent('/sobre') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
@@ -212,7 +235,7 @@ export const Navbar: React.FC = () => {
               {siteConfig.nav.about[language]}
             </Link>
             <Link
-              to="/contato"
+              to={`${prefix}/contato`}
               onClick={() => setMobileMenuOpen(false)}
               className={`py-1 transition-colors ${
                 isCurrent('/contato') ? 'text-white font-semibold' : 'text-zinc-400 hover:text-white'
@@ -224,7 +247,7 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3 border-t border-white/[0.08]">
             <a
-              href={siteConfig.contacts.whatsapp.url}
+              href={getWhatsappUrl(language)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}

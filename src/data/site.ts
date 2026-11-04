@@ -1,4 +1,5 @@
-import { SkillGroup, SocialLinks } from '../types/portfolio';
+import { Language, SkillGroup, SocialLinks } from '../types/portfolio';
+import { spanishCopy } from './spanish-copy';
 
 export interface DifferentialPillar {
   id: string;
@@ -7,7 +8,7 @@ export interface DifferentialPillar {
   desc: { pt: string; en: string };
 }
 
-export interface SiteConfig {
+interface BaseSiteConfig {
   name: string;
   portraitImage: string;
   portraitPlaceholderNote: string;
@@ -110,7 +111,7 @@ export interface SiteConfig {
   };
 }
 
-export const siteConfig: SiteConfig = {
+const siteConfigBase: BaseSiteConfig = {
   name: "Igor Mariano",
   // Fotografia original de Igor Mariano
   portraitImage: "/Background.jpg",
@@ -543,11 +544,6 @@ export const siteConfig: SiteConfig = {
               pt: "Na AutoForce, trabalhei na criação e evolução de interfaces para diferentes marcas do setor automotivo, equilibrando identidade visual, usabilidade, consistência e necessidades comerciais.",
               en: "At AutoForce, I designed and evolved digital experiences for various automotive brands, balancing visual identity, usability, consistency, and commercial requirements.",
             },
-            link: "/projetos/autoforce",
-            linkText: {
-              pt: "Ver case AutoForce",
-              en: "View AutoForce case",
-            },
           },
         ],
       },
@@ -590,3 +586,104 @@ export const siteConfig: SiteConfig = {
     },
   },
 };
+
+/** Add Spanish to every localized field without duplicating the existing PT/EN content. */
+type AddSpanish<T> =
+  T extends { pt: infer P; en: infer E }
+    ? { pt: AddSpanish<P>; en: AddSpanish<E>; es: AddSpanish<E> }
+    : T extends Array<infer U>
+      ? AddSpanish<U>[]
+      : T extends object
+        ? { [K in keyof T]: AddSpanish<T[K]> }
+        : T;
+
+export type SiteConfig = AddSpanish<BaseSiteConfig>;
+
+function buildSpanishConfig(source: BaseSiteConfig): SiteConfig {
+  function extend(value: unknown): unknown {
+    if (Array.isArray(value)) return value.map(extend);
+    if (value && typeof value === 'object') {
+      const entries = Object.entries(value);
+      const result: Record<string, unknown> = Object.fromEntries(
+        entries.map(([key, val]) => [key, extend(val)]),
+      );
+      if ('pt' in result && 'en' in result) result.es = structuredClone(result.en);
+      return result;
+    }
+    return value;
+  }
+  const config = extend(source) as SiteConfig;
+  const es = spanishCopy;
+  config.role.es = 'Product Designer · UX/UI · Design Systems';
+  config.headline.es = es.hero.headline;
+  config.subheadline.es = es.hero.subheadline;
+  config.aboutStatement.es = es.hero.subheadline;
+  config.heroCtas.explore.es = es.hero.explore;
+  config.heroCtas.talk.es = es.hero.talk;
+  config.pillars.forEach((pillar, index) => {
+    pillar.title.es = es.pillars[index].title;
+    pillar.desc.es = es.pillars[index].description;
+  });
+  config.finalCta.title.es = es.finalCta.title;
+  config.finalCta.text.es = '';
+  config.finalCta.linkedinAction.es = es.finalCta.linkedinAction + ' ↗';
+  config.behanceCta.eyebrow.es = 'Archivo y exploraciones visuales';
+  config.behanceCta.title.es = '¿Quieres descubrir más proyectos de mi trayectoria?';
+  config.behanceCta.description.es = 'Además de los casos de producto de este portfolio, comparto en Behance otros proyectos de interfaces, estudios visuales e identidades que he desarrollado durante mi carrera.';
+  config.behanceCta.buttonText.es = 'Ver más proyectos en Behance';
+  config.nav.home.es = es.nav.home;
+  config.nav.projects.es = es.nav.projects;
+  config.nav.about.es = es.nav.about;
+  config.nav.contact.es = es.nav.contact;
+  config.skills.es = es.skills.map(group => ({ id: group.id, title: group.title, skills: [...group.skills] }));
+  const about = config.aboutPage;
+  about.eyebrow.es = es.about.eyebrow;
+  about.title.es = es.about.title;
+  about.subtitle.es = es.about.subtitle;
+  const sections = about.sections;
+  sections.whoIAm.title.es = es.aboutSections.whoIAm.title;
+  sections.whoIAm.paragraphs.es = [...es.aboutSections.whoIAm.paragraphs];
+  sections.experienceInPractice.title.es = es.aboutSections.experience.title;
+  sections.experienceInPractice.paragraphs.es = [...es.aboutSections.experience.paragraphs];
+  sections.methodology.title.es = es.aboutSections.methodology.title;
+  sections.methodology.steps.forEach((step, i) => {
+    step.title.es = es.aboutSections.methodology.steps[i].title;
+    step.desc.es = es.aboutSections.methodology.steps[i].description;
+  });
+  sections.competencies.title.es = es.aboutSections.competencies.title;
+  sections.competencies.items.forEach((item, i) => {
+    item.title.es = es.aboutSections.competencies.items[i].title;
+    item.desc.es = es.aboutSections.competencies.items[i].description;
+  });
+  sections.representativeExperiences.title.es = es.aboutSections.representativeExperiences.title;
+  sections.representativeExperiences.items.forEach((item, i) => {
+    const translation = es.aboutSections.representativeExperiences.items[i];
+    item.tag.es = translation.tag;
+    item.title.es = translation.title;
+    item.desc.es = translation.description;
+    if (item.linkText && 'linkText' in translation && typeof translation.linkText === 'string') {
+      item.linkText.es = translation.linkText;
+    }
+  });
+  sections.motivation.title.es = es.aboutSections.motivation.title;
+  sections.motivation.intro.es = es.aboutSections.motivation.intro;
+  sections.motivation.highlight.es = es.aboutSections.motivation.highlight;
+  const contact = config.contactPage;
+  contact.title.es = es.contact.title;
+  contact.subtitle.es = es.contact.subtitle;
+  contact.whatsappIntro.es = es.contact.whatsappIntro;
+  contact.linkedinIntro.es = es.contact.linkedinIntro;
+  contact.emailIntro.es = es.contact.emailIntro;
+  return config;
+}
+export const siteConfig: SiteConfig = buildSpanishConfig(siteConfigBase);
+
+/** Localize the message that opens in WhatsApp, not just the CTA label. */
+export function getWhatsappUrl(language: Language): string {
+  const messages: Record<Language, string> = {
+    pt: 'Olá Igor, vi seu portfólio e gostaria de conversar!',
+    en: 'Hi Igor, I came across your portfolio and would like to get in touch!',
+    es: '¡Hola, Igor! He visto tu portfolio y me gustaría hablar contigo.',
+  };
+  return `https://wa.me/5562999036078?text=${encodeURIComponent(messages[language])}`;
+}

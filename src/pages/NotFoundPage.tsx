@@ -5,11 +5,12 @@ import { ArrowLeft, Home } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
 
 export const NotFoundPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="w-full min-h-[75vh] flex items-center justify-center px-6 bg-[#0B0C0E] text-white">
       <SEOHead
+        noIndex
         title={t('Página Não Encontrada', 'Page Not Found')}
         description={t('A página solicitada não existe.', 'The page requested does not exist.')}
       />
@@ -29,14 +30,14 @@ export const NotFoundPage: React.FC = () => {
 
         <div className="pt-4 flex items-center justify-center gap-4">
           <Link
-            to="/"
+            to={`/${language}`}
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors"
           >
             <Home className="w-4 h-4" />
             <span>{t('Voltar para a Home', 'Return to Home')}</span>
           </Link>
           <Link
-            to="/#projetos"
+            to={`/${language}#projetos`}
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900 border border-white/[0.1] text-zinc-300 font-medium text-xs hover:bg-zinc-800 hover:text-white transition-colors"
           >
             <span>{t('Ver Projetos', 'View Projects')}</span>
