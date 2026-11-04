@@ -29,7 +29,7 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     setMeta('og:image',image);
     setMeta('og:image:alt',title || 'Igor Mariano — Product Designer');
     setMeta('og:url',canonical);
-    setMeta('og:type',pathname.startsWith('/projetos/')?'article':'website');
+    setMeta('og:type',/^\/(pt|en)\/projetos\//.test(pathname)?'article':'website');
     setMeta('og:locale',language==='pt'?'pt_BR':'en_US');
     setMeta('twitter:card','summary_large_image','name');
     setMeta('twitter:title',pageTitle,'name');
@@ -39,6 +39,23 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     let link=document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if(!link){link=document.createElement('link');link.rel='canonical';document.head.appendChild(link);}
     link.href=canonical;
+    // Keep language alternatives in sync with client-side navigation.
+    const suffix=pathname.replace(/^\/(pt|en)(?=\/|$)/,'') || '';
+    const alternates: Array<[string,string]> = [
+      ['en',SITE_URL+'/en'+suffix],
+      ['pt-BR',SITE_URL+'/pt'+suffix],
+      ['x-default',SITE_URL+'/en'+suffix],
+    ];
+    for (const [hreflang,href] of alternates) {
+      let alternate=document.head.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${hreflang}"]`);
+      if (!alternate) {
+        alternate=document.createElement('link');
+        alternate.rel='alternate';
+        alternate.hreflang=hreflang;
+        document.head.appendChild(alternate);
+      }
+      alternate.href=href;
+    }
   },[title,description,ogImage,language,pathname]);
   return null;
 };
