@@ -1,4 +1,4 @@
-export type Language = 'pt' | 'en';
+export type Language = 'pt' | 'en' | 'es';
 
 export interface SocialLinks {
   whatsapp: {
@@ -288,4 +288,5 @@ export interface CaseStudy {
 export interface LocalizedCaseStudy {
   pt: CaseStudy;
   en: CaseStudy;
+  es?: CaseStudy;
 }
