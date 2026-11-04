@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Language } from '../types/portfolio';
+import { spanishUi } from '../data/ui-es';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
-  t: (pt: string, en: string) => string;
+  t: (pt: string, en: string, es?: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -60,7 +61,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     document.documentElement.lang = language === 'pt' ? 'pt-BR' : language === 'es' ? 'es-ES' : 'en';
   }, [language]);
 
-  const t = (pt: string, en: string) => (language === 'pt' ? pt : en);
+  const t = (pt: string, en: string, es?: string) => (language === 'pt' ? pt : language === 'es' ? (es ?? spanishUi[en] ?? en) : en);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
