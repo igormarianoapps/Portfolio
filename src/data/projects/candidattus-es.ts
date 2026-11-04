@@ -64,7 +64,7 @@ export const candidattusEs: Edition = {
         'Como único diseñador UX/UI, trabajé en cuadros de mando con indicadores, encuestas, resultados históricos y análisis estratégicos.',
         '### Datos para comprender el contexto',
         'Diseñamos visualizaciones para distintas dimensiones de una campaña: diagnóstico del clima político, resultados electorales históricos, preferencias de los votantes y seguimiento de actividades sobre el terreno.',
-        'Priorizé la jerarquía de indicadores, la agrupación de información relacionada y la consistencia de los gráficos para facilitar comparaciones y análisis de escenarios.',
+        'Prioricé la jerarquía de indicadores, la agrupación de información relacionada y la consistencia de los gráficos para facilitar comparaciones y análisis de escenarios.',
         '### Inteligencia artificial como apoyo estratégico',
         'La plataforma también incorporó funcionalidades de inteligencia artificial para ayudar a interpretar datos y analizar escenarios.',
         'Durante las primeras fases desarrollamos un asistente conversacional que permitía a los candidatos explorar posibilidades y comentar próximos pasos estratégicos de sus campañas.',
