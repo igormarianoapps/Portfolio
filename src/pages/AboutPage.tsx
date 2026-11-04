@@ -42,7 +42,7 @@ export const AboutPage: React.FC = () => {
         <div className="max-w-5xl mx-auto px-6">
           <div className="mb-6">
             <Link
-              to="/"
+              to={`/${language}`}
               className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -222,7 +222,7 @@ export const AboutPage: React.FC = () => {
               );
 
               return item.link ? (
-                <Link key={i} to={item.link} className="block">
+                <Link key={i} to={item.link?.startsWith("/") ? `/${language}${item.link}` : (item.link || "/")} className="block">
                   {Content}
                 </Link>
               ) : (
@@ -300,7 +300,7 @@ export const AboutPage: React.FC = () => {
               <span>LinkedIn</span>
             </a>
             <Link
-              to="/#projetos"
+              to={`/${language}#projetos`}
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg bg-zinc-800 text-zinc-200 hover:bg-zinc-700 text-xs font-semibold transition-colors border border-white/[0.08]"
             >
               <span>{t('Ver Projetos', 'View Projects')}</span>
