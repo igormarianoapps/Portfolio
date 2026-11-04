@@ -1,4 +1,5 @@
 import type { CaseStudy, CaseStudySection, CaseStudyImageSpec } from '../../types/portfolio';
+import { mediaEs } from './spanish-media';
 
 /**
  * European Spanish case-study editions. Media and technical IDs are reused from
@@ -15,19 +16,23 @@ export type Edition = {
 };
 function localizeImage(image: CaseStudyImageSpec | undefined, label: string): CaseStudyImageSpec | undefined {
   if (!image) return undefined;
+  const translatedCopy = mediaEs[image.url.split('/').pop() || ''];
   const translated: CaseStudyImageSpec = {
     ...image,
-    alt: 'Captura del proyecto: ' + label,
-    caption: 'Diseño y documentación del proyecto ' + label + '.',
-    frameTitle: image.frameTitle?.startsWith('http') ? image.frameTitle : label,
+    alt: translatedCopy?.alt || 'Captura del proyecto: ' + label,
+    caption: translatedCopy?.caption || 'Diseño y documentación del proyecto ' + label + '.',
+    frameTitle: image.frameTitle?.startsWith('http') ? image.frameTitle : (translatedCopy?.frameTitle || label),
   };
-  if (image.secondaryImage) translated.secondaryImage = {
-    ...image.secondaryImage,
-    alt: 'Vista adicional del proyecto: ' + label,
-    caption: 'Otra vista del diseño de ' + label + '.',
-    title: label,
-    frameTitle: label,
-  };
+  if (image.secondaryImage) {
+    const secondary = mediaEs[image.secondaryImage.url.split('/').pop() || ''];
+    translated.secondaryImage = {
+      ...image.secondaryImage,
+      alt: secondary?.alt || 'Vista adicional del proyecto: ' + label,
+      caption: secondary?.caption || 'Otra vista del diseño de ' + label + '.',
+      title: secondary?.frameTitle || label,
+      frameTitle: secondary?.frameTitle || label,
+    };
+  }
   return translated;
 }
 export function spanishCaseStudy(english: CaseStudy, edition: Edition): CaseStudy {
