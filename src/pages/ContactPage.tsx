@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { siteConfig } from '../data/site';
+import { getWhatsappUrl, siteConfig } from '../data/site';
 import { SEOHead } from '../components/SEOHead';
 import { Linkedin, MessageSquare, Mail, ArrowUpRight, Copy, Check, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -110,7 +110,7 @@ export const ContactPage: React.FC = () => {
 
             <div>
               <a
-                href={siteConfig.contacts.whatsapp.url}
+                href={getWhatsappUrl(language)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-lg bg-zinc-800 text-white border border-white/[0.08] hover:bg-zinc-700 font-semibold text-xs transition-colors focus-ring-accent"
