@@ -1,4 +1,4 @@
-import type { CaseStudy, CaseStudySection, CaseStudyMediaItem, CaseStudyImageSpec } from '../../types/portfolio';
+import type { CaseStudy, CaseStudySection, CaseStudyImageSpec } from '../../types/portfolio';
 
 /**
  * European Spanish case-study editions. Media and technical IDs are reused from
@@ -30,20 +30,14 @@ function localizeImage(image: CaseStudyImageSpec | undefined, label: string): Ca
   };
   return translated;
 }
-function localizeMediaItem(item: CaseStudyMediaItem | undefined, label: string): CaseStudyMediaItem | undefined {
-  return item ? { ...item, alt: 'Captura de ' + label, caption: 'Detalle de ' + label, title: label, label } : undefined;
-}
 export function spanishCaseStudy(english: CaseStudy, edition: Edition): CaseStudy {
-  const sections: CaseStudySection[] = edition.sections.map((copy, index) => {
+  const sections: CaseStudySection[] = edition.sections.map(copy => {
     const source = english.sections.find(section => section.id === copy.id);
     if (!source) throw new Error('Spanish case section not found: ' + copy.id);
-    const { image, inlineImage, inlineImages, ...rest } = source;
+    const { image, inlineImage, inlineImages } = source;
     // Only explicitly reviewed Spanish copy is published. No English prose
     // is inherited through optional widgets, summaries or media captions.
     const translated: CaseStudySection = {
-      id: copy.id,
-      title: copy.title,
-      paragraphs: copy.paragraphs,
       ...copy,
       image: localizeImage(image, copy.title),
     };
@@ -55,8 +49,6 @@ export function spanishCaseStudy(english: CaseStudy, edition: Edition): CaseStud
       afterParagraph: Math.min(entry.afterParagraph, Math.max(0, copy.paragraphs.length - 1)),
       image: localizeImage(entry.image, copy.title)!,
     }));
-    // Section-level galleries and other media are part of preserved image objects.
-    void rest; void index; void localizeMediaItem;
     return translated;
   });
   return {
