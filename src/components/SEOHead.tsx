@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-interface SEOProps { title?: string; description?: string; ogImage?: string }
+interface SEOProps { title?: string; description?: string; ogImage?: string; noIndex?: boolean }
 const SITE_URL = 'https://igormariano.vercel.app';
 const DEFAULT_IMAGE = SITE_URL + '/og-image.jpg';
 function setMeta(key: string, value: string, attribute: 'name'|'property'='property') {
@@ -10,7 +10,7 @@ function setMeta(key: string, value: string, attribute: 'name'|'property'='prope
   if (!meta) { meta=document.createElement('meta'); meta.setAttribute(attribute,key); document.head.appendChild(meta); }
   meta.content = value;
 }
-export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
+export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage,noIndex=false}) => {
   const {language}=useLanguage();
   const {pathname}=useLocation();
   useEffect(()=>{
@@ -26,7 +26,7 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     const image=ogImage ? new URL(ogImage,SITE_URL).href : DEFAULT_IMAGE;
     document.title=pageTitle;
     setMeta('description',pageDesc,'name');
-    if (isNotFound) setMeta('robots','noindex, follow','name');
+    if (isNotFound || noIndex) setMeta('robots','noindex, follow','name');
     else document.head.querySelector('meta[name="robots"]')?.remove();
     setMeta('og:title',pageTitle);
     setMeta('og:description',pageDesc);
@@ -45,7 +45,7 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
     link.href=canonical;
     // Keep language alternatives in sync with client-side navigation.
     const suffix=pathname.replace(/^\/(pt|en)(?=\/|$)/,'') || '';
-    if (isNotFound) {
+    if (isNotFound || noIndex) {
       document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach(node=>node.remove());
       return;
     }
@@ -65,6 +65,6 @@ export const SEOHead: React.FC<SEOProps> = ({title,description,ogImage}) => {
       }
       alternate.href=href;
     }
-  },[title,description,ogImage,language,pathname]);
+  },[title,description,ogImage,noIndex,language,pathname]);
   return null;
 };
