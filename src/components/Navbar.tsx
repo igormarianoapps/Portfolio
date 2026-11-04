@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { siteConfig } from '../data/site';
+import { getWhatsappUrl, siteConfig } from '../data/site';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -147,7 +147,7 @@ export const Navbar: React.FC = () => {
 
           {/* Quick Direct Message Action */}
           <a
-            href={siteConfig.contacts.whatsapp.url}
+            href={getWhatsappUrl(language)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-white rounded-lg transition-all whitespace-nowrap border border-white/[0.1] hover:border-white/[0.2] bg-[#171A20] hover:bg-[#1E222A]"
@@ -247,7 +247,7 @@ export const Navbar: React.FC = () => {
 
           <div className="pt-3 border-t border-white/[0.08]">
             <a
-              href={siteConfig.contacts.whatsapp.url}
+              href={getWhatsappUrl(language)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
