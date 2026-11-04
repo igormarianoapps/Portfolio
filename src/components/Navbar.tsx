@@ -21,7 +21,7 @@ export const Navbar: React.FC = () => {
     e.preventDefault();
     setMobileMenuOpen(false);
 
-    if (location.pathname === '/') {
+    if (location.pathname === prefix || location.pathname === `${prefix}/`) {
       const el = document.getElementById('projetos');
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
