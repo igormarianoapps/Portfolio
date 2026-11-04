@@ -25,7 +25,7 @@ function ScrollToTop() {
 
 function LocaleGuard() {
   const { locale } = useParams();
-  if (locale !== 'en' && locale !== 'pt') return <NotFoundPage />;
+  if (locale !== 'en' && locale !== 'pt' && locale !== 'es') return <NotFoundPage />;
   return <Outlet />;
 }
 
