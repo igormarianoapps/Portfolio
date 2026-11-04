@@ -20,7 +20,16 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     } catch {
       // Ignore localStorage exceptions in restrictive environments
     }
-    // Browser language is used only until the visitor chooses a language.\n    // Unsupported locales default to English.\n    if (typeof navigator !== 'undefined') {\n      const preferences = navigator.languages?.length ? navigator.languages : [navigator.language];\n      for (const preference of preferences) {\n        const locale = preference.toLowerCase().split('-')[0];\n        if (locale === 'pt' || locale === 'en') return locale;\n      }\n    }\n    return 'en';
+    // Browser language is used only until the visitor chooses a language.
+    // Unsupported locales default to English.
+    if (typeof navigator !== 'undefined') {
+      const preferences = navigator.languages?.length ? navigator.languages : [navigator.language];
+      for (const preference of preferences) {
+        const locale = preference.toLowerCase().split('-')[0];
+        if (locale === 'pt' || locale === 'en') return locale;
+      }
+    }
+    return 'en';
   });
 
   const setLanguage = (lang: Language) => {
