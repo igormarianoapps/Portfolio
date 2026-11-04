@@ -56,6 +56,76 @@ export const spanishCopy = {
         'Mi trabajo abarca desde la investigación y la definición de flujos hasta el diseño de interfaces, la documentación y el seguimiento de resultados.',
       ],
     },
+    methodology: {
+      title: 'Cómo trabajo y tomo decisiones',
+      steps: [
+        {
+          number: '01',
+          title: 'Comprender antes de diseñar',
+          description: 'Empiezo por entender el problema. Analizo los datos disponibles, el comportamiento de los usuarios y las necesidades del negocio, y hablo con las personas implicadas para identificar qué debemos resolver.',
+        },
+        {
+          number: '02',
+          title: 'Explorar y validar alternativas',
+          description: 'Con el problema definido, preparo flujos, recorridos, wireframes y prototipos. Siempre que es posible, valido las hipótesis con usuarios o datos para no depender únicamente de impresiones personales.',
+        },
+        {
+          number: '03',
+          title: 'Construir junto al equipo',
+          description: 'Trabajo en colaboración con desarrollo, Product Managers y otras áreas para valorar alternativas, entender las limitaciones y encontrar soluciones viables.',
+        },
+        {
+          number: '04',
+          title: 'Mejorar continuamente',
+          description: 'La entrega no es el final. Me interesa seguir los resultados, identificar oportunidades de mejora y utilizar lo aprendido para orientar las siguientes decisiones.',
+        },
+      ],
+    },
+    competencies: {
+      title: 'Competencias y puntos fuertes',
+      items: [
+        {
+          title: 'Product Discovery y estrategia',
+          description: 'Investigación con usuarios, entrevistas, análisis de comportamiento, identificación de oportunidades y definición de soluciones alineadas con los objetivos del producto.',
+        },
+        {
+          title: 'UX/UI y Design Systems',
+          description: 'Arquitectura de información, flujos, prototipos, interfaces adaptables y creación de bibliotecas de componentes, patrones visuales y documentación.',
+        },
+        {
+          title: 'Datos y mejora continua',
+          description: 'Uso de Google Analytics y Hotjar para comprender el comportamiento de los usuarios, detectar puntos de abandono y fundamentar decisiones de diseño.',
+        },
+        {
+          title: 'Colaboración y visión de producto',
+          description: 'Capacidad para conectar las necesidades de los usuarios, el negocio y la tecnología, participando en decisiones estratégicas sin alejarme de la ejecución.',
+        },
+      ],
+    },
+    representativeExperiences: {
+      title: 'Experiencias que representan mi trabajo',
+      items: [
+        {
+          tag: 'UX/UI · Optimización de la experiencia',
+          title: 'Reducir el abandono durante el onboarding',
+          description: 'En Corrida Perfeita trabajé en la evolución del recorrido inicial de la aplicación. Mediante el análisis de comportamiento y la revisión del flujo, conseguimos reducir el abandono de algo más del 60 % a aproximadamente el 20 %.',
+          slug: 'corrida-perfeita',
+          linkText: 'Ver el caso de Corrida Perfeita',
+        },
+        {
+          tag: 'Product Discovery · SaaS B2B',
+          title: 'Diseñar experiencias de inteligencia electoral',
+          description: 'En Candidattus participé en la definición de flujos, el diseño de interfaces y la construcción de un Design System desde cero para una plataforma de inteligencia electoral.',
+          slug: 'candidattus',
+          linkText: 'Ver el caso de Candidattus',
+        },
+        {
+          tag: 'UX/UI · Diseño de productos digitales',
+          title: 'Experiencias digitales para el sector de la automoción',
+          description: 'En AutoForce trabajé en la creación y evolución de interfaces para distintas marcas del sector, equilibrando identidad visual, usabilidad, consistencia y necesidades comerciales.',
+        },
+      ],
+    },
     motivation: {
       title: 'Qué me motiva',
       intro: 'Me gusta trabajar en productos con retos reales, donde hay espacio para cuestionar decisiones, proponer mejoras y comprobar sus resultados.',
