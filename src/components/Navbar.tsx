@@ -132,7 +132,7 @@ export const Navbar: React.FC = () => {
             >
               EN
             </button>
-<button
+            <button
               onClick={() => setLanguage('es')}
               className={`px-2.5 py-1 rounded-md transition-all whitespace-nowrap cursor-pointer ${
                 language === 'es'
@@ -140,7 +140,9 @@ export const Navbar: React.FC = () => {
                   : 'text-zinc-400 hover:text-zinc-200'
               }`}
               aria-pressed={language === 'es'}
-            >ES</button>
+            >
+              ES
+            </button>
           </div>
 
           {/* Quick Direct Message Action */}
@@ -168,6 +170,7 @@ export const Navbar: React.FC = () => {
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'pt' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
+              aria-pressed={language === 'pt'}
             >
               PT
             </button>
@@ -176,15 +179,19 @@ export const Navbar: React.FC = () => {
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'en' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
+              aria-pressed={language === 'en'}
             >
               EN
             </button>
-<button
+            <button
               onClick={() => setLanguage('es')}
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'es' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
-            >ES</button>
+              aria-pressed={language === 'es'}
+            >
+              ES
+            </button>
           </div>
 
           <button
