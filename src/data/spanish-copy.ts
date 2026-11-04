@@ -30,6 +30,28 @@ export const spanishCopy = {
       description: 'Defino componentes reutilizables, criterios de uso y procesos de colaboración para aportar consistencia y facilitar la evolución del producto.',
     },
   ],
+  skills: [
+    {
+      id: 'strategy',
+      title: 'Estrategia y producto',
+      skills: ['Product Discovery', 'Estrategia de producto', 'Investigación con usuarios', 'Análisis de datos y métricas'],
+    },
+    {
+      id: 'experience',
+      title: 'Experiencia e interfaz',
+      skills: ['UX Research', 'Diseño UX/UI', 'Usabilidad y evaluación heurística', 'Arquitectura de información', 'Diseño adaptable y accesible'],
+    },
+    {
+      id: 'systems',
+      title: 'Design Systems',
+      skills: ['Creación y evolución de Design Systems', 'Componentes y patrones reutilizables', 'Gobernanza y documentación', 'Design Tokens y DesignOps'],
+    },
+    {
+      id: 'collaboration',
+      title: 'Colaboración',
+      skills: ['Facilitación de talleres', 'Validación de hipótesis', 'Colaboración con ingeniería y Product Managers', 'Métricas y criterios de aceptación'],
+    },
+  ],
   finalCta: {
     title: '¿Conectamos?',
     linkedinAction: 'Conectar en LinkedIn',
