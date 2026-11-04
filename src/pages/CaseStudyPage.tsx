@@ -156,7 +156,7 @@ export const CaseStudyPage: React.FC = () => {
           )}
         </p>
         <Link
-          to="/#projetos"
+          to={`/${language}#projetos`}
           className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-black font-semibold text-xs hover:bg-zinc-200 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -181,7 +181,7 @@ export const CaseStudyPage: React.FC = () => {
           {/* Back Link */}
           <div className="mb-6">
             <Link
-              to="/#projetos"
+              to={`/${language}#projetos`}
               className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -816,7 +816,7 @@ export const CaseStudyPage: React.FC = () => {
         <div className="mt-16 pt-8 border-t border-zinc-200 flex flex-col sm:flex-row items-stretch justify-between gap-5">
           {prevProject ? (
             <Link
-              to={`/projetos/${prevProject.slug}`}
+              to={`/${language}/projetos/${prevProject.slug}`}
               className="flex-1 p-5 rounded-xl bg-white border border-zinc-200 hover:border-zinc-400 transition-colors group flex flex-col justify-between"
             >
               <span className="text-xs text-zinc-500 block mb-1">
@@ -832,7 +832,7 @@ export const CaseStudyPage: React.FC = () => {
 
           {nextProject ? (
             <Link
-              to={`/projetos/${nextProject.slug}`}
+              to={`/${language}/projetos/${nextProject.slug}`}
               className="flex-1 p-5 rounded-xl bg-white border border-zinc-200 hover:border-zinc-400 transition-colors group flex flex-col justify-between text-right"
             >
               <span className="text-xs text-zinc-500 block mb-1">
