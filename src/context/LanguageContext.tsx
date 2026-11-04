@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Language } from '../types/portfolio';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface LanguageContextType {
   language: Language;
@@ -13,6 +14,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const STORAGE_KEY = 'igor_mariano_portfolio_lang';
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const routeLocale = location.pathname.split('/')[1];
   const [language, setLanguageState] = useState<Language>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -32,8 +36,16 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return 'en';
   });
 
+  useEffect(() => {
+    if (routeLocale === 'pt' || routeLocale === 'en') setLanguageState(routeLocale);
+  }, [routeLocale]);
+
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
+    const parts = location.pathname.split('/');
+    if (parts[1] === 'pt' || parts[1] === 'en') parts[1] = lang;
+    else parts.splice(1, 0, lang);
+    navigate(parts.join('/') + location.search + location.hash);
     try {
       localStorage.setItem(STORAGE_KEY, lang);
     } catch {
