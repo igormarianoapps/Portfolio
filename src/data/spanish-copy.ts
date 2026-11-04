@@ -39,6 +39,29 @@ export const spanishCopy = {
     title: 'Sobre mí y mi trabajo',
     subtitle: 'Investigo problemas, diseño experiencias digitales y ayudo a los equipos a tomar mejores decisiones de producto.',
   },
+  aboutSections: {
+    whoIAm: {
+      title: 'Quién soy y cómo trabajo',
+      paragraphs: [
+        'Empecé mi trayectoria en el diseño gráfico, pero encontré en UX/UI y Product Design la oportunidad de participar en decisiones que van mucho más allá de lo visual: entender problemas, explorar alternativas y mejorar productos digitales.',
+        'Antes de diseñar una pantalla, me interesa comprender el contexto: quién va a utilizarla, qué dificultades encuentra y qué necesita conseguir la empresa.',
+        'Con los años he aprendido que una buena experiencia debe ser sencilla para las personas, viable para el equipo de desarrollo y relevante para el negocio.',
+      ],
+    },
+    experience: {
+      title: 'Experiencia en proyectos reales',
+      paragraphs: [
+        'He trabajado en productos SaaS B2B, aplicaciones móviles y plataformas web, colaborando con equipos de producto, desarrollo y responsables de negocio.',
+        'En Corrida Perfeita combiné investigación y análisis de datos para rediseñar el onboarding. En Candidattus trabajé en la evolución del producto y en la organización de los procesos de diseño. En TaskCheck construí la primera versión de un Design System para unificar componentes y patrones.',
+        'Mi trabajo abarca desde la investigación y la definición de flujos hasta el diseño de interfaces, la documentación y el seguimiento de resultados.',
+      ],
+    },
+    motivation: {
+      title: 'Qué me motiva',
+      intro: 'Me gusta trabajar en productos con retos reales, donde hay espacio para cuestionar decisiones, proponer mejoras y comprobar sus resultados.',
+      highlight: 'Para mí, diseñar consiste en transformar información, necesidades y problemas en decisiones que aportan valor a las personas y al negocio.',
+    },
+  },
   contact: {
     title: '¿Hablamos de tu próximo reto de producto?',
     subtitle: 'Si necesitas mejorar la experiencia de un producto digital, estructurar un Design System o impulsar una iniciativa de Discovery, estaré encantado de conversar.',
