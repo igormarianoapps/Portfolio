@@ -44,25 +44,19 @@ function LegacyCaseRedirect() {
 }
 export default function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <LanguageProvider>
         <ScrollToTop />
         <div className="min-h-screen flex flex-col bg-[#0B0C0E] text-[#EDEDED]">
           <Navbar />
           <main className="flex-1">
             <Suspense fallback={<div className="min-h-[50vh]" aria-busy="true" />}>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/sobre" element={<AboutPage />} />
-              <Route path="/contato" element={<ContactPage />} />
-              <Route path="/projetos/:slug" element={<CaseStudyPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
+            <LocalizedRoutes />
             </Suspense>
           </main>
           <Footer />
         </div>
-      </BrowserRouter>
-    </LanguageProvider>
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
