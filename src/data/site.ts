@@ -1,4 +1,4 @@
-import { SkillGroup, SocialLinks } from '../types/portfolio';
+import { Language, SkillGroup, SocialLinks } from '../types/portfolio';
 import { spanishCopy } from './spanish-copy';
 
 export interface DifferentialPillar {
@@ -677,3 +677,13 @@ function buildSpanishConfig(source: BaseSiteConfig): SiteConfig {
   return config;
 }
 export const siteConfig: SiteConfig = buildSpanishConfig(siteConfigBase);
+
+/** Localize the message that opens in WhatsApp, not just the CTA label. */
+export function getWhatsappUrl(language: Language): string {
+  const messages: Record<Language, string> = {
+    pt: 'Olá Igor, vi seu portfólio e gostaria de conversar!',
+    en: 'Hi Igor, I came across your portfolio and would like to get in touch!',
+    es: '¡Hola, Igor! He visto tu portfolio y me gustaría hablar contigo.',
+  };
+  return `https://wa.me/5562999036078?text=${encodeURIComponent(messages[language])}`;
+}
