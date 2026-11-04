@@ -29,7 +29,7 @@ function audit(value: unknown, path: string) {
       assert.equal(typeof record.es, 'string', `Invalid Spanish type: ${path}`);
       const en = record.en.trim();
       const es = (record.es as string).trim();
-      if (en && en.length >= 32 && en === es && path !== 'role') {
+      if (en && en.length >= 32 && en === es && path !== 'siteConfig.role') {
         untranslated.push(path);
       }
     } else if (Array.isArray(record.en)) {
