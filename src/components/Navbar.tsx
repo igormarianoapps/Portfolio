@@ -140,9 +140,7 @@ export const Navbar: React.FC = () => {
                   : 'text-zinc-400 hover:text-zinc-200'
               }`}
               aria-pressed={language === 'es'}
-            >
-              EN
-            </button>
+            >ES</button>
           </div>
 
           {/* Quick Direct Message Action */}
@@ -186,9 +184,7 @@ export const Navbar: React.FC = () => {
               className={`px-2 py-1 rounded-md transition-colors ${
                 language === 'es' ? 'bg-zinc-800 text-white font-semibold' : 'text-zinc-400'
               }`}
-            >
-              EN
-            </button>
+            >ES</button>
           </div>
 
           <button
