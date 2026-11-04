@@ -133,10 +133,10 @@ export const Footer: React.FC = () => {
 
           {/* Nav & Copyright */}
           <div className="flex items-center gap-5">
-            <Link to="/sobre" className="hover:text-zinc-200 transition-colors">
+            <Link to={`/${language}/sobre`} className="hover:text-zinc-200 transition-colors">
               {siteConfig.nav.about[language]}
             </Link>
-            <Link to="/contato" className="hover:text-zinc-200 transition-colors">
+            <Link to={`/${language}/contato`} className="hover:text-zinc-200 transition-colors">
               {siteConfig.nav.contact[language]}
             </Link>
             <span>© {currentYear}</span>
