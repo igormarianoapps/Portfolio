@@ -10,6 +10,7 @@ export const NotFoundPage: React.FC = () => {
   return (
     <div className="w-full min-h-[75vh] flex items-center justify-center px-6 bg-[#0B0C0E] text-white">
       <SEOHead
+        noIndex
         title={t('Página Não Encontrada', 'Page Not Found')}
         description={t('A página solicitada não existe.', 'The page requested does not exist.')}
       />
