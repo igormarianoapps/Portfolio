@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { PROJECTS_REGISTRY } from '../src/data/projects';
 import { siteConfig } from '../src/data/site';
+import { includeStaticFallback, renderStaticCase, renderStaticIndex } from './render-static-content';
 
 const root = 'https://igormariano.vercel.app';
 const template = readFileSync('dist/index.html', 'utf8');
@@ -41,6 +42,11 @@ for (const page of pages) {
   if (page.image) html = html.replace(/\s*<meta property="og:image:(?:width|height|type)"[^>]*>/g, '');
   const folder = join('dist', page.path.slice(1));
   mkdirSync(folder, { recursive: true });
+  const project = page.suffix.startsWith('/projetos/')
+    ? PROJECTS_REGISTRY.map(entry => entry[page.locale]).find(study => study.slug === page.suffix.split('/').pop())
+    : undefined;
+  if (project) html = includeStaticFallback(html, renderStaticCase(project, page.locale));
+  else if (page.suffix === '') html = includeStaticFallback(html, renderStaticIndex(page.locale, PROJECTS_REGISTRY.map(entry => entry[page.locale])));
   writeFileSync(join(folder, 'index.html'), html, 'utf8');
 }
 const urls = pages.map(page => `  <url><loc>${root}${page.path}</loc>${locales.map(locale => `<xhtml:link rel="alternate" hreflang="${locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : 'en'}" href="${root}/${locale}${page.suffix}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${root}/en${page.suffix}"/></url>`).join('\n');
