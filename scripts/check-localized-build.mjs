@@ -26,6 +26,24 @@ for (const locale of locales) {
     assert.ok(html.includes('<meta name="description"'), `Missing description for ${route}`);
     assert.equal((html.match(/<link rel="canonical"/g) || []).length, 1, `Duplicate canonical on ${route}`);
     assert.ok(sitemap.includes(`<loc>${root}${route}</loc>`), `Missing sitemap URL for ${route}`);
+    if (suffix.startsWith('/projetos/')) {
+      assert.ok(html.includes('<article class="portfolio-static"'), 'Missing static case content for ' + route);
+      assert.ok(html.includes('<h2>'), 'Missing static section headings for ' + route);
+      assert.ok(html.includes('<strong>'), 'Missing metadata and outcomes for ' + route);
+      assert.ok(html.length > 8000, 'Static case content unexpectedly short for ' + route);
+    }
+    if (suffix === '') {
+      assert.ok(html.includes('portfolio-static'), 'Missing static project index for ' + route);
+      assert.ok(html.includes('/projetos/corrida-perfeita'), 'Missing crawlable case links for ' + route);
+    }
+    if (suffix === '/sobre') {
+      assert.ok(html.includes('portfolio-static'), 'Missing static About content for ' + route);
+      assert.ok(html.length > 6000, 'About content unexpectedly short for ' + route);
+    }
+    if (suffix === '/contato') {
+      assert.ok(html.includes('portfolio-static'), 'Missing static Contact content for ' + route);
+      assert.ok(html.includes('mailto:'), 'Missing contact address for ' + route);
+    }
     checked++;
   }
 }
