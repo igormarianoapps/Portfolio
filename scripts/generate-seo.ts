@@ -59,12 +59,20 @@ const rootCaseLinks = locales.map(locale =>
   '<section><h2>' + (locale === 'pt' ? 'Estudos de caso em português' : locale === 'es' ? 'Casos de estudio en español' : 'Case studies in English') + '</h2>' +
   PROJECTS_REGISTRY.map(entry => '<p><a href="/' + locale + '/projetos/' + entry[locale].slug + '">' + escape(entry[locale].title) + '</a></p>').join('') + '</section>'
 ).join('');
+// Put the complete case studies on the *shared homepage URL*.
+// Many AI readers fetch only the submitted URL and will not follow links.
+const fullCaseStudies = rootProjects.map(project => renderStaticCase(project, 'en')
+  .replace('<article class="portfolio-static" id="portfolio-static" lang="en">', '<section class="portfolio-case-full" lang="en">')
+  .replace('</article>', '</section>')).join('');
 const rootContent = renderStaticIndex('en', rootProjects).replace('</article>', languageLinks +
-  '<p>Detailed portfolio in text: <a href="/portfolio.md">Read all case studies as Markdown</a>.</p>' +
-  '<p><a href="/en/sobre">About</a> · <a href="/en/contato">Contact</a></p>' + rootCaseLinks + '</article>');
+  '<p>Full portfolio text: <a href="/portfolio.md">Read complete cases in English, Portuguese and Spanish</a>.</p>' +
+  '<p><a href="/en/sobre">About</a> · <a href="/en/contato">Contact</a></p>' +
+  rootCaseLinks + '<main aria-label="Complete project case studies"><h2>Full project case studies</h2>' +
+  fullCaseStudies + '</main></article>');
 const rootHtml = includeStaticFallback(template, rootContent)
   .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, '<link rel="canonical" href="' + root + '/en" />');
-writeFileSync('dist/index.html', rootHtml, 'utf8');
+writeFileSync('dist/index.html', rootHtml
+  .replace('</head>', '  <link rel="alternate" type="text/markdown" title="Complete Product Design portfolio" href="/portfolio.md" />\\n</head>'), 'utf8');
 const markdown = ['# Igor Mariano — Product Designer', '',
   'Portfolio website: ' + root + '/', '',
   'LinkedIn: ' + siteConfig.contacts.linkedin.url, '',

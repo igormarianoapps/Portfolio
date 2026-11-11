@@ -79,3 +79,13 @@ for (const locale of locales) {
   }
 }
 console.log('Validated visible semantic HTML in React root for root and 18 localized routes.');
+
+const landing = readFileSync('dist/index.html', 'utf8');
+for (const projectName of ['Corrida Perfeita', 'Candidattus', 'TaskCheck']) {
+  assert.ok(landing.includes(projectName), 'Homepage missing ' + projectName);
+}
+assert.equal((landing.match(/class="portfolio-case-full"/g) || []).length, 3, 'Homepage should include all three full cases');
+assert.ok((landing.match(/id="static-/g) || []).length >= 25, 'Homepage full study sections missing');
+assert.ok(landing.length > 40000, 'Homepage is too short to include all three full studies');
+assert.ok(landing.includes('type="text/markdown"'), 'Missing explicit Markdown alternative');
+console.log('Validated three complete case studies on public root URL.');
