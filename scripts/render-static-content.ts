@@ -43,9 +43,13 @@ export function renderStaticIndex(locale: string, projects: CaseStudy[]): string
     projects.map(p => '<section><h3><a href="/' + esc(locale) + '/projetos/' + esc(p.slug) + '">' + esc(p.title) + '</a></h3>' + paragraph(p.summary) + '</section>').join('') + '</article>';
 }
 export function includeStaticFallback(html: string, content: string): string {
-  const css = '<style>.portfolio-static{max-width:860px;margin:0 auto;padding:40px 24px;font:16px/1.7 system-ui,sans-serif;background:white;color:#161616}.portfolio-static h1,.portfolio-static h2,.portfolio-static h3{line-height:1.25;margin:1.5em 0 .6em}.portfolio-static section{margin:2.5em 0}.portfolio-static a{color:#164b98;text-decoration:underline}.js-enabled .portfolio-static{display:none!important}</style>';
-  const script = '<script>document.documentElement.classList.add("js-enabled")</script>';
-  return html.replace('</head>', css + script + '</head>').replace('</body>', content + '</body>');
+  // Put the real document content in the initial root. A browser renders it immediately
+  // without JavaScript; React's createRoot replaces it with the interactive application.
+  // Never hide the crawler-readable content with CSS or a JavaScript-controlled class.
+  const css = '<style>.portfolio-static{max-width:860px;margin:0 auto;padding:40px 24px;font:16px/1.7 system-ui,sans-serif;background:white;color:#161616}.portfolio-static h1,.portfolio-static h2,.portfolio-static h3{line-height:1.25;margin:1.5em 0 .6em}.portfolio-static section{margin:2.5em 0}.portfolio-static a{color:#164b98;text-decoration:underline}</style>';
+  const marker = '<div id="root"></div>';
+  if (!html.includes(marker)) throw new Error('Expected Vite root element is missing');
+  return html.replace('</head>', css + '</head>').replace(marker, '<div id="root">' + content + '</div>');
 }
 
 export function renderStaticAbout(locale: 'pt' | 'en' | 'es', config: typeof import('../src/data/site').siteConfig): string {

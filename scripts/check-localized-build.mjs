@@ -66,3 +66,16 @@ for (const name of ['Corrida Perfeita','Candidattus','TaskCheck']) {
 assert.ok(textPortfolio.length > 20000, 'Markdown export unexpectedly short');
 assert.ok(readFileSync('dist/llms.txt','utf8').includes('/portfolio.md'), 'Missing AI discovery link');
 console.log('Validated root HTML, 9 crawlable case links and Markdown portfolio export.');
+
+const visibleRoot = readFileSync('dist/index.html','utf8');
+assert.ok(visibleRoot.includes('<div id="root"><article class="portfolio-static"'), 'Root must include visible semantic HTML inside #root');
+assert.ok(!visibleRoot.includes('js-enabled'), 'Static content must not be hidden by JavaScript');
+assert.ok(!visibleRoot.includes('display:none!important'), 'Static content must be visible to readers');
+for (const locale of locales) {
+  for (const suffix of suffixes) {
+    const page = readFileSync(join('dist', locale + suffix.replace(/\\/g, '/') + '/index.html'),'utf8');
+    assert.ok(page.includes('<div id="root"><article class="portfolio-static"'), 'Visible static content missing for ' + locale + suffix);
+    assert.ok(!page.includes('js-enabled'), 'Content hidden in ' + locale + suffix);
+  }
+}
+console.log('Validated visible semantic HTML in React root for root and 18 localized routes.');
