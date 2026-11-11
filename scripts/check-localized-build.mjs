@@ -36,6 +36,14 @@ for (const locale of locales) {
       assert.ok(html.includes('portfolio-static'), 'Missing static project index for ' + route);
       assert.ok(html.includes('/projetos/corrida-perfeita'), 'Missing crawlable case links for ' + route);
     }
+    if (suffix === '/sobre') {
+      assert.ok(html.includes('portfolio-static'), 'Missing static About content for ' + route);
+      assert.ok(html.length > 6000, 'About content unexpectedly short for ' + route);
+    }
+    if (suffix === '/contato') {
+      assert.ok(html.includes('portfolio-static'), 'Missing static Contact content for ' + route);
+      assert.ok(html.includes('mailto:'), 'Missing contact address for ' + route);
+    }
     checked++;
   }
 }

@@ -47,3 +47,24 @@ export function includeStaticFallback(html: string, content: string): string {
   const script = '<script>document.documentElement.classList.add("js-enabled")</script>';
   return html.replace('</head>', css + script + '</head>').replace('</body>', content + '</body>');
 }
+
+export function renderStaticAbout(locale: 'pt' | 'en' | 'es', config: typeof import('../src/data/site').siteConfig): string {
+  const about = config.aboutPage;
+  const s = about.sections;
+  const section = (title: string, paragraphs: string[]) => '<section><h2>' + esc(title) + '</h2>' + paragraphs.map(paragraph).join('') + '</section>';
+  const method = section(s.methodology.title[locale], s.methodology.steps.flatMap(step => [step.title[locale], step.desc[locale]]));
+  const skills = section(s.competencies.title[locale], s.competencies.items.flatMap(item => [item.title[locale], item.desc[locale]]));
+  const experience = section(s.representativeExperiences.title[locale], s.representativeExperiences.items.flatMap(item => [item.title[locale], item.desc[locale]]));
+  return '<article class="portfolio-static" id="portfolio-static" lang="' + esc(locale) + '"><h1>' + esc(about.title[locale]) + '</h1>' + paragraph(about.subtitle[locale]) +
+    section(s.whoIAm.title[locale], s.whoIAm.paragraphs[locale]) +
+    section(s.experienceInPractice.title[locale], s.experienceInPractice.paragraphs[locale]) +
+    method + skills + experience +
+    section(s.motivation.title[locale], [s.motivation.intro[locale], s.motivation.highlight[locale]]) + '</article>';
+}
+export function renderStaticContact(locale: 'pt' | 'en' | 'es', config: typeof import('../src/data/site').siteConfig): string {
+  const c = config.contactPage;
+  return '<article class="portfolio-static" id="portfolio-static" lang="' + esc(locale) + '"><h1>' + esc(c.title[locale]) + '</h1>' + paragraph(c.subtitle[locale]) +
+    '<h2>LinkedIn</h2>' + paragraph(c.linkedinIntro[locale]) + '<p><a href="' + esc(config.contacts.linkedin.url) + '">LinkedIn</a></p>' +
+    '<h2>WhatsApp</h2>' + paragraph(c.whatsappIntro[locale]) + '<p><a href="' + esc(config.contacts.whatsapp.url) + '">WhatsApp</a></p>' +
+    '<h2>Email</h2>' + paragraph(c.emailIntro[locale]) + '<p><a href="mailto:' + esc(config.contacts.email.address) + '">' + esc(config.contacts.email.address) + '</a></p></article>';
+}
