@@ -68,3 +68,20 @@ export function renderStaticContact(locale: 'pt' | 'en' | 'es', config: typeof i
     '<h2>WhatsApp</h2>' + paragraph(c.whatsappIntro[locale]) + '<p><a href="' + esc(config.contacts.whatsapp.url) + '">WhatsApp</a></p>' +
     '<h2>Email</h2>' + paragraph(c.emailIntro[locale]) + '<p><a href="mailto:' + esc(config.contacts.email.address) + '">' + esc(config.contacts.email.address) + '</a></p></article>';
 }
+
+/** Machine-readable Markdown generated from the same case-study source as the website. */
+export function renderMarkdownCase(study: CaseStudy): string {
+  const lines = ['# ' + study.title, '', study.summary, '', study.tagline, '',
+    '- Role: ' + study.metadata.role,
+    '- Team: ' + study.metadata.team,
+    '- Platform: ' + study.metadata.platform,
+    '- Tools: ' + (study.metadata.tools || []).join(', '), ''];
+  if (study.isPlaceholder) lines.push('Data transparency: ' + (study.placeholderNotice || 'Illustrative information, not independently validated.'), '');
+  for (const metric of study.metrics || []) lines.push('Outcome: ' + metric.value + ' — ' + metric.label + '. ' + metric.context, '');
+  for (const section of study.sections) {
+    lines.push('## ' + section.title, '');
+    const { id: _id, title: _title, ...content } = section;
+    for (const item of meaningfulText(content)) lines.push(item.replace(/\*\*/g, ''), '');
+  }
+  return lines.join('\n');
+}
