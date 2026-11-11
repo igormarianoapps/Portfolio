@@ -32,3 +32,34 @@ jobs:
           echo "markdown status=$status size=$(wc -c < /tmp/portfolio-audit.md)"
           grep -Em 1 '^# Corrida Perfeita' /tmp/portfolio-audit.md || true
           echo "::endgroup::"
+
+      - name: Validate Claude reader compatibility (same public URL)
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://igormariano.vercel.app/"
+          for ua in "Mozilla/5.0" "Claude-User" "Claude-SearchBot" "Googlebot"; do
+            echo "::group::$ua"
+            h=$(mktemp)
+            b=$(mktemp)
+            status=$(curl -sS --connect-timeout 10 --max-time 20 -D "$h" -o "$b" -w '%{http_code}' -A "$ua" "$url")
+            redirect=$(grep -i '^location:' "$h" | tr -d '\r' || true)
+            echo "initial_status=$status location=$redirect"
+            if [[ "$ua" == Claude-* ]]; then
+              test "$status" = "307"
+              echo "$redirect" | grep -q '/portfolio.md'
+              final_code=$(curl -sSL --max-time 25 -o "$b" -w '%{http_code}' -A "$ua" "$url")
+              echo "followed_status=$final_code bytes=$(wc -c < "$b")"
+              test "$final_code" = "200"
+              grep -Fq '# Corrida Perfeita' "$b"
+              grep -Fq '# Candidattus' "$b"
+              grep -Fq '# TaskCheck' "$b"
+              echo "RESULT: CLAUDE_TEXT_AVAILABLE"
+            else
+              test "$status" = "200"
+              grep -Fq 'portfolio-case-full' "$b"
+              echo "RESULT: BROWSER_HTML_INTACT"
+            fi
+            rm -f "$h" "$b"
+            echo "::endgroup::"
+          done
