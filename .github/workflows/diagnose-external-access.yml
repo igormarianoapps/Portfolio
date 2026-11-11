@@ -1,0 +1,34 @@
+name: Diagnose public portfolio access
+on:
+  push:
+    branches: [audit/external-reader-access]
+permissions:
+  contents: read
+jobs:
+  external-http:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Test unauthenticated HTTP, like an AI reader
+        shell: bash
+        run: |
+          set -euo pipefail
+          for ua in "Mozilla/5.0" "ClaudeBot" "Googlebot" "curl/8.0"; do
+            echo "::group::User-Agent $ua"
+            headers=$(mktemp)
+            body=$(mktemp)
+            status=$(curl -sSL --connect-timeout 10 --max-time 25 -D "$headers" -o "$body" -w '%{http_code}' -A "$ua" https://igormariano.vercel.app/ || true)
+            echo "status=$status size=$(wc -c < "$body")"
+            grep -Ei '^(HTTP/|content-type:|location:|x-vercel-|server:|cache-control:)' "$headers" || true
+            for phrase in 'Corrida Perfeita' 'Candidattus' 'TaskCheck' 'portfolio-case-full'; do
+              if grep -Fq "$phrase" "$body"; then echo "FOUND: $phrase"; else echo "MISSING: $phrase"; fi
+            done
+            if grep -Eiq 'Vercel Authentication|Login to Vercel|Security Checkpoint' "$body"; then echo "BLOCKED: Vercel protection response"; fi
+            rm -f "$headers" "$body"
+            echo "::endgroup::"
+          done
+          echo "::group::Markdown direct fetch"
+          status=$(curl -sSL --max-time 25 -o /tmp/portfolio-audit.md -w '%{http_code}' https://igormariano.vercel.app/portfolio.md || true)
+          echo "markdown status=$status size=$(wc -c < /tmp/portfolio-audit.md)"
+          grep -Em 1 '^# Corrida Perfeita' /tmp/portfolio-audit.md || true
+          echo "::endgroup::"
