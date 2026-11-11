@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { PROJECTS_REGISTRY } from '../src/data/projects';
 import { siteConfig } from '../src/data/site';
-import { includeStaticFallback, renderStaticCase, renderStaticIndex, renderStaticAbout, renderStaticContact } from './render-static-content';
+import { includeStaticFallback, renderStaticCase, renderStaticIndex, renderStaticAbout, renderStaticContact, renderMarkdownCase } from './render-static-content';
 
 const root = 'https://igormariano.vercel.app';
 const template = readFileSync('dist/index.html', 'utf8');
@@ -51,6 +51,40 @@ for (const page of pages) {
   else if (page.suffix === '/contato') html = includeStaticFallback(html, renderStaticContact(page.locale, siteConfig));
   writeFileSync(join(folder, 'index.html'), html, 'utf8');
 }
+
+/** The root URL is where most AI tools begin. Serve readable links and project details there too. */
+const rootProjects = PROJECTS_REGISTRY.map(entry => entry.en);
+const languageLinks = '<nav aria-label="Languages"><p>Languages: <a href="/en">English</a> · <a href="/pt">Português</a> · <a href="/es">Español</a></p></nav>';
+const rootCaseLinks = locales.map(locale =>
+  '<section><h2>' + (locale === 'pt' ? 'Estudos de caso em português' : locale === 'es' ? 'Casos de estudio en español' : 'Case studies in English') + '</h2>' +
+  PROJECTS_REGISTRY.map(entry => '<p><a href="/' + locale + '/projetos/' + entry[locale].slug + '">' + escape(entry[locale].title) + '</a></p>').join('') + '</section>'
+).join('');
+const rootContent = renderStaticIndex('en', rootProjects).replace('</article>', languageLinks +
+  '<p>Detailed portfolio in text: <a href="/portfolio.md">Read all case studies as Markdown</a>.</p>' +
+  '<p><a href="/en/sobre">About</a> · <a href="/en/contato">Contact</a></p>' + rootCaseLinks + '</article>');
+const rootHtml = includeStaticFallback(template, rootContent)
+  .replace(/<link rel="canonical" href="[^"]*"\s*\/>/, '<link rel="canonical" href="' + root + '/en" />');
+writeFileSync('dist/index.html', rootHtml, 'utf8');
+const markdown = ['# Igor Mariano — Product Designer', '',
+  'Portfolio website: ' + root + '/', '',
+  'LinkedIn: ' + siteConfig.contacts.linkedin.url, '',
+  'Contact: ' + siteConfig.contacts.email.address, '',
+  '## Projects by language', ''];
+for (const locale of locales) {
+  const label = locale === 'pt' ? 'Português' : locale === 'es' ? 'Español' : 'English';
+  markdown.push('# ' + label, '');
+  for (const entry of PROJECTS_REGISTRY) {
+    markdown.push('Source: ' + root + '/' + locale + '/projetos/' + entry[locale].slug, '',
+      renderMarkdownCase(entry[locale]), '');
+  }
+}
+writeFileSync('dist/portfolio.md', markdown.join('\n'), 'utf8');
+writeFileSync('dist/llms.txt',
+  '# Igor Mariano — Product Designer\n\n' +
+  'Full text portfolio (Portuguese, English, Spanish): ' + root + '/portfolio.md\n\n' +
+  'Project case studies:\n' + locales.flatMap(locale => PROJECTS_REGISTRY.map(entry => '- ' + entry[locale].title + ': ' + root + '/' + locale + '/projetos/' + entry[locale].slug)).join('\n') + '\n',
+  'utf8');
+
 const urls = pages.map(page => `  <url><loc>${root}${page.path}</loc>${locales.map(locale => `<xhtml:link rel="alternate" hreflang="${locale === 'pt' ? 'pt-BR' : locale === 'es' ? 'es-ES' : 'en'}" href="${root}/${locale}${page.suffix}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${root}/en${page.suffix}"/></url>`).join('\n');
 writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`, 'utf8');
 console.log(`Generated localized metadata and sitemap for ${pages.length} routes.`);

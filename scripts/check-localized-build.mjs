@@ -50,3 +50,19 @@ for (const locale of locales) {
 assert.equal(checked, locales.length * suffixes.length);
 assert.ok(sitemap.includes('<loc>https://igormariano.vercel.app/es'), 'Missing translated Spanish routes');
 console.log(`Validated ${checked} localized HTML pages, canonical URLs, Open Graph, alternates and sitemap entries.`);
+
+const rootHtml = readFileSync('dist/index.html','utf8');
+assert.ok(rootHtml.includes('portfolio-static'), 'Root URL must expose static content');
+for (const locale of locales) {
+  for (const slug of ['corrida-perfeita','candidattus','taskcheck-design-system']) {
+    assert.ok(rootHtml.includes('/' + locale + '/projetos/' + slug), 'Root missing case link: '+ locale + '/' + slug);
+  }
+}
+assert.ok(rootHtml.includes('/portfolio.md'), 'Root missing text fallback link');
+const textPortfolio = readFileSync('dist/portfolio.md','utf8');
+for (const name of ['Corrida Perfeita','Candidattus','TaskCheck']) {
+  assert.ok(textPortfolio.includes(name), 'Missing Markdown case: '+name);
+}
+assert.ok(textPortfolio.length > 20000, 'Markdown export unexpectedly short');
+assert.ok(readFileSync('dist/llms.txt','utf8').includes('/portfolio.md'), 'Missing AI discovery link');
+console.log('Validated root HTML, 9 crawlable case links and Markdown portfolio export.');
